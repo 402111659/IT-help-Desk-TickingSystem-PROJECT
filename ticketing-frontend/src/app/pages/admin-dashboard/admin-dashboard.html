@@ -1,0 +1,1013 @@
+<div class="dashboard">
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+
+        <span>IT</span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         ADMIN NAVIGATION
+         =================================================== -->
+
+    <nav class="navigation">
+
+      <!-- ADMINISTRATION -->
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          ADMINISTRATION
+        </span>
+
+
+        <!-- DASHBOARD -->
+
+        <a
+          class="nav-item active"
+          routerLink="/admin-dashboard">
+
+          <span class="nav-icon">
+            ⌂
+          </span>
+
+          <span>
+            Dashboard
+          </span>
+
+        </a>
+
+
+        <!-- ALL TICKETS -->
+
+        <a
+          class="nav-item"
+          routerLink="/tickets">
+
+          <span class="nav-icon">
+            ▣
+          </span>
+
+          <span>
+            All Tickets
+          </span>
+
+        </a>
+
+
+        <!-- USERS -->
+
+        <a
+          class="nav-item"
+          routerLink="/users">
+
+          <span class="nav-icon">
+            ◉
+          </span>
+
+          <span>
+            Users
+          </span>
+
+        </a>
+
+
+        <!-- TECHNICIANS -->
+
+        <a
+          class="nav-item"
+          routerLink="/create-technician">
+
+          <span class="nav-icon">
+            ＋
+          </span>
+
+          <span>
+            Technicians
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- =================================================
+           REPORTS
+           ================================================= -->
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          REPORTS
+        </span>
+
+
+        <div class="nav-item">
+
+          <span class="nav-icon">
+            ◫
+          </span>
+
+          <span>
+            System Analytics
+          </span>
+
+        </div>
+
+
+        <div class="nav-item">
+
+          <span class="nav-icon">
+            ◌
+          </span>
+
+          <span>
+            Ticket Statistics
+          </span>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+
+    <!-- ===================================================
+         SIDEBAR BOTTOM
+         =================================================== -->
+
+    <div class="sidebar-bottom">
+
+      <!-- SYSTEM STATUS -->
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+
+          <strong>
+            SYSTEM ONLINE
+          </strong>
+
+          <small>
+            API CONNECTED
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOGOUT -->
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        <span>
+          ↪
+        </span>
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+
+  <main class="main-content">
+
+
+    <!-- ===================================================
+         TOPBAR
+         =================================================== -->
+
+    <header class="topbar">
+
+      <div>
+
+        <span class="page-label">
+          SYSTEM ADMINISTRATION
+        </span>
+
+        <h1>
+          Admin Dashboard
+        </h1>
+
+      </div>
+
+
+      <!-- ADMIN PROFILE -->
+
+      <div class="topbar-right">
+
+        <div class="user-profile">
+
+          <div class="avatar">
+            {{ userInitial }}
+          </div>
+
+          <div class="user-info">
+
+            <strong>
+              {{ userEmail }}
+            </strong>
+
+            <span>
+              Administrator
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         CONTENT
+         =================================================== -->
+
+    <section class="content">
+
+
+      <!-- =================================================
+           WELCOME
+           ================================================= -->
+
+      <div class="welcome">
+
+        <div>
+
+          <span class="welcome-label">
+            SYSTEM OVERVIEW
+          </span>
+
+          <h2>
+            Welcome back, Administrator.
+          </h2>
+
+          <p>
+            Manage tickets, users and technical support activity.
+          </p>
+
+        </div>
+
+
+        <div class="date">
+          {{ currentDate }}
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           ERROR
+           ================================================= -->
+
+      @if (ticketError) {
+
+        <div class="error-message">
+
+          <span class="error-icon">
+            !
+          </span>
+
+          <div class="error-content">
+
+            <strong>
+              SYSTEM ERROR
+            </strong>
+
+            <span>
+              {{ ticketError }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- =================================================
+           TICKET STATISTICS
+           ================================================= -->
+
+      <div class="stats-grid">
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              TOTAL TICKETS
+            </span>
+
+            <span class="stat-icon">
+              ▤
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ totalTickets }}
+          </strong>
+
+          <span class="stat-description">
+            All support requests
+          </span>
+
+        </div>
+
+
+        <!-- OPEN -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              OPEN TICKETS
+            </span>
+
+            <span class="stat-icon">
+              ◈
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ openTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Awaiting assistance
+          </span>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              IN PROGRESS
+            </span>
+
+            <span class="stat-icon">
+              ◉
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ inProgressTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Currently being handled
+          </span>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              RESOLVED
+            </span>
+
+            <span class="stat-icon">
+              ✓
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ resolvedTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Successfully resolved
+          </span>
+
+        </div>
+
+
+        <!-- CLOSED -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              CLOSED
+            </span>
+
+            <span class="stat-icon">
+              ✓
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ closedTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Completed tickets
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           ADMIN QUICK ACTIONS
+           ================================================= -->
+
+      <section class="quick-actions">
+
+        <div class="section-heading">
+
+          <span class="panel-label">
+            ADMINISTRATION
+          </span>
+
+          <h3>
+            System Management
+          </h3>
+
+        </div>
+
+
+        <div class="quick-action-grid">
+
+
+          <!-- MANAGE TICKETS -->
+
+          <a
+            class="quick-action"
+            routerLink="/tickets">
+
+            <div class="quick-action-icon">
+              ▣
+            </div>
+
+            <div>
+
+              <strong>
+                Manage Tickets
+              </strong>
+
+              <span>
+                View and manage all support tickets.
+              </span>
+
+            </div>
+
+            <span class="quick-action-arrow">
+              →
+            </span>
+
+          </a>
+
+
+          <!-- MANAGE USERS -->
+
+          <a
+            class="quick-action"
+            routerLink="/users">
+
+            <div class="quick-action-icon">
+              ◉
+            </div>
+
+            <div>
+
+              <strong>
+                Manage Users
+              </strong>
+
+              <span>
+                Search and manage system users.
+              </span>
+
+            </div>
+
+            <span class="quick-action-arrow">
+              →
+            </span>
+
+          </a>
+
+
+          <!-- MANAGE TECHNICIANS -->
+
+          <a
+            class="quick-action"
+            routerLink="/create-technician">
+
+            <div class="quick-action-icon">
+              ＋
+            </div>
+
+            <div>
+
+              <strong>
+                Manage Technicians
+              </strong>
+
+              <span>
+                Create and manage support technicians.
+              </span>
+
+            </div>
+
+            <span class="quick-action-arrow">
+              →
+            </span>
+
+          </a>
+
+
+          <!-- REPORTS -->
+
+          <a
+            class="quick-action"
+            href="javascript:void(0)">
+
+            <div class="quick-action-icon">
+              ◫
+            </div>
+
+            <div>
+
+              <strong>
+                Reports & Analytics
+              </strong>
+
+              <span>
+                View system performance and statistics.
+              </span>
+
+            </div>
+
+            <span class="quick-action-arrow">
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           REPORT / STATISTICS PANEL
+           ================================================= -->
+
+      <section class="tickets-panel">
+
+
+        <!-- PANEL HEADER -->
+
+        <div class="panel-header">
+
+          <div>
+
+            <span class="panel-label">
+              SYSTEM ANALYTICS
+            </span>
+
+            <h3>
+              Ticket Statistics
+            </h3>
+
+          </div>
+
+          <div class="ticket-count">
+
+            <strong>
+              {{ totalTickets }}
+            </strong>
+
+            <span>
+              TOTAL
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+             ================================================= -->
+
+        <div class="admin-report-grid">
+
+
+          <!-- OPEN -->
+
+          <div class="report-card">
+
+            <div class="report-card-header">
+
+              <span>
+                OPEN
+              </span>
+
+              <span class="report-icon">
+                ◈
+              </span>
+
+            </div>
+
+            <strong>
+              {{ openTickets }}
+            </strong>
+
+            <span>
+              Awaiting assistance
+            </span>
+
+          </div>
+
+
+          <!-- IN PROGRESS -->
+
+          <div class="report-card">
+
+            <div class="report-card-header">
+
+              <span>
+                IN PROGRESS
+              </span>
+
+              <span class="report-icon">
+                ◉
+              </span>
+
+            </div>
+
+            <strong>
+              {{ inProgressTickets }}
+            </strong>
+
+            <span>
+              Being handled
+            </span>
+
+          </div>
+
+
+          <!-- RESOLVED -->
+
+          <div class="report-card">
+
+            <div class="report-card-header">
+
+              <span>
+                RESOLVED
+              </span>
+
+              <span class="report-icon">
+                ✓
+              </span>
+
+            </div>
+
+            <strong>
+              {{ resolvedTickets }}
+            </strong>
+
+            <span>
+              Successfully resolved
+            </span>
+
+          </div>
+
+
+          <!-- CLOSED -->
+
+          <div class="report-card">
+
+            <div class="report-card-header">
+
+              <span>
+                CLOSED
+              </span>
+
+              <span class="report-icon">
+                ✓
+              </span>
+
+            </div>
+
+            <strong>
+              {{ closedTickets }}
+            </strong>
+
+            <span>
+              Completed
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           TICKET MANAGEMENT
+           ================================================= -->
+
+      <section class="tickets-panel">
+
+
+        <!-- PANEL HEADER -->
+
+        <div class="panel-header">
+
+          <div>
+
+            <span class="panel-label">
+              SYSTEM TICKETS
+            </span>
+
+            <h3>
+              Ticket Management
+            </h3>
+
+          </div>
+
+
+          <div class="ticket-count">
+
+            <strong>
+              {{ totalTickets }}
+            </strong>
+
+            <span>
+              TOTAL
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SEARCH
+             ================================================= -->
+
+        <div class="search-container">
+
+          <input
+            type="text"
+            class="search-box"
+            [(ngModel)]="searchTerm"
+            placeholder="Search tickets by number, title, description, status or priority..."
+          />
+
+        </div>
+
+
+        <!-- =================================================
+             LOADING
+             ================================================= -->
+
+        @if (loadingTickets) {
+
+          <div class="loading-state">
+
+            <div class="spinner"></div>
+
+            <span>
+              Loading tickets...
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             NO RESULTS
+             ================================================= -->
+
+        @if (
+          !loadingTickets &&
+          filteredTickets.length === 0
+        ) {
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ▤
+            </div>
+
+            <h4>
+              No tickets found
+            </h4>
+
+            <p>
+              There are no tickets matching your search.
+            </p>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             TICKET LIST
+             ================================================= -->
+
+        @if (
+          !loadingTickets &&
+          filteredTickets.length > 0
+        ) {
+
+          <!-- TABLE HEADER -->
+
+          <div class="ticket-header">
+
+            <span>
+              TICKET
+            </span>
+
+            <span>
+              ISSUE
+            </span>
+
+            <span>
+              PRIORITY
+            </span>
+
+            <span>
+              STATUS
+            </span>
+
+            <span>
+              ACTION
+            </span>
+
+          </div>
+
+
+          <!-- TICKET ROWS -->
+
+          @for (
+            ticket of filteredTickets;
+            track ticket.id
+          ) {
+
+            <div class="ticket-row">
+
+
+              <!-- TICKET NUMBER -->
+
+              <div class="ticket-number">
+
+                <span>
+                  TICKET
+                </span>
+
+                <strong>
+                  {{ ticket.ticketNumber }}
+                </strong>
+
+              </div>
+
+
+              <!-- TICKET INFORMATION -->
+
+              <div class="ticket-info">
+
+                <strong>
+                  {{ ticket.title }}
+                </strong>
+
+                <span>
+                  {{ ticket.description }}
+                </span>
+
+              </div>
+
+
+              <!-- PRIORITY -->
+
+              <div class="ticket-priority">
+
+                <span
+                  class="priority-badge"
+                  [class.low]="ticket.priority === 'LOW'"
+                  [class.medium]="ticket.priority === 'MEDIUM'"
+                  [class.high]="ticket.priority === 'HIGH'"
+                  [class.critical]="ticket.priority === 'CRITICAL'">
+
+                  {{ ticket.priority }}
+
+                </span>
+
+              </div>
+
+
+              <!-- STATUS -->
+
+              <div class="ticket-status-container">
+
+                <span
+                  class="ticket-status"
+                  [class.open]="ticket.status === 'OPEN'"
+                  [class.progress]="ticket.status === 'IN_PROGRESS'"
+                  [class.resolved]="ticket.status === 'RESOLVED'"
+                  [class.closed]="ticket.status === 'CLOSED'">
+
+                  {{ ticket.status }}
+
+                </span>
+
+              </div>
+
+
+              <!-- VIEW TICKET -->
+
+              <div class="ticket-action">
+
+                <button
+                  type="button"
+                  class="view-ticket-button"
+                  (click)="viewTicket(ticket.id)">
+
+                  View Ticket
+
+                  <span class="arrow">
+                    →
+                  </span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          }
+
+        }
+
+      </section>
+
+
+    </section>
+
+  </main>
+
+</div>

@@ -1,0 +1,35 @@
+Authentication
+Method	Endpoint	Access
+POST	/api/users/register	Public
+POST	/api/users/login	Public
+Users
+Method	Endpoint	Access
+GET	/api/users	ADMIN
+PUT	/api/users/{id}/role	ADMIN
+
+
+
+Tickets
+Method	Endpoint	Access
+GET	/api/tickets	Authenticated
+POST	/api/tickets	Authenticated
+GET	/api/tickets/{id}	Authenticated
+PUT	/api/tickets/{id}	Employee/Technician/Admin
+DELETE	/api/tickets/{id}	Your configured access
+GET	/api/tickets/my-tickets	EMPLOYEE
+GET	/api/tickets/assigned	TECHNICIAN
+PUT	/api/tickets/{id}/status	TECHNICIAN/ADMIN
+PUT	/api/tickets/{id}/priority	Your configured access
+PUT	/api/tickets/{ticketId}/assign/{technicianId}	ADMIN
+GET	/api/tickets/search	ADMIN
+
+Notifications
+Method	Endpoint	Access
+GET	/api/notifications	Authenticated
+PUT	/api/notifications/{id}/read	Authenticated
+PUT	/api/notifications/read-all	Authenticated
+GET	/api/notifications/unread-count	Authenticated
+Dashboard
+Method	Endpoint	Access
+GET	/api/dashboard	ADMIN
+GET	/api/dashboard/technicians	ADMIN

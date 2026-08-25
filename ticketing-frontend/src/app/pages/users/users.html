@@ -1,0 +1,429 @@
+<div class="users-page">
+
+  <!-- ================================================= -->
+  <!-- HEADER -->
+  <!-- ================================================= -->
+
+  <header class="page-header">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+
+        <span>
+          IT
+        </span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ADMIN DASHBOARD -->
+    <!-- ================================================= -->
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goToAdminDashboard()">
+
+      ← Back to Dashboard
+
+    </button>
+
+  </header>
+
+
+  <!-- ================================================= -->
+  <!-- MAIN -->
+  <!-- ================================================= -->
+
+  <main class="main-content">
+
+
+    <!-- ================================================= -->
+    <!-- PAGE HEADING -->
+    <!-- ================================================= -->
+
+    <section class="page-heading">
+
+      <div>
+
+        <span class="page-label">
+          IT OPERATIONS / MANAGEMENT
+        </span>
+
+        <h1>
+          User Management
+        </h1>
+
+        <p>
+          Manage employees and technicians within the system.
+        </p>
+
+      </div>
+
+
+      <div class="user-count">
+
+        <strong>
+          {{ filteredUsers.length }}
+        </strong>
+
+        <span>
+          USERS
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SEARCH AND FILTERS -->
+    <!-- ================================================= -->
+
+    <section class="controls-card">
+
+      <div class="search-box">
+
+        <span class="search-icon">
+          ⌕
+        </span>
+
+        <input
+          type="text"
+          placeholder="Search users..."
+          [(ngModel)]="searchTerm">
+
+      </div>
+
+
+      <select
+        [(ngModel)]="selectedRole">
+
+        <option value="ALL">
+          All Roles
+        </option>
+
+        <option value="ADMIN">
+          Administrators
+        </option>
+
+        <option value="TECHNICIAN">
+          Technicians
+        </option>
+
+        <option value="EMPLOYEE">
+          Employees
+        </option>
+
+      </select>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SUCCESS MESSAGE -->
+    <!-- ================================================= -->
+
+    @if (!loading && successMessage) {
+
+      <div class="success-message">
+
+        <span class="success-icon">
+          ✓
+        </span>
+
+        <span class="success-text">
+          {{ successMessage }}
+        </span>
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- LOADING -->
+    <!-- ================================================= -->
+
+    @if (loading) {
+
+      <div class="loading-state">
+
+        <span class="spinner"></span>
+
+        <span>
+          Loading users...
+        </span>
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- ERROR -->
+    <!-- ================================================= -->
+
+    @if (!loading && errorMessage) {
+
+      <div class="error-state">
+
+        <div class="error-icon">
+          !
+        </div>
+
+        <strong>
+          Unable to Load Users
+        </strong>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+        <button
+          type="button"
+          (click)="loadUsers()">
+
+          Try Again
+
+        </button>
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- USER TABLE -->
+    <!-- ================================================= -->
+
+    @if (!loading && !errorMessage) {
+
+      <section class="users-card">
+
+
+        <!-- ================================================= -->
+        <!-- TABLE HEADER -->
+        <!-- ================================================= -->
+
+        <div class="table-header">
+
+          <div>
+            USER
+          </div>
+
+          <div>
+            EMAIL
+          </div>
+
+          <div>
+            ROLE
+          </div>
+
+          <div>
+            ACTION
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- NO USERS -->
+        <!-- ================================================= -->
+
+        @if (filteredUsers.length === 0) {
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ◉
+            </div>
+
+            <strong>
+              No users found
+            </strong>
+
+            <span>
+              Try changing your search or role filter.
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- ================================================= -->
+        <!-- USER ROWS -->
+        <!-- ================================================= -->
+
+        @for (
+          user of filteredUsers;
+          track user.id
+        ) {
+
+          <div class="user-row">
+
+
+            <!-- ================================================= -->
+            <!-- USER -->
+            <!-- ================================================= -->
+
+            <div class="user-cell">
+
+              <div class="avatar">
+
+                {{ user.firstName.charAt(0).toUpperCase() }}
+
+              </div>
+
+
+              <div class="user-name">
+
+                <strong>
+                  {{ user.firstName }}
+                  {{ user.lastName }}
+                </strong>
+
+                <span>
+                  USER #{{ user.id }}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- EMAIL -->
+            <!-- ================================================= -->
+
+            <div class="email-cell">
+
+              {{ user.email }}
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- ROLE MANAGEMENT -->
+            <!-- ================================================= -->
+
+            <div class="role-management">
+
+
+              <!-- CURRENT ROLE -->
+
+              <span
+                class="role-badge"
+
+                [class.admin]="
+                  user.role === 'ADMIN'
+                "
+
+                [class.technician]="
+                  user.role === 'TECHNICIAN'
+                "
+
+                [class.employee]="
+                  user.role === 'EMPLOYEE'
+                ">
+
+                {{ user.role }}
+
+              </span>
+
+
+              <!-- ROLE SELECT -->
+
+              <select
+                [(ngModel)]="selectedUserRoles[user.id]">
+
+                <option value="ADMIN">
+                  ADMIN
+                </option>
+
+                <option value="TECHNICIAN">
+                  TECHNICIAN
+                </option>
+
+                <option value="EMPLOYEE">
+                  EMPLOYEE
+                </option>
+
+              </select>
+
+
+              <!-- UPDATE ROLE -->
+
+              <button
+                type="button"
+                class="update-role-button"
+
+                [disabled]="
+                  updatingUserId === user.id ||
+                  !selectedUserRoles[user.id] ||
+                  selectedUserRoles[user.id] === user.role
+                "
+
+                (click)="updateUserRole(user)">
+
+                @if (
+                  updatingUserId === user.id
+                ) {
+
+                  Updating...
+
+                } @else {
+
+                  Update
+
+                }
+
+              </button>
+
+            </div>
+
+          </div>
+
+        }
+
+      </section>
+
+    }
+
+  </main>
+
+
+  <!-- ================================================= -->
+  <!-- FOOTER -->
+  <!-- ================================================= -->
+
+  <footer class="page-footer">
+
+    <span>
+      IT TICKETING SYSTEM
+    </span>
+
+    <span>
+      USER MANAGEMENT
+    </span>
+
+    <span>
+      © 2026
+    </span>
+
+  </footer>
+
+</div>

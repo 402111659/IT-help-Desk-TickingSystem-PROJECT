@@ -1,0 +1,1029 @@
+/* =========================================================
+   IT TICKETING SYSTEM — CREATE TICKET
+   ========================================================= */
+
+:host {
+  display: block;
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: #e8eef5;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.create-ticket-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(48, 121, 255, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(0, 224, 170, 0.05),
+      transparent 28%
+    ),
+    #070a0f;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.page-header {
+  height: 82px;
+
+  padding: 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  background:
+    rgba(7, 10, 15, 0.88);
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8dfc78,
+      #3edb9a
+    );
+
+  color: #06100c;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  box-shadow:
+    0 0 25px rgba(99, 245, 151, 0.17);
+}
+
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.brand-text span {
+  font-size: 9px;
+
+  color: #718092;
+
+  font-weight: 700;
+
+  letter-spacing: 0.25em;
+}
+
+
+.brand-text strong {
+  font-size: 13px;
+
+  color: #eef3f7;
+
+  letter-spacing: 0.05em;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-button {
+  height: 40px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  border-radius: 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #7c8998;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.back-button span {
+  font-size: 15px;
+}
+
+
+.back-button:hover {
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  color: #e3eaf0;
+
+  border-color:
+    rgba(255, 255, 255, 0.13);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main-content {
+  width: 100%;
+
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 48px 25px 60px;
+
+  box-sizing: border-box;
+
+  flex: 1;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+   ========================================================= */
+
+.page-intro {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 28px;
+}
+
+
+.page-label {
+  display: block;
+
+  font-size: 9px;
+
+  color: #657384;
+
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+}
+
+
+.page-intro h1 {
+  margin: 8px 0 7px;
+
+  font-size: 34px;
+
+  font-weight: 500;
+
+  letter-spacing: -0.045em;
+
+  color: #f1f5f8;
+}
+
+
+.page-intro p {
+  margin: 0;
+
+  max-width: 600px;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: #687687;
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.system-status {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 12px;
+
+  border-radius: 8px;
+
+  border:
+    1px solid rgba(131, 243, 110, 0.1);
+
+  background:
+    rgba(131, 243, 110, 0.035);
+
+  color: #77917b;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #83f36e;
+
+  box-shadow:
+    0 0 9px rgba(131, 243, 110, 0.7);
+}
+
+
+/* =========================================================
+   TICKET CARD
+   ========================================================= */
+
+.ticket-card {
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.card-header {
+  min-height: 82px;
+
+  padding: 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.055);
+}
+
+
+.card-label {
+  display: block;
+
+  font-size: 8px;
+
+  color: #596879;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+
+.card-header h2 {
+  margin: 6px 0 0;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  color: #e7edf2;
+}
+
+
+.secure-label {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size: 8px;
+
+  color: #637182;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+
+.secure-label span {
+  color: #83f36e;
+
+  font-size: 8px;
+
+  text-shadow:
+    0 0 8px rgba(131, 243, 110, 0.7);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.ticket-form {
+  padding: 30px 25px 25px;
+}
+
+
+.form-group {
+  margin-bottom: 27px;
+}
+
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-size: 9px;
+
+  color: #718092;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+
+.form-group label span {
+  color: #83f36e;
+
+  margin-left: 2px;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.input-wrapper {
+  border-radius: 9px;
+
+  background:
+    rgba(0, 0, 0, 0.18);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.075);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.input-wrapper:focus-within {
+  border-color:
+    rgba(131, 243, 110, 0.3);
+
+  box-shadow:
+    0 0 0 3px rgba(131, 243, 110, 0.035);
+}
+
+
+input,
+textarea,
+select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #dfe7ee;
+
+  font-family: inherit;
+}
+
+
+input {
+  height: 51px;
+
+  padding: 0 15px;
+
+  font-size: 13px;
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color: #465362;
+}
+
+
+textarea {
+  min-height: 170px;
+
+  padding: 15px;
+
+  resize: vertical;
+
+  line-height: 1.65;
+
+  font-size: 12px;
+}
+
+
+.textarea-wrapper {
+  min-height: 170px;
+}
+
+
+/* =========================================================
+   FIELD FOOTER
+   ========================================================= */
+
+.field-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 7px;
+
+  font-size: 9px;
+
+  color: #4f5d6d;
+}
+
+
+.field-footer span:last-child {
+  color: #5d6b7b;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PRIORITY
+   ========================================================= */
+
+.priority-group {
+  max-width: 420px;
+}
+
+
+select {
+  height: 50px;
+
+  padding: 0 14px;
+
+  border-radius: 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.075);
+
+  background:
+    rgba(0, 0, 0, 0.22);
+
+  color: #dfe7ee;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+
+select:focus {
+  border-color:
+    rgba(131, 243, 110, 0.3);
+
+  outline: none;
+}
+
+
+select option {
+  background: #10151c;
+
+  color: #e8eef5;
+}
+
+
+.priority-help {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 8px;
+
+  color: #526172;
+
+  font-size: 9px;
+}
+
+
+.priority-indicator {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #60aed5;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.message {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 13px 15px;
+
+  margin-bottom: 20px;
+
+  border-radius: 9px;
+
+  font-size: 10px;
+}
+
+
+.message-icon {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+}
+
+
+.message div:last-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.message strong {
+  font-size: 8px;
+
+  letter-spacing: 0.12em;
+}
+
+
+.message span {
+  color: #778493;
+
+  font-size: 10px;
+}
+
+
+.message.error {
+  background:
+    rgba(255, 70, 70, 0.055);
+
+  border:
+    1px solid rgba(255, 70, 70, 0.11);
+}
+
+
+.message.error .message-icon {
+  background:
+    rgba(255, 70, 70, 0.1);
+
+  color: #ff8b8b;
+}
+
+
+.message.error strong {
+  color: #ff9b9b;
+}
+
+
+.message.success {
+  background:
+    rgba(131, 243, 110, 0.045);
+
+  border:
+    1px solid rgba(131, 243, 110, 0.11);
+}
+
+
+.message.success .message-icon {
+  background:
+    rgba(131, 243, 110, 0.09);
+
+  color: #83f36e;
+}
+
+
+.message.success strong {
+  color: #a4ff96;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+.cancel-button,
+.submit-button {
+  height: 44px;
+
+  padding: 0 19px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.cancel-button {
+  border:
+    1px solid rgba(255, 255, 255, 0.075);
+
+  background:
+    transparent;
+
+  color: #738091;
+}
+
+
+.cancel-button:hover {
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #dce4eb;
+}
+
+
+.submit-button {
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  min-width: 155px;
+
+  border: none;
+
+  background:
+    #83f36e;
+
+  color: #071007;
+
+  box-shadow:
+    0 0 0 rgba(131, 243, 110, 0);
+}
+
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 28px rgba(131, 243, 110, 0.22);
+}
+
+
+.submit-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+.submit-arrow {
+  font-size: 17px;
+}
+
+
+.button-spinner {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid rgba(7, 16, 7, 0.25);
+
+  border-top-color: #071007;
+
+  animation:
+    spin 0.8s linear infinite;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   INFORMATION
+   ========================================================= */
+
+.information-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+
+.info-item {
+  min-height: 95px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.045);
+}
+
+
+.info-icon {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background:
+    rgba(131, 243, 110, 0.055);
+
+  color: #83f36e;
+
+  font-size: 12px;
+}
+
+
+.info-item strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 10px;
+
+  color: #a8b4c0;
+
+  font-weight: 600;
+}
+
+
+.info-item p {
+  margin: 0;
+
+  font-size: 9px;
+
+  line-height: 1.55;
+
+  color: #536171;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.page-footer {
+  min-height: 55px;
+
+  padding: 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  color: #3f4b59;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .page-header {
+    padding: 0 20px;
+  }
+
+  .main-content {
+    padding:
+      35px 18px 45px;
+  }
+
+  .page-intro {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .page-intro h1 {
+    font-size: 29px;
+  }
+
+  .information-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-footer {
+    padding: 15px 20px;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .brand-text {
+    display: none;
+  }
+
+  .back-button {
+    padding: 0 11px;
+
+    font-size: 10px;
+  }
+
+  .ticket-form {
+    padding: 22px 17px;
+  }
+
+  .card-header {
+    padding: 0 17px;
+  }
+
+  .secure-label {
+    display: none;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .submit-button {
+    width: 100%;
+  }
+
+  .page-footer span:nth-child(2) {
+    display: none;
+  }
+
+}

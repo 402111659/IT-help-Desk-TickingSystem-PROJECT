@@ -1,0 +1,603 @@
+<div class="tickets-page">
+
+  <!-- ========================================= -->
+  <!-- HEADER -->
+  <!-- ========================================= -->
+
+  <header class="page-header">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+
+        <span>
+          IT
+        </span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ========================================= -->
+  <!-- MAIN CONTENT -->
+  <!-- ========================================= -->
+
+  <main class="main-content">
+
+
+    <!-- ========================================= -->
+    <!-- PAGE INTRO -->
+    <!-- ========================================= -->
+
+    <section class="page-intro">
+
+      <div>
+
+        <span class="page-label">
+          IT OPERATIONS / MANAGEMENT
+        </span>
+
+        <h1>
+          Ticket Management
+        </h1>
+
+        <p>
+          View, monitor and manage all IT support requests.
+        </p>
+
+      </div>
+
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        SYSTEM ONLINE
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- SUMMARY CARDS -->
+    <!-- ========================================= -->
+
+    <div class="summary-grid">
+
+
+      <!-- TOTAL -->
+
+      <div class="summary-card">
+
+        <span>
+          TOTAL TICKETS
+        </span>
+
+        <strong>
+          {{ tickets.length }}
+        </strong>
+
+      </div>
+
+
+      <!-- OPEN -->
+
+      <div class="summary-card">
+
+        <span>
+          OPEN
+        </span>
+
+        <strong>
+          {{ tickets.filter(t => t.status === 'OPEN').length }}
+        </strong>
+
+      </div>
+
+
+      <!-- IN PROGRESS -->
+
+      <div class="summary-card">
+
+        <span>
+          IN PROGRESS
+        </span>
+
+        <strong>
+          {{ tickets.filter(t => t.status === 'IN_PROGRESS').length }}
+        </strong>
+
+      </div>
+
+
+      <!-- RESOLVED -->
+
+      <div class="summary-card">
+
+        <span>
+          RESOLVED
+        </span>
+
+        <strong>
+          {{ tickets.filter(t => t.status === 'RESOLVED').length }}
+        </strong>
+
+      </div>
+
+
+      <!-- CLOSED -->
+
+      <div class="summary-card">
+
+        <span>
+          CLOSED
+        </span>
+
+        <strong>
+          {{ tickets.filter(t => t.status === 'CLOSED').length }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- TICKET PANEL -->
+    <!-- ========================================= -->
+
+    <section class="tickets-panel">
+
+
+      <!-- ========================================= -->
+      <!-- PANEL HEADER -->
+      <!-- ========================================= -->
+
+      <div class="panel-header">
+
+        <div>
+
+          <span class="panel-label">
+            SUPPORT OPERATIONS
+          </span>
+
+          <h2>
+            All Tickets
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="refresh-button"
+          (click)="loadTickets()">
+
+          <span>
+            ↻
+          </span>
+
+          Refresh
+
+        </button>
+
+      </div>
+
+
+      <!-- ========================================= -->
+      <!-- FILTER BAR -->
+      <!-- ========================================= -->
+
+      <div class="filter-bar">
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+          <span class="search-icon">
+            ⌕
+          </span>
+
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Search ticket number, title or description..."
+          >
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <select
+          [(ngModel)]="selectedStatus">
+
+          <option value="ALL">
+            All Statuses
+          </option>
+
+          <option value="OPEN">
+            Open
+          </option>
+
+          <option value="IN_PROGRESS">
+            In Progress
+          </option>
+
+          <option value="RESOLVED">
+            Resolved
+          </option>
+
+          <option value="CLOSED">
+            Closed
+          </option>
+
+        </select>
+
+
+        <!-- PRIORITY -->
+
+        <select
+          [(ngModel)]="selectedPriority">
+
+          <option value="ALL">
+            All Priorities
+          </option>
+
+          <option value="LOW">
+            Low
+          </option>
+
+          <option value="MEDIUM">
+            Medium
+          </option>
+
+          <option value="HIGH">
+            High
+          </option>
+
+          <option value="CRITICAL">
+            Critical
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ========================================= -->
+      <!-- ERROR -->
+      <!-- ========================================= -->
+
+      @if (errorMessage) {
+
+        <div class="error-message">
+
+          <div class="error-icon">
+            !
+          </div>
+
+          <div>
+
+            <strong>
+              SYSTEM ERROR
+            </strong>
+
+            <span>
+              {{ errorMessage }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- ========================================= -->
+      <!-- LOADING -->
+      <!-- ========================================= -->
+
+      @if (loading) {
+
+        <div class="loading-state">
+
+          <span class="spinner"></span>
+
+          <span>
+            Loading tickets...
+          </span>
+
+        </div>
+
+      }
+
+
+      <!-- ========================================= -->
+      <!-- EMPTY -->
+      <!-- ========================================= -->
+
+      @if (
+        !loading &&
+        filteredTickets.length === 0
+      ) {
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ▤
+          </div>
+
+          <h3>
+            No Tickets Found
+          </h3>
+
+          <p>
+            No tickets match your current search or filters.
+          </p>
+
+        </div>
+
+      }
+
+
+      <!-- ========================================= -->
+      <!-- TICKET TABLE -->
+      <!-- ========================================= -->
+
+      @if (
+        !loading &&
+        filteredTickets.length > 0
+      ) {
+
+        <div class="ticket-table-wrapper">
+
+          <table class="ticket-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  TICKET
+                </th>
+
+                <th>
+                  ISSUE
+                </th>
+
+                <th>
+                  PRIORITY
+                </th>
+
+                <th>
+                  STATUS
+                </th>
+
+                <th>
+                  CREATED
+                </th>
+
+                <th>
+                  ACTION
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              @for (
+                ticket of filteredTickets;
+                track ticket.id
+              ) {
+
+                <tr
+                  class="ticket-row"
+                  (click)="openTicket(ticket.id)"
+                >
+
+                  <!-- TICKET NUMBER -->
+
+                  <td>
+
+                    <div class="ticket-number">
+
+                      <strong>
+                        {{ ticket.ticketNumber }}
+                      </strong>
+
+                    </div>
+
+                  </td>
+
+
+                  <!-- ISSUE -->
+
+                  <td>
+
+                    <div class="issue-info">
+
+                      <strong>
+                        {{ ticket.title }}
+                      </strong>
+
+                      <span>
+                        {{ ticket.description }}
+                      </span>
+
+                    </div>
+
+                  </td>
+
+
+                  <!-- PRIORITY -->
+
+                  <td>
+
+                    <span
+                      class="priority-badge"
+
+                      [class.low]="
+                        ticket.priority === 'LOW'
+                      "
+
+                      [class.medium]="
+                        ticket.priority === 'MEDIUM'
+                      "
+
+                      [class.high]="
+                        ticket.priority === 'HIGH'
+                      "
+
+                      [class.critical]="
+                        ticket.priority === 'CRITICAL'
+                      "
+                    >
+
+                      {{ ticket.priority }}
+
+                    </span>
+
+                  </td>
+
+
+                  <!-- STATUS -->
+
+                  <td>
+
+                    <span
+                      class="status-badge"
+
+                      [class.open]="
+                        ticket.status === 'OPEN'
+                      "
+
+                      [class.progress]="
+                        ticket.status === 'IN_PROGRESS'
+                      "
+
+                      [class.resolved]="
+                        ticket.status === 'RESOLVED'
+                      "
+
+                      [class.closed]="
+                        ticket.status === 'CLOSED'
+                      "
+                    >
+
+                      {{ ticket.status }}
+
+                    </span>
+
+                  </td>
+
+
+                  <!-- CREATED -->
+
+                  <td>
+
+                    <span class="created-date">
+
+                      {{ ticket.createdAt | date:'dd MMM yyyy' }}
+
+                    </span>
+
+                  </td>
+
+
+                  <!-- ACTION -->
+
+                  <td>
+
+                    <button
+                      type="button"
+                      class="view-button"
+
+                      (click)="
+                        openTicket(ticket.id);
+                        $event.stopPropagation()
+                      "
+                    >
+
+                      View
+
+                      <span>
+                        →
+                      </span>
+
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      }
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- INFORMATION -->
+    <!-- ========================================= -->
+
+    <div class="page-information">
+
+      <span>
+        {{ filteredTickets.length }} tickets displayed
+      </span>
+
+      <span>
+        SECURE ADMINISTRATION
+      </span>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- ========================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================= -->
+
+  <footer class="page-footer">
+
+    <span>
+      IT TICKETING SYSTEM
+    </span>
+
+    <span>
+      TICKET MANAGEMENT CONSOLE
+    </span>
+
+    <span>
+      © 2026
+    </span>
+
+  </footer>
+
+</div>

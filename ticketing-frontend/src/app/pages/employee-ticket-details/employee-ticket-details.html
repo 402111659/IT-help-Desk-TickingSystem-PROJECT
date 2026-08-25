@@ -1,0 +1,619 @@
+<div class="employee-ticket-page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+        <span>IT</span>
+        <strong>TICKETING SYSTEM</strong>
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          MY SUPPORT
+        </span>
+
+        <a
+          class="nav-item"
+          routerLink="/dashboard">
+
+          <span class="nav-icon">⌂</span>
+
+          <span>
+            Dashboard
+          </span>
+
+        </a>
+
+
+        <a
+          class="nav-item active"
+          routerLink="/dashboard">
+
+          <span class="nav-icon">▣</span>
+
+          <span>
+            My Tickets
+          </span>
+
+        </a>
+
+
+        <a
+          class="nav-item"
+          routerLink="/create-ticket">
+
+          <span class="nav-icon">＋</span>
+
+          <span>
+            Create Ticket
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          SUPPORT
+        </span>
+
+        <a
+          class="nav-item"
+          routerLink="/help">
+
+          <span class="nav-icon">?</span>
+
+          <span>
+            Need Help?
+          </span>
+
+        </a>
+
+
+        <a
+          class="nav-item"
+          routerLink="/it-support">
+
+          <span class="nav-icon">◉</span>
+
+          <span>
+            IT Support
+          </span>
+
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+    <div class="sidebar-bottom">
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+
+          <strong>
+            SYSTEM ONLINE
+          </strong>
+
+          <small>
+            API CONNECTED
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        <span>↪</span>
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div>
+
+        <span class="page-label">
+          MY IT SUPPORT
+        </span>
+
+        <h1>
+          Ticket Details
+        </h1>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <div class="user-profile">
+
+          <div class="avatar">
+            {{ userInitial }}
+          </div>
+
+          <div class="user-info">
+
+            <strong>
+              {{ userEmail }}
+            </strong>
+
+            <span>
+              Employee
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+    <section class="content">
+
+
+      <!-- BACK BUTTON -->
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="backToDashboard()">
+
+        ← Back to My Tickets
+
+      </button>
+
+
+      <!-- ERROR -->
+
+      @if (ticketError) {
+
+        <div class="error-message">
+
+          <span class="error-icon">
+            !
+          </span>
+
+          <div class="error-content">
+
+            <strong>
+              TICKET ERROR
+            </strong>
+
+            <span>
+              {{ ticketError }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- LOADING -->
+
+      @if (loadingTicket) {
+
+        <div class="loading-state">
+
+          <div class="spinner"></div>
+
+          <span>
+            Loading ticket...
+          </span>
+
+        </div>
+
+      }
+
+
+      <!-- TICKET DETAILS -->
+
+      @if (!loadingTicket && ticket) {
+
+        <!-- TICKET HEADER -->
+
+        <section class="ticket-header-card">
+
+          <div class="ticket-heading">
+
+            <div>
+
+              <span class="ticket-label">
+                SUPPORT TICKET
+              </span>
+
+              <h2>
+                {{ ticket.title }}
+              </h2>
+
+              <span class="ticket-number">
+                {{ ticket.ticketNumber }}
+              </span>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <span
+              class="ticket-status"
+
+              [class.open]="ticket.status === 'OPEN'"
+
+              [class.progress]="
+                ticket.status === 'IN_PROGRESS'
+              "
+
+              [class.resolved]="
+                ticket.status === 'RESOLVED'
+              "
+
+              [class.closed]="
+                ticket.status === 'CLOSED'
+              ">
+
+              {{ ticket.status }}
+
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- TICKET INFORMATION -->
+
+        <section class="details-grid">
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="details-card description-card">
+
+            <span class="card-label">
+              ISSUE DESCRIPTION
+            </span>
+
+            <h3>
+              Problem Details
+            </h3>
+
+            <p>
+              {{ ticket.description }}
+            </p>
+
+          </div>
+
+
+          <!-- PRIORITY -->
+
+          <div class="details-card">
+
+            <span class="card-label">
+              PRIORITY
+            </span>
+
+            <h3>
+              Ticket Priority
+            </h3>
+
+            <span
+              class="priority-badge"
+
+              [class.low]="ticket.priority === 'LOW'"
+
+              [class.medium]="ticket.priority === 'MEDIUM'"
+
+              [class.high]="ticket.priority === 'HIGH'"
+
+              [class.critical]="
+                ticket.priority === 'CRITICAL'
+              ">
+
+              {{ ticket.priority }}
+
+            </span>
+
+          </div>
+
+
+          <!-- CREATED -->
+
+          <div class="details-card">
+
+            <span class="card-label">
+              CREATED
+            </span>
+
+            <h3>
+              Submitted
+            </h3>
+
+            <p>
+              {{ ticket.createdAt | date:'medium' }}
+            </p>
+
+          </div>
+
+
+          <!-- UPDATED -->
+
+          <div class="details-card">
+
+            <span class="card-label">
+              LAST UPDATED
+            </span>
+
+            <h3>
+              Updated
+            </h3>
+
+            <p>
+              {{ ticket.updatedAt | date:'medium' }}
+            </p>
+
+          </div>
+
+
+          <!-- TECHNICIAN -->
+
+          <div class="details-card">
+
+            <span class="card-label">
+              ASSIGNED TECHNICIAN
+            </span>
+
+            <h3>
+              Support Technician
+            </h3>
+
+
+            @if (ticket.assignedTechnician) {
+
+              <div class="technician-info">
+
+                <div class="technician-avatar">
+
+                  {{
+                    ticket.assignedTechnician.firstName?.charAt(0)
+                    || ticket.assignedTechnician.email?.charAt(0)
+                    || '?'
+                  }}
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+
+                    {{
+                      ticket.assignedTechnician.firstName
+                      || ticket.assignedTechnician.email
+                      || 'Technician'
+                    }}
+
+                    @if (ticket.assignedTechnician.lastName) {
+                      {{ ticket.assignedTechnician.lastName }}
+                    }
+
+                  </strong>
+
+
+                  @if (ticket.assignedTechnician.email) {
+
+                    <span>
+                      {{ ticket.assignedTechnician.email }}
+                    </span>
+
+                  }
+
+                </div>
+
+              </div>
+
+            }
+
+
+            @if (!ticket.assignedTechnician) {
+
+              <p class="not-assigned">
+                Waiting for technician assignment.
+              </p>
+
+            }
+
+          </div>
+
+        </section>
+
+
+        <!-- COMMENTS / UPDATES -->
+
+        <section class="comments-panel">
+
+          <div class="panel-header">
+
+            <div>
+
+              <span class="panel-label">
+                SUPPORT ACTIVITY
+              </span>
+
+              <h3>
+                Ticket Updates
+              </h3>
+
+            </div>
+
+
+            <div class="comment-count">
+
+              {{ comments.length }}
+
+              <span>
+                UPDATES
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- COMMENT ERROR -->
+
+          @if (commentError) {
+
+            <div class="comment-error">
+              {{ commentError }}
+            </div>
+
+          }
+
+
+          <!-- LOADING COMMENTS -->
+
+          @if (loadingComments) {
+
+            <div class="comments-loading">
+
+              <div class="spinner"></div>
+
+              <span>
+                Loading updates...
+              </span>
+
+            </div>
+
+          }
+
+
+          <!-- NO COMMENTS -->
+
+          @if (
+            !loadingComments &&
+            comments.length === 0 &&
+            !commentError
+          ) {
+
+            <div class="no-comments">
+
+              <div class="empty-icon">
+                ◌
+              </div>
+
+              <h4>
+                No updates yet
+              </h4>
+
+              <p>
+                There are currently no updates on this ticket.
+              </p>
+
+            </div>
+
+          }
+
+
+          <!-- COMMENTS -->
+
+          @if (
+            !loadingComments &&
+            comments.length > 0
+          ) {
+
+            <div class="comments-list">
+
+              @for (
+                comment of comments;
+                track comment.id
+              ) {
+
+                <div class="comment">
+
+                  <div class="comment-avatar">
+
+                    {{ comment.userEmail.charAt(0).toUpperCase() }}
+
+                  </div>
+
+
+                  <div class="comment-content">
+
+                    <div class="comment-top">
+
+                      <strong>
+                        {{ comment.userEmail }}
+                      </strong>
+
+                      <span>
+                        {{ comment.createdAt | date:'medium' }}
+                      </span>
+
+                    </div>
+
+
+                    <p>
+                      {{ comment.message }}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              }
+
+            </div>
+
+          }
+
+        </section>
+
+      }
+
+    </section>
+
+  </main>
+
+</div>

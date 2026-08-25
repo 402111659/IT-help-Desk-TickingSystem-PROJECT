@@ -1,0 +1,2097 @@
+/* =====================================================
+   TICKET DETAILS PAGE
+   ===================================================== */
+
+.ticket-details-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 70% 5%,
+      rgba(100, 220, 130, 0.035),
+      transparent 30%
+    ),
+    #080c11;
+
+  color: #c9d2db;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.page-header {
+  height: 76px;
+
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  background:
+    rgba(8, 12, 17, 0.92);
+
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   BRAND
+   ===================================================== */
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.brand-logo {
+  width: 37px;
+  height: 37px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1a242d,
+      #10171e
+    );
+
+  border:
+    1px solid rgba(130, 220, 150, 0.14);
+
+  color: #a5e9ad;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+.brand-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  line-height: 1.1;
+}
+
+
+.brand-text span {
+  color: #7e8c99;
+
+  font-size: 8px;
+
+  letter-spacing: 0.2em;
+}
+
+
+.brand-text strong {
+  color: #d5dde4;
+
+  font-size: 10px;
+
+  letter-spacing: 0.07em;
+}
+
+
+/* =====================================================
+   BACK BUTTON
+   ===================================================== */
+
+.back-button {
+  height: 36px;
+
+  padding: 0 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 7px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #8996a1;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.back-button:hover {
+  color: #c6d0d7;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border-color:
+    rgba(255, 255, 255, 0.11);
+
+  transform: translateX(-1px);
+}
+
+
+.back-button:focus {
+  outline: none;
+
+  border-color:
+    rgba(110, 215, 125, 0.25);
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.main-content {
+  flex: 1;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   TICKET CONTENT
+   ===================================================== */
+
+.ticket-content {
+  width:
+    min(1120px, calc(100% - 70px));
+
+  margin: 0 auto;
+
+  padding:
+    42px 0 65px;
+}
+
+
+/* =====================================================
+   PAGE HEADING
+   ===================================================== */
+
+.page-heading {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 25px;
+}
+
+
+.page-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #63717d;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+}
+
+
+.page-heading h1 {
+  max-width: 760px;
+
+  margin: 0;
+
+  color: #e0e6eb;
+
+  font-size: 27px;
+
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.025em;
+}
+
+
+.page-heading p {
+  margin: 8px 0 0;
+
+  color: #566571;
+
+  font-size: 9px;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =====================================================
+   TICKET STATUS
+   ===================================================== */
+
+.ticket-status-container {
+  flex-shrink: 0;
+}
+
+
+.ticket-status {
+  min-width: 92px;
+
+  height: 30px;
+
+  padding: 0 12px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 6px;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+
+.ticket-status.open {
+  background:
+    rgba(110, 170, 255, 0.08);
+
+  color: #82aee7;
+}
+
+
+.ticket-status.progress {
+  background:
+    rgba(190, 145, 240, 0.09);
+
+  color: #b18fd7;
+}
+
+
+.ticket-status.resolved {
+  background:
+    rgba(110, 215, 125, 0.08);
+
+  color: #83d18d;
+}
+
+
+.ticket-status.closed {
+  background:
+    rgba(150, 160, 170, 0.08);
+
+  color: #929da6;
+}
+
+
+/* =====================================================
+   SUCCESS MESSAGE
+   ===================================================== */
+
+.success-message {
+  min-height: 42px;
+
+  margin-bottom: 18px;
+
+  padding: 0 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(110, 215, 125, 0.11);
+
+  border-radius: 7px;
+
+  background:
+    rgba(110, 215, 125, 0.035);
+
+  color: #83cd8c;
+
+  font-size: 8px;
+}
+
+
+.success-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background:
+    rgba(110, 215, 125, 0.08);
+
+  color: #83d78d;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   INLINE ERROR
+   ===================================================== */
+
+.inline-error {
+  min-height: 42px;
+
+  margin-bottom: 18px;
+
+  padding: 0 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(235, 90, 90, 0.11);
+
+  border-radius: 7px;
+
+  background:
+    rgba(235, 90, 90, 0.035);
+
+  color: #d58989;
+
+  font-size: 8px;
+}
+
+
+.inline-error > span:first-child {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background:
+    rgba(235, 90, 90, 0.08);
+
+  color: #df8a8a;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   TICKET GRID
+   ===================================================== */
+
+.ticket-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.55fr)
+    minmax(300px, 0.85fr);
+
+  gap: 14px;
+
+  margin-bottom: 14px;
+}
+
+
+/* =====================================================
+   DETAILS CARDS
+   ===================================================== */
+
+.details-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 10px;
+
+  background:
+    rgba(14, 20, 27, 0.9);
+}
+
+
+.card-header {
+  padding: 20px 21px 17px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.045);
+}
+
+
+.card-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #596773;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.15em;
+}
+
+
+.card-header h2 {
+  margin: 0;
+
+  color: #cfd7dd;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.description {
+  min-height: 120px;
+
+  padding: 22px 21px;
+
+  box-sizing: border-box;
+
+  color: #aeb9c2;
+
+  font-size: 10px;
+
+  line-height: 1.8;
+
+  white-space: pre-wrap;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   TICKET META
+   ===================================================== */
+
+.ticket-meta {
+  padding: 15px 21px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 20px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.04);
+
+  background:
+    rgba(255, 255, 255, 0.012);
+}
+
+
+.ticket-meta div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.ticket-meta span {
+  color: #4f5d68;
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+
+.ticket-meta strong {
+  color: #87949e;
+
+  font-size: 8px;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   DETAIL ROWS
+   ===================================================== */
+
+.detail-row {
+  min-height: 58px;
+
+  padding: 0 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.035);
+}
+
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+
+.detail-row > span:first-child {
+  color: #596773;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+
+.detail-row strong {
+  max-width: 210px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: #abb6bf;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  text-align: right;
+}
+
+
+/* =====================================================
+   PRIORITY BADGES
+   ===================================================== */
+
+.priority-badge {
+  min-width: 66px;
+
+  height: 25px;
+
+  padding: 0 9px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+
+.priority-badge.low {
+  background:
+    rgba(110, 215, 125, 0.07);
+
+  color: #7fcf89;
+}
+
+
+.priority-badge.medium {
+  background:
+    rgba(230, 180, 90, 0.08);
+
+  color: #d0a65d;
+}
+
+
+.priority-badge.high {
+  background:
+    rgba(235, 120, 90, 0.08);
+
+  color: #d9907c;
+}
+
+
+.priority-badge.critical {
+  background:
+    rgba(220, 80, 90, 0.1);
+
+  color: #d98289;
+}
+
+
+/* =====================================================
+   COMMENTS CARD
+   ===================================================== */
+
+.comments-card {
+  overflow: hidden;
+
+  margin-bottom: 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 10px;
+
+  background:
+    rgba(14, 20, 27, 0.9);
+}
+
+
+/* =====================================================
+   COMMENTS HEADER
+   ===================================================== */
+
+.comments-header {
+  min-height: 82px;
+
+  padding: 18px 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.045);
+}
+
+
+.comments-header h2 {
+  margin: 0;
+
+  color: #cfd7dd;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.comments-header p {
+  margin: 5px 0 0;
+
+  color: #596773;
+
+  font-size: 8px;
+}
+
+
+.comment-count {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+
+.comment-count strong {
+  color: #87d890;
+
+  font-size: 20px;
+
+  font-weight: 600;
+}
+
+
+.comment-count span {
+  color: #53616d;
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =====================================================
+   COMMENT ERROR
+   ===================================================== */
+
+.comment-error {
+  min-height: 42px;
+
+  margin: 14px 18px 0;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  border:
+    1px solid rgba(235, 90, 90, 0.11);
+
+  border-radius: 7px;
+
+  background:
+    rgba(235, 90, 90, 0.035);
+
+  color: #d58989;
+
+  font-size: 8px;
+}
+
+
+.comment-error-icon {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  background:
+    rgba(235, 90, 90, 0.08);
+
+  color: #df8a8a;
+
+  font-weight: 800;
+}
+
+
+.comment-error button {
+  margin-left: auto;
+
+  height: 27px;
+
+  padding: 0 10px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 5px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: #9aa6af;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 7px;
+}
+
+
+.comment-error button:hover {
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  color: #c4cdd4;
+}
+
+
+/* =====================================================
+   COMMENT SUCCESS
+   ===================================================== */
+
+.comment-success {
+  min-height: 38px;
+
+  margin: 14px 18px 0;
+
+  padding: 0 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border:
+    1px solid rgba(110, 215, 125, 0.1);
+
+  border-radius: 7px;
+
+  background:
+    rgba(110, 215, 125, 0.035);
+
+  color: #83cd8c;
+
+  font-size: 8px;
+}
+
+
+/* =====================================================
+   COMMENTS LOADING
+   ===================================================== */
+
+.comments-loading {
+  min-height: 130px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #63717d;
+
+  font-size: 8px;
+}
+
+
+.spinner {
+  width: 24px;
+  height: 24px;
+
+  border:
+    2px solid rgba(255, 255, 255, 0.06);
+
+  border-top-color: #83d98d;
+
+  border-radius: 50%;
+
+  animation:
+    spin 0.8s linear infinite;
+}
+
+
+.spinner.small {
+  width: 19px;
+  height: 19px;
+}
+
+
+/* =====================================================
+   COMMENT EMPTY
+   ===================================================== */
+
+.comments-empty {
+  min-height: 145px;
+
+  padding: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.comments-empty-icon {
+  width: 39px;
+  height: 39px;
+
+  margin-bottom: 10px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(110, 215, 125, 0.08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(110, 215, 125, 0.045);
+
+  font-size: 15px;
+}
+
+
+.comments-empty strong {
+  color: #9ca8b1;
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+
+.comments-empty span {
+  margin-top: 6px;
+
+  color: #566571;
+
+  font-size: 8px;
+}
+
+
+/* =====================================================
+   COMMENT LIST
+   ===================================================== */
+
+.comment-list {
+  padding: 5px 21px;
+}
+
+
+/* =====================================================
+   COMMENT
+   ===================================================== */
+
+.comment {
+  display: flex;
+
+  gap: 12px;
+
+  padding: 17px 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.035);
+}
+
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+
+/* =====================================================
+   COMMENT AVATAR
+   ===================================================== */
+
+.comment-avatar {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background:
+    rgba(110, 215, 125, 0.06);
+
+  border:
+    1px solid rgba(110, 215, 125, 0.1);
+
+  color: #8bd894;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   COMMENT CONTENT
+   ===================================================== */
+
+.comment-content {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.comment-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 7px;
+}
+
+
+.comment-top strong {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: #aeb9c2;
+
+  font-size: 8px;
+
+  font-weight: 600;
+}
+
+
+.comment-top span {
+  flex-shrink: 0;
+
+  color: #53616d;
+
+  font-size: 7px;
+}
+
+
+.comment-content p {
+  margin: 0;
+
+  color: #87949e;
+
+  font-size: 9px;
+
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   COMMENT FORM
+   ===================================================== */
+
+.comment-form {
+  padding: 19px 21px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  background:
+    rgba(255, 255, 255, 0.012);
+}
+
+
+.comment-form-header {
+  display: flex;
+
+  align-items: baseline;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 9px;
+}
+
+
+.comment-form-header label {
+  color: #64727e;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+}
+
+
+.comment-form-header span {
+  color: #4f5d68;
+
+  font-size: 7px;
+}
+
+
+.comment-form textarea {
+  width: 100%;
+
+  min-height: 90px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  resize: vertical;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 7px;
+
+  outline: none;
+
+  background:
+    rgba(7, 11, 15, 0.8);
+
+  color: #bfc9d1;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  line-height: 1.6;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.comment-form textarea::placeholder {
+  color: #4e5b66;
+}
+
+
+.comment-form textarea:focus {
+  border-color:
+    rgba(110, 215, 125, 0.2);
+
+  background:
+    rgba(8, 13, 18, 0.95);
+}
+
+
+.comment-form textarea:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   COMMENT FORM FOOTER
+   ===================================================== */
+
+.comment-form-footer {
+  margin-top: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.comment-hint {
+  color: #4f5d68;
+
+  font-size: 7px;
+}
+
+
+/* =====================================================
+   ADD COMMENT BUTTON
+   ===================================================== */
+
+.add-comment-button {
+  min-width: 118px;
+
+  height: 34px;
+
+  padding: 0 12px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border:
+    1px solid rgba(110, 215, 125, 0.13);
+
+  border-radius: 6px;
+
+  background:
+    rgba(110, 215, 125, 0.055);
+
+  color: #8bd894;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.add-comment-button:hover:not(:disabled) {
+  background:
+    rgba(110, 215, 125, 0.1);
+
+  border-color:
+    rgba(110, 215, 125, 0.23);
+
+  color: #a8e9ae;
+
+  transform: translateY(-1px);
+}
+
+
+.add-comment-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+
+.add-comment-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   BUTTON SPINNER
+   ===================================================== */
+
+.button-spinner {
+  width: 11px;
+  height: 11px;
+
+  border:
+    1.5px solid rgba(139, 216, 148, 0.25);
+
+  border-top-color: #8bd894;
+
+  border-radius: 50%;
+
+  animation:
+    spin 0.7s linear infinite;
+}
+
+
+/* =====================================================
+   MANAGEMENT CARD
+   ===================================================== */
+
+.management-card {
+  overflow: hidden;
+
+  margin-bottom: 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 10px;
+
+  background:
+    rgba(14, 20, 27, 0.9);
+}
+
+
+.management-grid {
+  padding: 20px 21px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr 1.4fr;
+
+  gap: 15px;
+}
+
+
+.management-group {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.management-group label {
+  color: #596773;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+
+.management-group select {
+  width: 100%;
+
+  height: 38px;
+
+  padding: 0 11px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 6px;
+
+  outline: none;
+
+  background:
+    #0b1015;
+
+  color: #aeb9c2;
+
+  font-family: inherit;
+
+  font-size: 8px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.management-group select:focus {
+  border-color:
+    rgba(110, 215, 125, 0.2);
+}
+
+
+.management-group select:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   ASSIGN BUTTON
+   ===================================================== */
+
+.assign-button {
+  height: 32px;
+
+  padding: 0 12px;
+
+  border:
+    1px solid rgba(110, 215, 125, 0.1);
+
+  border-radius: 6px;
+
+  background:
+    rgba(110, 215, 125, 0.045);
+
+  color: #81ce8a;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.assign-button:hover:not(:disabled) {
+  background:
+    rgba(110, 215, 125, 0.085);
+
+  border-color:
+    rgba(110, 215, 125, 0.19);
+
+  color: #a0e2a7;
+}
+
+
+.assign-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   ACTIONS CARD
+   ===================================================== */
+
+.actions-card {
+  min-height: 75px;
+
+  padding: 0 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  border-radius: 9px;
+
+  background:
+    rgba(12, 18, 24, 0.72);
+}
+
+
+.actions-card p {
+  margin: 5px 0 0;
+
+  color: #566571;
+
+  font-size: 8px;
+}
+
+
+/* =====================================================
+   DELETE BUTTON
+   ===================================================== */
+
+.delete-button {
+  height: 34px;
+
+  padding: 0 13px;
+
+  border:
+    1px solid rgba(220, 90, 90, 0.12);
+
+  border-radius: 6px;
+
+  background:
+    rgba(220, 90, 90, 0.04);
+
+  color: #c77d7d;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.delete-button:hover:not(:disabled) {
+  background:
+    rgba(220, 90, 90, 0.08);
+
+  border-color:
+    rgba(220, 90, 90, 0.22);
+
+  color: #df9090;
+}
+
+
+.delete-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.loading-state {
+  min-height: 500px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  color: #667581;
+
+  font-size: 9px;
+}
+
+
+/* =====================================================
+   ERROR STATE
+   ===================================================== */
+
+.error-state {
+  width:
+    min(480px, calc(100% - 40px));
+
+  margin: 80px auto;
+
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(235, 90, 90, 0.1);
+
+  border-radius: 10px;
+
+  background:
+    rgba(14, 20, 27, 0.9);
+}
+
+
+.error-icon {
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background:
+    rgba(235, 90, 90, 0.08);
+
+  color: #dc8585;
+
+  font-size: 15px;
+
+  font-weight: 800;
+}
+
+
+.error-state strong {
+  color: #cfd7dd;
+
+  font-size: 12px;
+}
+
+
+.error-state p {
+  margin: 8px 0 18px;
+
+  color: #697680;
+
+  font-size: 8px;
+
+  line-height: 1.6;
+}
+
+
+.error-state button {
+  height: 33px;
+
+  padding: 0 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 6px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #aab5be;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 8px;
+}
+
+
+.error-state button:hover {
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.page-footer {
+  min-height: 55px;
+
+  padding: 0 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  box-sizing: border-box;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.04);
+
+  background:
+    rgba(7, 11, 15, 0.7);
+
+  color: #46535e;
+
+  font-size: 6px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =====================================================
+   ANIMATION
+   ===================================================== */
+
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 950px) {
+
+  .ticket-content {
+    width:
+      calc(100% - 45px);
+  }
+
+
+  .ticket-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .management-grid {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .technician-management {
+    grid-column:
+      1 / -1;
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+  .page-header {
+    padding: 0 20px;
+  }
+
+
+  .ticket-content {
+    width:
+      calc(100% - 30px);
+
+    padding-top: 30px;
+  }
+
+
+  .page-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .ticket-status-container {
+    align-self: flex-start;
+  }
+
+
+  .management-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .technician-management {
+    grid-column: auto;
+  }
+
+
+  .comment-form-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+
+  .comment-form-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .add-comment-button {
+    width: 100%;
+  }
+
+
+  .comment-hint {
+    display: none;
+  }
+
+
+  .actions-card {
+    padding: 18px;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .delete-button {
+    width: 100%;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 500px) {
+
+  .page-header {
+    height: 68px;
+
+    padding: 0 15px;
+  }
+
+
+  .brand-text {
+    display: none;
+  }
+
+
+  .back-button {
+    height: 33px;
+  }
+
+
+  .ticket-content {
+    width:
+      calc(100% - 20px);
+
+    padding:
+      25px 0 45px;
+  }
+
+
+  .page-heading h1 {
+    font-size: 22px;
+  }
+
+
+  .ticket-grid {
+    gap: 10px;
+  }
+
+
+  .card-header {
+    padding:
+      17px 16px 14px;
+  }
+
+
+  .description {
+    padding:
+      17px 16px;
+
+    font-size: 9px;
+  }
+
+
+  .ticket-meta {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    padding:
+      14px 16px;
+  }
+
+
+  .detail-row {
+    min-height: 55px;
+
+    padding:
+      0 16px;
+  }
+
+
+  .detail-row strong {
+    max-width: 150px;
+  }
+
+
+  .comments-header {
+    padding:
+      16px;
+
+    align-items: flex-start;
+  }
+
+
+  .comments-header p {
+    max-width: 230px;
+  }
+
+
+  .comment-count {
+    display: none;
+  }
+
+
+  .comment-list {
+    padding:
+      5px 16px;
+  }
+
+
+  .comment {
+    gap: 9px;
+  }
+
+
+  .comment-avatar {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 7px;
+  }
+
+
+  .comment-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 3px;
+  }
+
+
+  .comment-top strong {
+    max-width: 100%;
+  }
+
+
+  .comment-top span {
+    font-size: 6px;
+  }
+
+
+  .comment-form {
+    padding:
+      16px;
+  }
+
+
+  .comment-form textarea {
+    min-height: 100px;
+  }
+
+
+  .management-card {
+    margin-bottom: 10px;
+  }
+
+
+  .management-grid {
+    padding:
+      16px;
+  }
+
+
+  .actions-card {
+    min-height: auto;
+  }
+
+
+  .page-footer {
+    padding:
+      15px;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+   ===================================================== */
+
+@media (max-width: 350px) {
+
+  .page-heading h1 {
+    font-size: 19px;
+  }
+
+
+  .ticket-status {
+    min-width: 80px;
+  }
+
+
+  .detail-row {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 5px;
+  }
+
+
+  .detail-row strong {
+    max-width: 100%;
+
+    text-align: left;
+  }
+
+}

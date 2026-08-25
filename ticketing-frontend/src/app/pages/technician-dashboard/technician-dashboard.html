@@ -1,0 +1,634 @@
+<div class="technician-dashboard">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- BRAND -->
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+        <span>IT</span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          TECHNICIAN WORKSPACE
+        </span>
+
+
+        <!-- DASHBOARD -->
+
+        <a
+          class="nav-item active"
+          routerLink="/technician-dashboard">
+
+          <span class="nav-icon">
+            ⌂
+          </span>
+
+          <span>
+            Dashboard
+          </span>
+
+        </a>
+
+
+        <!-- MY ASSIGNED TICKETS -->
+
+        <button
+          type="button"
+          class="nav-item nav-button"
+          (click)="goToAssignedTickets()">
+
+          <span class="nav-icon">
+            ▣
+          </span>
+
+          <span>
+            My Assigned Tickets
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <!-- SUPPORT -->
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          SUPPORT
+        </span>
+
+
+        <a
+          class="nav-item"
+          routerLink="/create-ticket">
+
+          <span class="nav-icon">
+            ＋
+          </span>
+
+          <span>
+            Create Ticket
+          </span>
+
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="sidebar-bottom">
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+
+          <strong>
+            SYSTEM ONLINE
+          </strong>
+
+          <small>
+            API CONNECTED
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOGOUT -->
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        <span>
+          ↪
+        </span>
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+
+  <main class="main-content">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+      <div>
+
+        <span class="page-label">
+          TECHNICIAN OPERATIONS
+        </span>
+
+        <h1>
+          Technician Workspace
+        </h1>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <div class="user-profile">
+
+          <div class="avatar">
+            {{ userInitial }}
+          </div>
+
+          <div class="user-info">
+
+            <strong>
+              {{ userEmail }}
+            </strong>
+
+            <span>
+              Technician
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+      <!-- WELCOME -->
+
+      <div class="welcome">
+
+        <div>
+
+          <span class="welcome-label">
+            MY WORKSPACE
+          </span>
+
+          <h2>
+            Welcome back.
+          </h2>
+
+          <p>
+            Manage and resolve your assigned IT support tickets.
+          </p>
+
+        </div>
+
+
+        <div class="date">
+          {{ currentDate }}
+        </div>
+
+      </div>
+
+
+      <!-- ERROR -->
+
+      @if (errorMessage) {
+
+        <div class="error-message">
+
+          <div class="error-icon">
+            !
+          </div>
+
+          <div class="error-content">
+
+            <strong>
+              SYSTEM ERROR
+            </strong>
+
+            <span>
+              {{ errorMessage }}
+            </span>
+
+          </div>
+
+          <button
+            type="button"
+            (click)="loadAssignedTickets()">
+
+            Retry
+
+          </button>
+
+        </div>
+
+      }
+
+
+      <!-- STATISTICS -->
+
+      <div class="stats-grid">
+
+
+        <!-- OPEN -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              OPEN
+            </span>
+
+            <span class="stat-icon">
+              ◈
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ openTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Awaiting your attention
+          </span>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              IN PROGRESS
+            </span>
+
+            <span class="stat-icon">
+              ◉
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ inProgressTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Currently being handled
+          </span>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              RESOLVED
+            </span>
+
+            <span class="stat-icon">
+              ✓
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ resolvedTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Successfully resolved
+          </span>
+
+        </div>
+
+
+        <!-- CLOSED -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              CLOSED
+            </span>
+
+            <span class="stat-icon">
+              ✓
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ closedTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Completed tickets
+          </span>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+          <div class="stat-header">
+
+            <span>
+              TOTAL ASSIGNED
+            </span>
+
+            <span class="stat-icon">
+              ▤
+            </span>
+
+          </div>
+
+          <strong class="stat-number">
+            {{ totalTickets }}
+          </strong>
+
+          <span class="stat-description">
+            Tickets assigned to you
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ASSIGNED TICKETS -->
+
+      <section
+        #assignedTicketsSection
+        id="assigned-tickets"
+        class="tickets-panel">
+
+
+        <!-- PANEL HEADER -->
+
+        <div class="panel-header">
+
+          <div>
+
+            <span class="panel-label">
+              ASSIGNED WORK
+            </span>
+
+            <h3>
+              My Assigned Tickets
+            </h3>
+
+          </div>
+
+
+          <div class="ticket-count">
+
+            <strong>
+              {{ totalTickets }}
+            </strong>
+
+            <span>
+              ASSIGNED
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        @if (loading) {
+
+          <div class="loading-state">
+
+            <span class="spinner"></span>
+
+            <span>
+              Loading assigned tickets...
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- EMPTY STATE -->
+
+        @if (
+          !loading &&
+          !errorMessage &&
+          tickets.length === 0
+        ) {
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ✓
+            </div>
+
+            <h4>
+              No Assigned Tickets
+            </h4>
+
+            <p>
+              You currently have no tickets assigned to you.
+            </p>
+
+          </div>
+
+        }
+
+
+        <!-- TICKETS -->
+
+        @if (
+          !loading &&
+          !errorMessage &&
+          tickets.length > 0
+        ) {
+
+          <div class="ticket-list">
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="ticket-header">
+
+              <span>
+                TICKET
+              </span>
+
+              <span>
+                ISSUE
+              </span>
+
+              <span>
+                PRIORITY
+              </span>
+
+              <span>
+                STATUS
+              </span>
+
+              <span>
+                ACTION
+              </span>
+
+            </div>
+
+
+            <!-- TICKET ROWS -->
+
+            @for (
+              ticket of tickets;
+              track ticket.id
+            ) {
+
+              <div class="ticket-row">
+
+
+                <!-- TICKET NUMBER -->
+
+                <div class="ticket-number">
+
+                  <span>
+                    TICKET
+                  </span>
+
+                  <strong>
+                    {{ ticket.ticketNumber }}
+                  </strong>
+
+                </div>
+
+
+                <!-- ISSUE -->
+
+                <div class="ticket-info">
+
+                  <strong>
+                    {{ ticket.title }}
+                  </strong>
+
+                  <span>
+                    {{ ticket.description }}
+                  </span>
+
+                </div>
+
+
+                <!-- PRIORITY -->
+
+                <div class="ticket-priority">
+
+                  <span
+                    class="priority-badge"
+                    [class.low]="ticket.priority === 'LOW'"
+                    [class.medium]="ticket.priority === 'MEDIUM'"
+                    [class.high]="ticket.priority === 'HIGH'"
+                    [class.critical]="ticket.priority === 'CRITICAL'">
+
+                    {{ ticket.priority }}
+
+                  </span>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="ticket-status-container">
+
+                  <span
+                    class="ticket-status"
+                    [class.open]="ticket.status === 'OPEN'"
+                    [class.progress]="ticket.status === 'IN_PROGRESS'"
+                    [class.resolved]="ticket.status === 'RESOLVED'"
+                    [class.closed]="ticket.status === 'CLOSED'">
+
+                    {{ ticket.status }}
+
+                  </span>
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <div class="ticket-action">
+
+                  <button
+                    type="button"
+                    class="view-ticket-button"
+                    (click)="openTicket(ticket.id)">
+
+                    <span>
+                      View Ticket
+                    </span>
+
+                    <span class="arrow">
+                      →
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+        }
+
+      </section>
+
+    </section>
+
+  </main>
+
+</div>

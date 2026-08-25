@@ -1,0 +1,214 @@
+<div class="command-center">
+
+  <!-- Background -->
+  <div class="grid-background"></div>
+
+  <!-- Decorative HUD elements -->
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- Main Login Area -->
+  <main class="login-area">
+
+    <section class="login-panel">
+
+      <!-- Logo -->
+      <div class="brand">
+
+        <div class="brand-logo">
+          <span>TS</span>
+        </div>
+
+        <div class="brand-name">
+          <span>IT</span>
+          <strong>TICKETING SYSTEM</strong>
+        </div>
+
+      </div>
+
+
+      <!-- System Status -->
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <span>SYSTEM ONLINE</span>
+
+        <span class="status-line"></span>
+
+        <span>SECURE ACCESS</span>
+
+      </div>
+
+
+      <!-- Heading -->
+      <div class="login-heading">
+
+        <span class="eyebrow">
+          IT OPERATIONS
+        </span>
+
+        <h1>
+          SYSTEM<br>
+          <span>ACCESS</span>
+        </h1>
+
+        <p>
+          Sign in to access the IT Ticketing System
+          Command Centre.
+        </p>
+
+      </div>
+
+
+      <!-- Login Form -->
+      <form
+        class="login-form"
+        (ngSubmit)="login()">
+
+        <!-- Email -->
+        <div class="form-group">
+
+          <label for="email">
+            USER IDENTIFICATION
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              @
+            </span>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- Password -->
+        <div class="form-group">
+
+          <label for="password">
+            SECURITY CREDENTIAL
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              •
+            </span>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- Error -->
+        @if (errorMessage) {
+
+          <div class="error-message">
+
+            <span>!</span>
+
+            {{ errorMessage }}
+
+          </div>
+
+        }
+
+
+          <button
+  type="button"
+  class="authenticate-button"
+  [disabled]="loading"
+  (click)="login()">
+  
+          @if (!loading) {
+
+            <span>
+              AUTHENTICATE
+            </span>
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          } @else {
+
+            <span>
+              AUTHENTICATING...
+            </span>
+
+          }
+
+        </button>
+
+      </form>
+
+
+      <!-- Footer -->
+      <div class="panel-footer">
+
+        <div>
+          IT TICKETING SYSTEM
+        </div>
+
+        <div>
+          v1.0.0
+        </div>
+
+        <div class="connection">
+
+          <span class="status-dot"></span>
+
+          API READY
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Bottom Information -->
+  <footer class="command-footer">
+
+    <span>
+      IT OPERATIONS COMMAND CENTRE
+    </span>
+
+    <span>
+      SECURE AUTHENTICATION PROTOCOL
+    </span>
+
+    <span>
+      © 2026 IT TICKETING SYSTEM
+    </span>
+
+  </footer>
+
+</div>

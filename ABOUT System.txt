@@ -1,0 +1,72 @@
+An IT Help Desk Ticketing System is a web application that organizations use to manage IT support requests. Instead of employees sending emails or messages to technicians, they submit a ticket that gets tracked from creation to resolution.
+
+How It Works
+A user experiences an IT issue.
+"My laptop won't connect to Wi-Fi."
+"I forgot my password."
+"The printer is not working."
+The user creates a support ticket.
+The system generates a unique ticket number (e.g., TKT-2026-001).
+An IT technician is assigned to the ticket.
+The technician updates the ticket status:
+Open
+In Progress
+Pending
+Resolved
+Closed
+The user can track progress until the issue is fixed.
+
+
+
+
+Employee
+    ↓
+Create Ticket
+    ↓
+Ticket #1001 Created
+    ↓
+Assigned to Technician
+    ↓
+Technician Investigates
+    ↓
+Issue Resolved
+    ↓
+Ticket Closed
+
+
+Features You Can Build
+User Features
+Register/Login
+Submit tickets
+Upload screenshots
+View ticket history
+Track ticket status
+Receive notifications
+Technician Features
+View assigned tickets
+Update ticket status
+Add comments
+Change priority
+Resolve tickets
+Admin Features
+Manage users
+Assign technicians
+Generate reports
+View dashboards
+Manage categories
+
+
+
+IT Help Desk Ticketing System
+
+Using:
+
+☕ Java
+🌱 Spring Boot
+🌐 REST API
+🗄️ MySQL
+🧩 Spring Data JPA / Hibernate
+🔐 Spring Security
+🖥️ HTML/CSS/JavaScript
+📦 Maven
+🐙 Git/GitHub

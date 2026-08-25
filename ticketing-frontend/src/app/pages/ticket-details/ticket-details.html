@@ -1,0 +1,897 @@
+<div class="ticket-details-page">
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="page-header">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+
+        <span>
+          IT
+        </span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="backToTickets()">
+
+      ← Back
+
+    </button>
+
+  </header>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main-content">
+
+
+    <!-- =====================================================
+         LOADING
+         ===================================================== -->
+
+    @if (loading) {
+
+      <div class="loading-state">
+
+        <span class="spinner"></span>
+
+        <span>
+          Loading ticket...
+        </span>
+
+      </div>
+
+    }
+
+
+    <!-- =====================================================
+         ERROR
+         ===================================================== -->
+
+    @if (!loading && errorMessage && !ticket) {
+
+      <section class="error-state">
+
+        <div class="error-icon">
+          !
+        </div>
+
+        <strong>
+          Unable to Load Ticket
+        </strong>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+        <button
+          type="button"
+          (click)="loadTicket()">
+
+          Try Again
+
+        </button>
+
+      </section>
+
+    }
+
+
+    <!-- =====================================================
+         TICKET
+         ===================================================== -->
+
+    @if (!loading && ticket) {
+
+      <section class="ticket-content">
+
+
+        <!-- =================================================
+             PAGE HEADING
+             ================================================= -->
+
+        <div class="page-heading">
+
+          <div>
+
+            <span class="page-label">
+              IT OPERATIONS / TICKET
+            </span>
+
+            <h1>
+              {{ ticket.title }}
+            </h1>
+
+            <p>
+              {{ ticket.ticketNumber }}
+            </p>
+
+          </div>
+
+
+          <!-- STATUS -->
+
+          <div class="ticket-status-container">
+
+            <span
+              class="ticket-status"
+
+              [class.open]="ticket.status === 'OPEN'"
+
+              [class.progress]="
+                ticket.status === 'IN_PROGRESS'
+              "
+
+              [class.resolved]="
+                ticket.status === 'RESOLVED'
+              "
+
+              [class.closed]="
+                ticket.status === 'CLOSED'
+              ">
+
+              {{ ticket.status }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SUCCESS MESSAGE
+             ================================================= -->
+
+        @if (successMessage) {
+
+          <div class="success-message">
+
+            <span class="success-icon">
+              ✓
+            </span>
+
+            <span>
+              {{ successMessage }}
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             ERROR MESSAGE
+             ================================================= -->
+
+        @if (errorMessage) {
+
+          <div class="inline-error">
+
+            <span>
+              !
+            </span>
+
+            <span>
+              {{ errorMessage }}
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             TICKET INFORMATION
+             ================================================= -->
+
+        <div class="ticket-grid">
+
+
+          <!-- =================================================
+               DESCRIPTION
+               ================================================= -->
+
+          <section class="details-card description-card">
+
+            <div class="card-header">
+
+              <span class="card-label">
+                TICKET INFORMATION
+              </span>
+
+              <h2>
+                Issue Description
+              </h2>
+
+            </div>
+
+
+            <div class="description">
+
+              {{ ticket.description }}
+
+            </div>
+
+
+            <!-- META -->
+
+            <div class="ticket-meta">
+
+              <div>
+
+                <span>
+                  CREATED
+                </span>
+
+                <strong>
+                  {{ ticket.createdAt | date:'dd MMM yyyy, HH:mm' }}
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  LAST UPDATED
+                </span>
+
+                <strong>
+                  {{ ticket.updatedAt | date:'dd MMM yyyy, HH:mm' }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- =================================================
+               TICKET DETAILS
+               ================================================= -->
+
+          <section class="details-card">
+
+            <div class="card-header">
+
+              <span class="card-label">
+                TICKET DETAILS
+              </span>
+
+              <h2>
+                Information
+              </h2>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+
+            <div class="detail-row">
+
+              <span>
+                PRIORITY
+              </span>
+
+              <span
+                class="priority-badge"
+
+                [class.low]="ticket.priority === 'LOW'"
+
+                [class.medium]="
+                  ticket.priority === 'MEDIUM'
+                "
+
+                [class.high]="ticket.priority === 'HIGH'"
+
+                [class.critical]="
+                  ticket.priority === 'CRITICAL'
+                ">
+
+                {{ ticket.priority }}
+
+              </span>
+
+            </div>
+
+
+            <!-- CREATED BY -->
+
+            <div class="detail-row">
+
+              <span>
+                CREATED BY
+              </span>
+
+              <strong>
+
+                @if (ticket.createdBy) {
+
+                  @if (
+                    ticket.createdBy.firstName ||
+                    ticket.createdBy.lastName
+                  ) {
+
+                    {{ ticket.createdBy.firstName || '' }}
+                    {{ ticket.createdBy.lastName || '' }}
+
+                  } @else {
+
+                    {{ ticket.createdBy.email }}
+
+                  }
+
+                } @else {
+
+                  Unknown User
+
+                }
+
+              </strong>
+
+            </div>
+
+
+            <!-- ASSIGNED TECHNICIAN -->
+
+            <div class="detail-row">
+
+              <span>
+                ASSIGNED TECHNICIAN
+              </span>
+
+              <strong>
+
+                @if (ticket.assignedTechnician) {
+
+                  @if (
+                    ticket.assignedTechnician.firstName ||
+                    ticket.assignedTechnician.lastName
+                  ) {
+
+                    {{ ticket.assignedTechnician.firstName || '' }}
+                    {{ ticket.assignedTechnician.lastName || '' }}
+
+                  } @else {
+
+                    {{ ticket.assignedTechnician.email }}
+
+                  }
+
+                } @else {
+
+                  Unassigned
+
+                }
+
+              </strong>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             COMMENTS
+             ===================================================== -->
+
+        <section class="comments-card">
+
+          <!-- COMMENTS HEADER -->
+
+          <div class="comments-header">
+
+            <div>
+
+              <span class="card-label">
+                TICKET COMMUNICATION
+              </span>
+
+              <h2>
+                Comments
+              </h2>
+
+              <p>
+                Communicate with the people working on this ticket.
+              </p>
+
+            </div>
+
+
+            <!-- COMMENT COUNT -->
+
+            <div class="comment-count">
+
+              <strong>
+                {{ comments.length }}
+              </strong>
+
+              <span>
+                COMMENTS
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               COMMENT ERROR
+               ================================================= -->
+
+          @if (commentErrorMessage) {
+
+            <div class="comment-error">
+
+              <span class="comment-error-icon">
+                !
+              </span>
+
+              <span>
+                {{ commentErrorMessage }}
+              </span>
+
+              <button
+                type="button"
+                (click)="loadComments()">
+
+                Retry
+
+              </button>
+
+            </div>
+
+          }
+
+
+          <!-- =================================================
+               COMMENT SUCCESS
+               ================================================= -->
+
+          @if (commentSuccessMessage) {
+
+            <div class="comment-success">
+
+              <span>
+                ✓
+              </span>
+
+              <span>
+                {{ commentSuccessMessage }}
+              </span>
+
+            </div>
+
+          }
+
+
+          <!-- =================================================
+               LOADING COMMENTS
+               ================================================= -->
+
+          @if (loadingComments) {
+
+            <div class="comments-loading">
+
+              <span class="spinner small"></span>
+
+              <span>
+                Loading comments...
+              </span>
+
+            </div>
+
+          }
+
+
+          <!-- =================================================
+               EMPTY COMMENTS
+               ================================================= -->
+
+          @if (
+            !loadingComments &&
+            !commentErrorMessage &&
+            comments.length === 0
+          ) {
+
+            <div class="comments-empty">
+
+              <div class="comments-empty-icon">
+                💬
+              </div>
+
+              <strong>
+                No comments yet
+              </strong>
+
+              <span>
+                Start the conversation about this ticket.
+              </span>
+
+            </div>
+
+          }
+
+
+          <!-- =================================================
+               COMMENT LIST
+               ================================================= -->
+
+          @if (
+            !loadingComments &&
+            comments.length > 0
+          ) {
+
+            <div class="comment-list">
+
+              @for (
+                comment of comments;
+                track comment.id
+              ) {
+
+                <article class="comment">
+
+                  <!-- COMMENT AVATAR -->
+
+                  <div class="comment-avatar">
+
+                    {{ comment.userEmail.charAt(0).toUpperCase() }}
+
+                  </div>
+
+
+                  <!-- COMMENT CONTENT -->
+
+                  <div class="comment-content">
+
+                    <div class="comment-top">
+
+                      <strong>
+                        {{ comment.userEmail }}
+                      </strong>
+
+                      <span>
+                        {{ comment.createdAt | date:'dd MMM yyyy, HH:mm' }}
+                      </span>
+
+                    </div>
+
+
+                    <p>
+                      {{ comment.message }}
+                    </p>
+
+                  </div>
+
+                </article>
+
+              }
+
+            </div>
+
+          }
+
+
+          <!-- =================================================
+               ADD COMMENT
+               ================================================= -->
+
+          <div class="comment-form">
+
+            <div class="comment-form-header">
+
+              <label for="commentMessage">
+                ADD COMMENT
+              </label>
+
+              <span>
+                Your message will be visible to the ticket participants.
+              </span>
+
+            </div>
+
+
+            <textarea
+              id="commentMessage"
+              name="commentMessage"
+              [(ngModel)]="commentMessage"
+              [disabled]="addingComment"
+              placeholder="Write a comment about this ticket..."
+              rows="4">
+            </textarea>
+
+
+            <div class="comment-form-footer">
+
+              <span class="comment-hint">
+                Please provide clear and useful information.
+              </span>
+
+
+              <button
+                type="button"
+                class="add-comment-button"
+                [disabled]="
+                  addingComment ||
+                  !commentMessage.trim()
+                "
+                (click)="addComment()">
+
+                @if (addingComment) {
+
+                  <span class="button-spinner"></span>
+
+                  Adding...
+
+                } @else {
+
+                  Add Comment
+                  <span>→</span>
+
+                }
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MANAGEMENT
+             ================================================= -->
+
+        <section class="management-card">
+
+          <div class="card-header">
+
+            <span class="card-label">
+              TICKET MANAGEMENT
+            </span>
+
+            <h2>
+              Manage Ticket
+            </h2>
+
+          </div>
+
+
+          <div class="management-grid">
+
+
+            <!-- =================================================
+                 STATUS
+                 ================================================= -->
+
+            <div class="management-group">
+
+              <label>
+                STATUS
+              </label>
+
+              <select
+                [disabled]="updating"
+                [ngModel]="ticket.status"
+                (ngModelChange)="updateStatus($event)">
+
+                <option value="OPEN">
+                  OPEN
+                </option>
+
+                <option value="IN_PROGRESS">
+                  IN PROGRESS
+                </option>
+
+                <option value="RESOLVED">
+                  RESOLVED
+                </option>
+
+                <option value="CLOSED">
+                  CLOSED
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRIORITY
+                 ================================================= -->
+
+            <div class="management-group">
+
+              <label>
+                PRIORITY
+              </label>
+
+              <select
+                [disabled]="updating"
+                [ngModel]="ticket.priority"
+                (ngModelChange)="updatePriority($event)">
+
+                <option value="LOW">
+                  LOW
+                </option>
+
+                <option value="MEDIUM">
+                  MEDIUM
+                </option>
+
+                <option value="HIGH">
+                  HIGH
+                </option>
+
+                <option value="CRITICAL">
+                  CRITICAL
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGN TECHNICIAN
+                 ================================================= -->
+
+            <div class="management-group technician-management">
+
+              <label>
+                ASSIGNED TECHNICIAN
+              </label>
+
+              <select
+                [(ngModel)]="selectedTechnicianId"
+                [disabled]="
+                  assigningTechnician ||
+                  loadingTechnicians
+                ">
+
+                <option [ngValue]="null">
+                  Select technician
+                </option>
+
+                @for (
+                  technician of technicians;
+                  track technician.id
+                ) {
+
+                  <option
+                    [ngValue]="technician.id">
+
+                    {{ technician.firstName }}
+                    {{ technician.lastName }}
+
+                    -
+                    {{ technician.email }}
+
+                  </option>
+
+                }
+
+              </select>
+
+
+              <button
+                type="button"
+                class="assign-button"
+
+                [disabled]="
+                  assigningTechnician ||
+                  selectedTechnicianId === null
+                "
+
+                (click)="assignTechnician()">
+
+                @if (assigningTechnician) {
+
+                  Assigning...
+
+                } @else {
+
+                  Assign Technician
+
+                }
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ACTIONS
+             ===================================================== -->
+
+        <section class="actions-card">
+
+          <div>
+
+            <span class="card-label">
+              TICKET ACTIONS
+            </span>
+
+            <p>
+              Administrative actions for this ticket.
+            </p>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="delete-button"
+
+            [disabled]="updating"
+
+            (click)="deleteTicket()">
+
+            Delete Ticket
+
+          </button>
+
+        </section>
+
+
+      </section>
+
+    }
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="page-footer">
+
+    <span>
+      IT TICKETING SYSTEM
+    </span>
+
+    <span>
+      TICKET DETAILS
+    </span>
+
+    <span>
+      © 2026
+    </span>
+
+  </footer>
+
+</div>

@@ -1,0 +1,347 @@
+<div class="create-technician-page">
+
+  <!-- ================================================= -->
+  <!-- HEADER -->
+  <!-- ================================================= -->
+
+  <header class="page-header">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+
+        <span>
+          IT
+        </span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <a
+      routerLink="/users"
+      class="back-button">
+
+      ← Back to Users
+
+    </a>
+
+  </header>
+
+
+  <!-- ================================================= -->
+  <!-- MAIN -->
+  <!-- ================================================= -->
+
+  <main class="main-content">
+
+
+    <!-- ================================================= -->
+    <!-- PAGE HEADING -->
+    <!-- ================================================= -->
+
+    <section class="page-heading">
+
+      <span class="page-label">
+        IT OPERATIONS / MANAGEMENT
+      </span>
+
+      <h1>
+        Create Technician
+      </h1>
+
+      <p>
+        Add a new technician to the IT support team.
+      </p>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- FORM CARD -->
+    <!-- ================================================= -->
+
+    <section class="form-card">
+
+
+      <!-- CARD HEADER -->
+
+      <div class="card-header">
+
+        <div class="card-icon">
+          +
+        </div>
+
+        <div>
+
+          <span class="card-label">
+            NEW USER
+          </span>
+
+          <h2>
+            Technician Information
+          </h2>
+
+          <p>
+            Enter the technician's account details below.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- SUCCESS -->
+      <!-- ================================================= -->
+
+      @if (successMessage) {
+
+        <div class="success-message">
+
+          <span class="success-icon">
+            ✓
+          </span>
+
+          <span>
+            {{ successMessage }}
+          </span>
+
+        </div>
+
+      }
+
+
+      <!-- ================================================= -->
+      <!-- ERROR -->
+      <!-- ================================================= -->
+
+      @if (errorMessage) {
+
+        <div class="error-message">
+
+          <span class="error-icon">
+            !
+          </span>
+
+          <span>
+            {{ errorMessage }}
+          </span>
+
+        </div>
+
+      }
+
+
+      <!-- ================================================= -->
+      <!-- FORM -->
+      <!-- ================================================= -->
+
+      <form
+        (ngSubmit)="createTechnician()"
+        #technicianForm="ngForm">
+
+
+        <!-- ================================================= -->
+        <!-- NAME ROW -->
+        <!-- ================================================= -->
+
+        <div class="form-row">
+
+
+          <!-- FIRST NAME -->
+
+          <div class="form-group">
+
+            <label for="firstName">
+              FIRST NAME
+            </label>
+
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              placeholder="Enter first name"
+              [(ngModel)]="firstName"
+              autocomplete="given-name"
+              [disabled]="loading"
+              required>
+
+          </div>
+
+
+          <!-- LAST NAME -->
+
+          <div class="form-group">
+
+            <label for="lastName">
+              LAST NAME
+            </label>
+
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              placeholder="Enter last name"
+              [(ngModel)]="lastName"
+              autocomplete="family-name"
+              [disabled]="loading"
+              required>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- EMAIL -->
+        <!-- ================================================= -->
+
+        <div class="form-group">
+
+          <label for="email">
+            EMAIL ADDRESS
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="technician@company.com"
+            [(ngModel)]="email"
+            autocomplete="email"
+            [disabled]="loading"
+            required>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- PASSWORD -->
+        <!-- ================================================= -->
+
+        <div class="form-group">
+
+          <label for="password">
+            TEMPORARY PASSWORD
+          </label>
+
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter temporary password"
+            [(ngModel)]="password"
+            autocomplete="new-password"
+            [disabled]="loading"
+            required>
+
+          <span class="field-help">
+            The technician can use this password to log in.
+          </span>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ROLE -->
+        <!-- ================================================= -->
+
+        <div class="role-information">
+
+          <span class="role-label">
+            ACCOUNT ROLE
+          </span>
+
+          <span class="technician-badge">
+            TECHNICIAN
+          </span>
+
+          <span class="role-description">
+            The technician role is assigned automatically.
+          </span>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ACTIONS -->
+        <!-- ================================================= -->
+
+        <div class="form-actions">
+
+
+          <!-- CANCEL -->
+
+          <button
+            type="button"
+            class="cancel-button"
+            [disabled]="loading"
+            (click)="cancel()">
+
+            Cancel
+
+          </button>
+
+
+          <!-- CREATE -->
+
+          <button
+            type="submit"
+            class="create-button"
+            [disabled]="loading">
+
+            @if (loading) {
+
+              <span class="button-spinner"></span>
+
+              Creating...
+
+            } @else {
+
+              Create Technician
+
+            }
+
+          </button>
+
+        </div>
+
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================================================= -->
+  <!-- FOOTER -->
+  <!-- ================================================= -->
+
+  <footer class="page-footer">
+
+    <span>
+      IT TICKETING SYSTEM
+    </span>
+
+    <span>
+      TECHNICIAN MANAGEMENT
+    </span>
+
+    <span>
+      © 2026
+    </span>
+
+  </footer>
+
+</div>
