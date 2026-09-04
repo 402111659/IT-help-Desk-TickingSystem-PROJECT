@@ -111,6 +111,69 @@ Spring Security is used to protect backend endpoints and enforce authorization r
 
 ---
 
+
+💡 Skills Demonstrated
+
+This project demonstrates practical experience in:
+
+Software Development
+Full-stack development
+Object-oriented programming
+Component-based architecture
+REST API development
+CRUD operations
+MVC architecture
+Service-layer architecture
+Backend Development
+Java
+Spring Boot
+Spring MVC
+Spring Security
+Spring Data JPA
+Hibernate
+Maven
+REST APIs
+Frontend Development
+Angular
+TypeScript
+HTML
+CSS
+Angular Router
+Component-based development
+API integration
+Chart.js
+Security
+JWT authentication
+OAuth 2.0
+Google OAuth
+BCrypt
+Role-Based Access Control
+Protected REST endpoints
+CORS configuration
+Database
+MySQL
+SQL
+JPA
+Hibernate
+Database relationships
+Amazon RDS
+Cloud Computing
+AWS Amplify
+AWS Elastic Beanstalk
+Amazon RDS
+Application Load Balancer
+AWS Certificate Manager
+HTTPS
+DNS
+Cloud deployment
+Development Tools
+Git
+GitHub
+IntelliJ IDEA
+Visual Studio Code
+MySQL Workbench
+HTTP Client
+
 # 🏗️ System Architecture
 
 ```text
