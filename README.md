@@ -194,8 +194,6 @@ The application is deployed using AWS cloud infrastructure.
 - **GoDaddy DNS** – Domain and DNS management
 
 ### Production API Domain
-
-```text
 https://api.fatahhelpdesk.host
 
 
