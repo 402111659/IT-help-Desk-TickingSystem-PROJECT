@@ -1,116 +1,154 @@
 # IT Help Desk Ticketing System
 
-A full-stack IT Help Desk Ticketing System designed to help organizations manage IT support requests from ticket creation through resolution.
+A full-stack IT Help Desk Ticketing System designed to help organizations manage, track, assign, and resolve IT support requests.
 
-The system allows employees to report IT issues, technicians to manage assigned tickets, and administrators to manage users, tickets, and system analytics.
+The system provides different functionality for Employees, Technicians, and Administrators, with secure authentication, role-based access control, ticket management, dashboards, and cloud deployment on AWS.
 
 ---
 
-## Project Overview
+## 🚀 Live Application
 
-The IT Help Desk Ticketing System replaces informal IT support requests with a structured ticketing workflow.
+### Frontend
+https://master.d4qa3cwvbpi9o.amplifyapp.com/login
 
-Users can:
+### Backend API
+https://api.fatahhelpdesk.host
 
-- Create IT support tickets
+---
+
+## 📌 Project Overview
+
+The IT Help Desk Ticketing System replaces informal IT support requests such as emails and messages with a centralized ticket management platform.
+
+Employees can submit IT issues and track their tickets, while technicians can manage assigned support requests and administrators can manage users, technicians, tickets, and system information.
+
+### Example IT requests
+
+- Laptop cannot connect to Wi-Fi
+- Password reset request
+- Printer not working
+- Software installation request
+- Network connectivity issue
+- Hardware problem
+- Account access issue
+
+---
+
+# ✨ Features
+
+## 👤 Employee
+
+Employees can:
+
+- Register an account
+- Log in using email/password
+- Sign in using Google OAuth
+- Create support tickets
+- Upload screenshots/evidence
+- View their submitted tickets
 - Track ticket status
+- View ticket details
 - View ticket history
-- Add comments
-- Upload supporting information/screenshots
-- Receive assistance from technicians
+- Receive ticket updates
+- Access help and troubleshooting information
+
+---
+
+## 🧑‍💻 Technician
 
 Technicians can:
 
+- Log in securely
 - View assigned tickets
+- View ticket details
 - Update ticket status
 - Change ticket priority
 - Add comments
-- Resolve tickets
+- Resolve support requests
+- Manage assigned IT incidents
+
+---
+
+## 👨‍💼 Administrator
 
 Administrators can:
 
+- Log in securely
 - View all tickets
 - Manage users
 - Create technicians
-- Assign technicians
-- Manage user roles
-- View ticket statistics
+- Assign technicians to tickets
+- Manage ticket priorities and statuses
+- View dashboards
 - View system analytics
-- Monitor overall system activity
+- View ticket statistics
+- Monitor help desk activity
 
 ---
 
-# Technology Stack
+# 🔐 Security
 
-## Frontend
+The application implements multiple security mechanisms to protect the system and control access.
 
-- Angular
-- TypeScript
-- HTML5
-- CSS3
-- Chart.js
-- Angular Router
-- HTTP Client
+### Authentication
 
-## Backend
+- JWT-based authentication
+- Google OAuth 2.0 authentication
+- BCrypt password hashing
+- Secure authentication filters
 
-- Java
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate
-- REST APIs
-- JWT Authentication
-- Google OAuth 2.0
+### Authorization
 
-## Database
+Role-based access control is implemented using:
 
-- MySQL
-- Amazon RDS
+- `EMPLOYEE`
+- `TECHNICIAN`
+- `ADMIN`
 
-## Cloud / Deployment
+Different users receive access to functionality based on their assigned role.
 
-- AWS Amplify — Angular frontend
-- AWS Elastic Beanstalk — Spring Boot backend
-- Amazon RDS — MySQL database
-
-## Development Tools
-
-- Visual Studio Code
-- IntelliJ IDEA
-- Git
-- GitHub
-- GitHub Desktop
-- Maven
-- MySQL Workbench
+Spring Security is used to protect backend endpoints and enforce authorization rules.
 
 ---
 
-# System Architecture
-
-The application follows a full-stack cloud architecture:
+# 🏗️ System Architecture
 
 ```text
-                    USERS
-                      │
-                      ▼
-              ┌───────────────┐
-              │ AWS Amplify   │
-              │ Angular       │
-              │ Frontend      │
-              └───────┬───────┘
-                      │
-                  REST API
-                      │
-                      ▼
-          ┌──────────────────────┐
-          │ AWS Elastic Beanstalk │
-          │ Spring Boot Backend   │
-          └──────────┬───────────┘
-                     │
-                     │ JPA / Hibernate
-                     ▼
-             ┌────────────────┐
-             │ Amazon RDS      │
-             │ MySQL Database  │
-             └────────────────┘
+                         ┌──────────────────────┐
+                         │       Users          │
+                         │ Employee / Tech /    │
+                         │       Admin          │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │   Angular Frontend   │
+                         │      TypeScript      │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │     AWS Amplify      │
+                         │   Frontend Hosting   │
+                         └──────────┬───────────┘
+                                    │
+                                  HTTPS
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Application Load     │
+                         │      Balancer        │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │  AWS Elastic         │
+                         │     Beanstalk        │
+                         │   Spring Boot API    │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │      Amazon RDS      │
+                         │        MySQL         │
+                         └──────────────────────┘
