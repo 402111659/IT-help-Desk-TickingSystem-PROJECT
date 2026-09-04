@@ -27,14 +27,14 @@
     </div>
 
 
-    <!-- BACK -->
+    <!-- BACK TO DASHBOARD -->
 
     <button
       type="button"
       class="back-button"
-      (click)="backToTickets()">
+      (click)="backToDashboard()">
 
-      ← Back
+      ← Dashboard
 
     </button>
 
@@ -639,10 +639,12 @@
               <button
                 type="button"
                 class="add-comment-button"
+
                 [disabled]="
                   addingComment ||
                   !commentMessage.trim()
                 "
+
                 (click)="addComment()">
 
                 @if (addingComment) {
@@ -654,7 +656,10 @@
                 } @else {
 
                   Add Comment
-                  <span>→</span>
+
+                  <span>
+                    →
+                  </span>
 
                 }
 
@@ -667,9 +672,9 @@
         </section>
 
 
-        <!-- =================================================
+        <!-- =====================================================
              MANAGEMENT
-             ================================================= -->
+             ===================================================== -->
 
         <section class="management-card">
 
@@ -773,6 +778,7 @@
 
               <select
                 [(ngModel)]="selectedTechnicianId"
+
                 [disabled]="
                   assigningTechnician ||
                   loadingTechnicians

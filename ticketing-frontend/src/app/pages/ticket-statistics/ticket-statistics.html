@@ -1,0 +1,783 @@
+<div class="command-center">
+
+  <!-- Technical background -->
+  <div class="grid-background"></div>
+
+  <!-- HUD corner decorations -->
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-logo">
+        <span>TS</span>
+      </div>
+
+      <div class="brand-name">
+        <span>IT HELP DESK</span>
+        <strong>TICKETING SYSTEM</strong>
+      </div>
+    </div>
+
+
+    <nav class="nav">
+
+      <div class="nav-label">
+        NAVIGATION
+      </div>
+
+      <a
+        class="nav-item"
+        routerLink="/admin-dashboard"
+      >
+        <span class="nav-icon">⌂</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+
+      <a
+        class="nav-item"
+        routerLink="/tickets"
+      >
+        <span class="nav-icon">▤</span>
+        <span class="nav-text">All Tickets</span>
+      </a>
+
+      <a
+        class="nav-item"
+        routerLink="/users"
+      >
+        <span class="nav-icon">♙</span>
+        <span class="nav-text">Users</span>
+      </a>
+
+      <a
+        class="nav-item"
+        routerLink="/create-technician"
+      >
+        <span class="nav-icon">+</span>
+        <span class="nav-text">Create Technician</span>
+      </a>
+
+      <a
+        class="nav-item"
+        routerLink="/system-analytics"
+      >
+        <span class="nav-icon">◫</span>
+        <span class="nav-text">System Analytics</span>
+      </a>
+
+      <a
+        class="nav-item active"
+        routerLink="/ticket-statistics"
+      >
+        <span class="nav-icon">◌</span>
+        <span class="nav-text">Ticket Statistics</span>
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-status">
+      <span class="status-dot"></span>
+      <span>SYSTEM ONLINE</span>
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+      <button
+        class="logout-btn"
+        (click)="logout()"
+      >
+        <span>⇥</span>
+        LOGOUT
+      </button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
+
+  <main class="main">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+      <div class="header-left">
+
+        <button
+          class="back-btn"
+          (click)="goToDashboard()"
+        >
+          <span>←</span>
+          BACK
+        </button>
+
+        <div class="header-divider"></div>
+
+        <div class="header-title">
+          TICKET STATISTICS
+        </div>
+
+      </div>
+
+
+      <div class="user-area">
+
+        <div class="user-details">
+
+          <div class="user-name">
+            {{ userEmail }}
+          </div>
+
+          <div class="user-role">
+            ADMINISTRATOR
+          </div>
+
+        </div>
+
+        <div class="user-avatar">
+          {{ userInitial }}
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         PAGE CONTENT
+         ========================= -->
+
+    <section class="content">
+
+
+      <!-- PAGE HEADING -->
+
+      <div class="page-heading">
+
+        <div class="heading-top-line">
+
+          <div class="eyebrow">
+            SYSTEM / STATISTICS / TICKETS
+          </div>
+
+          <div class="heading-status">
+            <span class="status-dot"></span>
+            LIVE DATA
+          </div>
+
+        </div>
+
+
+        <h1>
+          Ticket
+          <span>Statistics</span>
+        </h1>
+
+
+        <p>
+          Analyse ticket distribution, priorities, status trends and
+          ticket activity across the help desk.
+        </p>
+
+
+        <div class="date-text">
+          {{ currentDate }}
+        </div>
+
+      </div>
+
+
+
+      <!-- =========================
+           LOADING
+           ========================= -->
+
+      <div
+        class="loading-state"
+        *ngIf="loadingTickets"
+      >
+
+        <div class="loading-symbol">
+          ◌
+        </div>
+
+        <div class="loading-title">
+          LOADING STATISTICS
+        </div>
+
+        <div class="loading-text">
+          Retrieving ticket statistics...
+        </div>
+
+      </div>
+
+
+
+      <!-- =========================
+           ERROR
+           ========================= -->
+
+      <div
+        class="error-state"
+        *ngIf="!loadingTickets && errorMessage"
+      >
+
+        <div class="error-symbol">
+          !
+        </div>
+
+        <div>
+
+          <div class="error-title">
+            STATISTICS UNAVAILABLE
+          </div>
+
+          <div class="error-text">
+            {{ errorMessage }}
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =========================
+           DATA
+           ========================= -->
+
+      <ng-container
+        *ngIf="!loadingTickets && !errorMessage"
+      >
+
+
+        <!-- =========================
+             KEY STATISTICS
+             ========================= -->
+
+        <section class="section-block">
+
+          <div class="section-label">
+            TICKET OVERVIEW
+          </div>
+
+
+          <div class="stats-grid">
+
+
+            <article class="stat-card">
+
+              <div class="stat-top">
+                <span class="stat-index">01</span>
+                <span class="stat-status">TOTAL</span>
+              </div>
+
+              <div class="stat-label">
+                TOTAL TICKETS
+              </div>
+
+              <div class="stat-value">
+                {{ totalTickets }}
+              </div>
+
+              <div class="stat-line"></div>
+
+            </article>
+
+
+
+            <article class="stat-card orange">
+
+              <div class="stat-top">
+                <span class="stat-index">02</span>
+                <span class="stat-status">ACTIVE</span>
+              </div>
+
+              <div class="stat-label">
+                OPEN
+              </div>
+
+              <div class="stat-value">
+                {{ openTickets }}
+              </div>
+
+              <div class="stat-line"></div>
+
+            </article>
+
+
+
+            <article class="stat-card blue">
+
+              <div class="stat-top">
+                <span class="stat-index">03</span>
+                <span class="stat-status">ACTIVE</span>
+              </div>
+
+              <div class="stat-label">
+                IN PROGRESS
+              </div>
+
+              <div class="stat-value">
+                {{ inProgressTickets }}
+              </div>
+
+              <div class="stat-line"></div>
+
+            </article>
+
+
+
+            <article class="stat-card green">
+
+              <div class="stat-top">
+                <span class="stat-index">04</span>
+                <span class="stat-status">RESOLVED</span>
+              </div>
+
+              <div class="stat-label">
+                RESOLVED
+              </div>
+
+              <div class="stat-value">
+                {{ resolvedTickets }}
+              </div>
+
+              <div class="stat-line"></div>
+
+            </article>
+
+
+
+            <article class="stat-card red">
+
+              <div class="stat-top">
+                <span class="stat-index">05</span>
+                <span class="stat-status">ATTENTION</span>
+              </div>
+
+              <div class="stat-label">
+                HIGH PRIORITY
+              </div>
+
+              <div class="stat-value">
+                {{ highPriorityTickets }}
+              </div>
+
+              <div class="stat-line"></div>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CHARTS
+             ========================= -->
+
+        <section class="section-block">
+
+          <div class="section-label">
+            STATISTICAL ANALYSIS
+          </div>
+
+
+
+          <!-- ROW 1 -->
+
+          <div class="chart-grid">
+
+
+            <article class="chart-card large">
+
+              <div class="chart-header">
+
+                <div>
+
+                  <div class="chart-index">
+                    STATISTICS 01
+                  </div>
+
+                  <div class="chart-title">
+                    Status Distribution
+                  </div>
+
+                  <div class="chart-description">
+                    Current distribution of tickets by status
+                  </div>
+
+                </div>
+
+                <div class="chart-mark">
+                  ◌
+                </div>
+
+              </div>
+
+
+              <div class="chart-wrapper">
+                <canvas #statusChart></canvas>
+              </div>
+
+            </article>
+
+
+
+            <article class="chart-card">
+
+              <div class="chart-header">
+
+                <div>
+
+                  <div class="chart-index">
+                    STATISTICS 02
+                  </div>
+
+                  <div class="chart-title">
+                    Priority Levels
+                  </div>
+
+                  <div class="chart-description">
+                    Tickets grouped by priority
+                  </div>
+
+                </div>
+
+                <div class="chart-mark">
+                  !
+                </div>
+
+              </div>
+
+
+              <div class="chart-wrapper">
+                <canvas #priorityChart></canvas>
+              </div>
+
+            </article>
+
+          </div>
+
+
+
+          <!-- ROW 2 -->
+
+          <div class="chart-grid reverse">
+
+
+            <article class="chart-card">
+
+              <div class="chart-header">
+
+                <div>
+
+                  <div class="chart-index">
+                    STATISTICS 03
+                  </div>
+
+                  <div class="chart-title">
+                    Status Comparison
+                  </div>
+
+                  <div class="chart-description">
+                    Direct comparison of ticket statuses
+                  </div>
+
+                </div>
+
+                <div class="chart-mark">
+                  ↗
+                </div>
+
+              </div>
+
+
+              <div class="chart-wrapper">
+                <canvas #comparisonChart></canvas>
+              </div>
+
+            </article>
+
+
+
+            <article class="chart-card large">
+
+              <div class="chart-header">
+
+                <div>
+
+                  <div class="chart-index">
+                    STATISTICS 04
+                  </div>
+
+                  <div class="chart-title">
+                    Ticket Activity
+                  </div>
+
+                  <div class="chart-description">
+                    Ticket creation activity over the last six months
+                  </div>
+
+                </div>
+
+                <div class="chart-mark">
+                  +
+                </div>
+
+              </div>
+
+
+              <div class="chart-wrapper">
+                <canvas #activityChart></canvas>
+              </div>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PERFORMANCE
+             ========================= -->
+
+        <section class="section-block">
+
+          <div class="section-label">
+            STATISTICAL SUMMARY
+          </div>
+
+
+          <div class="summary-grid">
+
+
+            <!-- RESOLUTION -->
+
+            <article class="summary-card">
+
+              <div class="summary-header">
+
+                <div>
+
+                  <div class="summary-index">
+                    SUMMARY 01
+                  </div>
+
+                  <div class="summary-title">
+                    Resolution Performance
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-row">
+
+                  <span>
+                    Resolution Rate
+                  </span>
+
+                  <strong>
+                    {{ resolutionRate }}%
+                  </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                  <div
+                    class="progress-bar green"
+                    [style.width.%]="resolutionRate"
+                  ></div>
+
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-row">
+
+                  <span>
+                    Open Rate
+                  </span>
+
+                  <strong>
+                    {{ openRate }}%
+                  </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                  <div
+                    class="progress-bar orange"
+                    [style.width.%]="openRate"
+                  ></div>
+
+                </div>
+
+              </div>
+
+
+              <div class="summary-item">
+
+                <div class="summary-row">
+
+                  <span>
+                    In Progress Rate
+                  </span>
+
+                  <strong>
+                    {{ inProgressRate }}%
+                  </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                  <div
+                    class="progress-bar blue"
+                    [style.width.%]="inProgressRate"
+                  ></div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+
+
+            <!-- PRIORITY -->
+
+            <article class="summary-card">
+
+              <div class="summary-header">
+
+                <div>
+
+                  <div class="summary-index">
+                    SUMMARY 02
+                  </div>
+
+                  <div class="summary-title">
+                    Priority Summary
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="priority-row">
+
+                <div class="priority-name">
+                  HIGH PRIORITY
+                </div>
+
+                <div class="priority-number">
+                  {{ highPriorityTickets }}
+                </div>
+
+              </div>
+
+
+              <div class="priority-row">
+
+                <div class="priority-name">
+                  MEDIUM PRIORITY
+                </div>
+
+                <div class="priority-number">
+                  {{ mediumPriorityTickets }}
+                </div>
+
+              </div>
+
+
+              <div class="priority-row">
+
+                <div class="priority-name">
+                  LOW PRIORITY
+                </div>
+
+                <div class="priority-number">
+                  {{ lowPriorityTickets }}
+                </div>
+
+              </div>
+
+
+              <div class="priority-row total">
+
+                <div class="priority-name">
+                  UNRESOLVED
+                </div>
+
+                <div class="priority-number">
+                  {{ unresolvedTickets }}
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+      </ng-container>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="command-footer">
+
+      <span>
+        IT HELP DESK · TICKETING SYSTEM
+      </span>
+
+      <span>
+        ADMINISTRATION / TICKET STATISTICS
+      </span>
+
+    </footer>
+
+  </main>
+
+</div>

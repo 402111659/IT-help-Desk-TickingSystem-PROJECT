@@ -35,6 +35,8 @@ export class Dashboard {
 
   userEmail = '';
 
+  userName = '';
+
   userInitial = '?';
 
   currentDate = '';
@@ -103,10 +105,43 @@ export class Dashboard {
 
     if (email) {
 
+      // Store the complete email
       this.userEmail = email;
 
+
+      // =================================================
+      // EXTRACT NAME FROM EMAIL
+      // =================================================
+      //
+      // Example:
+      //
+      // fatah.abdullahi@gmail.com
+      //
+      // becomes:
+      //
+      // fatah.abdullahi
+      //
+      // =================================================
+
+      this.userName =
+        email.split('@')[0];
+
+
+      // =================================================
+      // CAPITALIZE FIRST LETTER
+      // =================================================
+
+      this.userName =
+        this.userName.charAt(0).toUpperCase() +
+        this.userName.slice(1);
+
+
+      // =================================================
+      // USER AVATAR INITIAL
+      // =================================================
+
       this.userInitial =
-        email.charAt(0).toUpperCase();
+        this.userName.charAt(0).toUpperCase();
 
     }
 

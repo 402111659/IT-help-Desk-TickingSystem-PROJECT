@@ -1,31 +1,39 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TicketService } from '../../services/ticket.service';
+import {
+  FormsModule
+} from '@angular/forms';
+
+import {
+  Router,
+  RouterLink
+} from '@angular/router';
+
+import {
+  TicketService
+} from '../../services/ticket.service';
+
 
 @Component({
   selector: 'app-create-ticket',
+
   standalone: true,
-  imports: [FormsModule],
+
+  imports: [
+    FormsModule,
+    RouterLink
+  ],
+
   templateUrl: './create-ticket.html',
+
   styleUrl: './create-ticket.css'
 })
 export class CreateTicket {
-
-  // =====================================================
-  // FORM
-  // =====================================================
 
   title = '';
 
   description = '';
 
   priority = 'MEDIUM';
-
-
-  // =====================================================
-  // PAGE STATE
-  // =====================================================
 
   loading = false;
 
@@ -34,32 +42,24 @@ export class CreateTicket {
   errorMessage = '';
 
 
-  // =====================================================
-  // CONSTRUCTOR
-  // =====================================================
-
   constructor(
     private ticketService: TicketService,
     private router: Router
   ) {}
 
 
-  // =====================================================
-  // GET USER ROLE FROM JWT
-  // =====================================================
+  /* =====================================================
+     GET USER ROLE
+     ===================================================== */
 
   private getUserRole(): string {
 
     const token =
       localStorage.getItem('token');
 
-
     if (!token) {
-
       return '';
-
     }
-
 
     try {
 
@@ -70,35 +70,28 @@ export class CreateTicket {
           )
         );
 
-
       return payload.role || '';
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
       console.error(
         'Unable to read user role from JWT:',
         error
       );
 
-
       return '';
-
     }
-
   }
 
 
-  // =====================================================
-  // RETURN TO CORRECT DASHBOARD
-  // =====================================================
+  /* =====================================================
+     NAVIGATE TO DASHBOARD
+     ===================================================== */
 
   private navigateToDashboard(): void {
 
     const role =
       this.getUserRole();
-
 
     console.log(
       'User role:',
@@ -113,7 +106,6 @@ export class CreateTicket {
       ]);
 
       return;
-
     }
 
 
@@ -124,22 +116,18 @@ export class CreateTicket {
       ]);
 
       return;
-
     }
 
-
-    // Default employee dashboard
 
     this.router.navigate([
       '/dashboard'
     ]);
-
   }
 
 
-  // =====================================================
-  // CREATE TICKET
-  // =====================================================
+  /* =====================================================
+     CREATE TICKET
+     ===================================================== */
 
   createTicket(): void {
 
@@ -148,9 +136,9 @@ export class CreateTicket {
     this.errorMessage = '';
 
 
-    // ===================================================
-    // VALIDATION
-    // ===================================================
+    /* -----------------------------
+       VALIDATION
+       ----------------------------- */
 
     if (!this.title.trim()) {
 
@@ -158,7 +146,6 @@ export class CreateTicket {
         'Please enter a ticket title.';
 
       return;
-
     }
 
 
@@ -168,7 +155,6 @@ export class CreateTicket {
         'Please describe the issue you are experiencing.';
 
       return;
-
     }
 
 
@@ -178,7 +164,6 @@ export class CreateTicket {
         'Ticket title cannot exceed 100 characters.';
 
       return;
-
     }
 
 
@@ -188,20 +173,15 @@ export class CreateTicket {
         'Description cannot exceed 2000 characters.';
 
       return;
-
     }
 
 
-    // ===================================================
-    // START LOADING
-    // ===================================================
+    /* -----------------------------
+       START LOADING
+       ----------------------------- */
 
     this.loading = true;
 
-
-    // ===================================================
-    // TICKET OBJECT
-    // ===================================================
 
     const ticket = {
 
@@ -216,7 +196,6 @@ export class CreateTicket {
 
       status:
         'OPEN'
-
     };
 
 
@@ -226,17 +205,13 @@ export class CreateTicket {
     );
 
 
-    // ===================================================
-    // SEND TO BACKEND
-    // ===================================================
+    /* -----------------------------
+       SEND TO BACKEND
+       ----------------------------- */
 
     this.ticketService
       .createTicket(ticket)
       .subscribe({
-
-        // =================================================
-        // SUCCESS
-        // =================================================
 
         next: (response) => {
 
@@ -253,7 +228,7 @@ export class CreateTicket {
             'Ticket created successfully.';
 
 
-          // Clear form
+          /* Clear form */
 
           this.title = '';
 
@@ -262,20 +237,15 @@ export class CreateTicket {
           this.priority = 'MEDIUM';
 
 
-          // Return to the correct dashboard
+          /* Return to dashboard */
 
           setTimeout(() => {
 
             this.navigateToDashboard();
 
           }, 1000);
-
         },
 
-
-        // =================================================
-        // ERROR
-        // =================================================
 
         error: (error) => {
 
@@ -293,46 +263,34 @@ export class CreateTicket {
             this.errorMessage =
               'Invalid ticket information. Please check your details.';
 
-          }
-
-          else if (error.status === 401) {
+          } else if (error.status === 401) {
 
             this.errorMessage =
               'Your session has expired. Please log in again.';
 
-          }
-
-          else if (error.status === 403) {
+          } else if (error.status === 403) {
 
             this.errorMessage =
               'You do not have permission to create a ticket.';
 
-          }
-
-          else if (error.status === 0) {
+          } else if (error.status === 0) {
 
             this.errorMessage =
               'Cannot connect to the server. Make sure Spring Boot is running.';
 
-          }
-
-          else {
+          } else {
 
             this.errorMessage =
               'Unable to create ticket. Please try again.';
-
           }
-
         }
-
       });
-
   }
 
 
-  // =====================================================
-  // CANCEL
-  // =====================================================
+  /* =====================================================
+     CANCEL
+     ===================================================== */
 
   cancel(): void {
 
@@ -340,9 +298,7 @@ export class CreateTicket {
       'Cancelling ticket creation...'
     );
 
-
     this.navigateToDashboard();
-
   }
 
 }

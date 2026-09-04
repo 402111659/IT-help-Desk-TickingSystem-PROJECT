@@ -1,71 +1,114 @@
-<div class="create-ticket-page">
+<div class="create-page">
 
-  <!-- ============================= -->
-  <!-- TOP NAVIGATION -->
-  <!-- ============================= -->
+  <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
 
-  <header class="page-header">
+  <div class="grid-background"></div>
 
-    <div class="brand">
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
 
-      <div class="brand-logo">
+
+  <!-- HUD -->
+
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+
+    <!-- BRAND -->
+
+    <div class="sidebar-brand">
+
+      <div class="brand-mark">
         TS
       </div>
 
-      <div class="brand-text">
-        <span>IT</span>
-        <strong>TICKETING SYSTEM</strong>
+      <div class="brand-copy">
+
+        <span>IT SUPPORT</span>
+
+        <strong>
+          TICKETING SYSTEM
+        </strong>
+
       </div>
 
     </div>
 
 
-    <button
-      type="button"
-      class="back-button"
-      (click)="cancel()">
 
-      <span>←</span>
+    <!-- NAVIGATION -->
 
-      Back to Dashboard
+    <nav class="nav-section">
 
-    </button>
-
-  </header>
+      <span class="nav-label">
+        NAVIGATION
+      </span>
 
 
-  <!-- ============================= -->
-  <!-- MAIN CONTENT -->
-  <!-- ============================= -->
+      <a
+        routerLink="/dashboard"
+        class="nav-item"
+      >
 
-  <main class="main-content">
-
-
-    <!-- PAGE INTRO -->
-
-    <div class="page-intro">
-
-      <div>
-
-        <span class="page-label">
-          IT OPERATIONS / SUPPORT
+        <span class="nav-icon">
+          01
         </span>
 
-        <h1>
-          Create Support Ticket
-        </h1>
+        Dashboard
 
-        <p>
-          Submit an IT issue and our support team
-          will assist you as soon as possible.
-        </p>
-
-      </div>
+      </a>
 
 
-      <div class="system-status">
+      <a
+        routerLink="/my-tickets"
+        class="nav-item"
+      >
 
-        <span class="status-dot"></span>
+        <span class="nav-icon">
+          02
+        </span>
+
+        My Tickets
+
+      </a>
+
+
+      <a
+        routerLink="/create-ticket"
+        class="nav-item active"
+      >
+
+        <span class="nav-icon">
+          03
+        </span>
+
+        Create Ticket
+
+      </a>
+
+    </nav>
+
+
+
+    <!-- SYSTEM STATUS -->
+
+    <div class="sidebar-system">
+
+      <div class="system-line">
+
+        <span class="system-dot"></span>
 
         <span>
           SYSTEM ONLINE
@@ -73,394 +116,543 @@
 
       </div>
 
+      <div class="system-code">
+        SECURE CONNECTION
+      </div>
+
     </div>
 
 
 
-    <!-- ============================= -->
-    <!-- FORM CARD -->
-    <!-- ============================= -->
+    <!-- BACK -->
 
-    <section class="ticket-card">
+    <button
+      type="button"
+      class="logout-button"
+      (click)="cancel()"
+    >
+
+      <span>
+        ← BACK TO DASHBOARD
+      </span>
+
+      <span>
+        ESC
+      </span>
+
+    </button>
 
 
-      <!-- CARD HEADER -->
+  </aside>
 
-      <div class="card-header">
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+
+  <main class="main-content">
+
+
+    <!-- =====================================================
+         TOPBAR
+         ===================================================== -->
+
+    <header class="topbar">
+
+
+      <div class="topbar-left">
+
+        <span class="technical-label">
+          IT SUPPORT // EMPLOYEE PORTAL
+        </span>
+
+        <span class="separator">
+          /
+        </span>
+
+        <span class="current-page">
+          CREATE TICKET
+        </span>
+
+      </div>
+
+
+
+      <div class="topbar-right">
+
+        <div class="online-label">
+
+          <span class="status-dot"></span>
+
+          SYSTEM ONLINE
+
+        </div>
+
+
+        <div class="topbar-code">
+          SECURE SESSION
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENT
+         ===================================================== -->
+
+    <div class="content-wrapper">
+
+
+      <!-- ===================================================
+           PAGE INTRO
+           =================================================== -->
+
+      <section class="page-intro">
 
         <div>
 
-          <span class="card-label">
-            NEW REQUEST
+          <span class="page-label">
+            SUPPORT OPERATIONS // 002
           </span>
 
-          <h2>
-            Support Request Details
-          </h2>
+          <h1>
+            Create Support Ticket
+          </h1>
+
+          <p>
+            Submit an IT support request and provide
+            enough information for our support team
+            to investigate and resolve your issue.
+          </p>
 
         </div>
 
 
-        <div class="secure-label">
-          <span>●</span>
-          SECURE
+        <div class="page-status">
+
+          <span class="status-dot"></span>
+
+          READY FOR SUBMISSION
+
         </div>
 
-      </div>
+      </section>
 
 
 
-      <!-- FORM -->
+      <!-- ===================================================
+           MESSAGES
+           =================================================== -->
 
-      <form
-        class="ticket-form"
-        (ngSubmit)="createTicket()">
+      @if (errorMessage) {
+
+        <div class="message error">
+
+          <div class="message-icon">
+            !
+          </div>
+
+          <div>
+
+            <strong>
+              REQUEST ERROR
+            </strong>
+
+            <span>
+              {{ errorMessage }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
 
 
-        <!-- ============================= -->
-        <!-- TITLE -->
-        <!-- ============================= -->
 
-        <div class="form-group">
+      @if (successMessage) {
 
-          <label for="title">
-            TICKET TITLE
-            <span>*</span>
-          </label>
+        <div class="message success">
+
+          <div class="message-icon">
+            ✓
+          </div>
+
+          <div>
+
+            <strong>
+              REQUEST ACCEPTED
+            </strong>
+
+            <span>
+              {{ successMessage }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
 
 
-          <div class="input-wrapper">
 
-            <input
-              type="text"
-              id="title"
-              name="title"
-              [(ngModel)]="title"
-              maxlength="100"
-              placeholder="Briefly describe the issue"
-              autocomplete="off"
+      <!-- ===================================================
+           TICKET FORM
+           =================================================== -->
+
+      <section class="ticket-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="card-header">
+
+          <div>
+
+            <span class="card-label">
+              NEW REQUEST // 001
+            </span>
+
+            <h2>
+              Ticket Information
+            </h2>
+
+          </div>
+
+
+          <div class="secure-label">
+
+            <span>
+              ●
+            </span>
+
+            SECURE FORM
+
+          </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form
+          class="ticket-form"
+          (ngSubmit)="createTicket()"
+        >
+
+
+          <!-- TITLE -->
+
+          <div class="form-group">
+
+            <label for="title">
+
+              TICKET TITLE
+
+              <span>
+                *
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <input
+                id="title"
+                type="text"
+                name="title"
+                [(ngModel)]="title"
+                placeholder="Briefly describe the issue"
+                maxlength="100"
+                autocomplete="off"
+              >
+
+            </div>
+
+
+            <div class="field-footer">
+
+              <span>
+                Use a clear and descriptive title
+              </span>
+
+              <span>
+                {{ title.length }}/100
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="form-group">
+
+            <label for="description">
+
+              ISSUE DESCRIPTION
+
+              <span>
+                *
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <textarea
+                id="description"
+                name="description"
+                [(ngModel)]="description"
+                placeholder="Explain the problem in detail. Include error messages, what you were doing when the issue occurred, and any troubleshooting you have already attempted."
+                maxlength="2000"
+              ></textarea>
+
+            </div>
+
+
+            <div class="field-footer">
+
+              <span>
+                Provide as much detail as possible
+              </span>
+
+              <span>
+                {{ description.length }}/2000
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PRIORITY -->
+
+          <div class="form-group priority-group">
+
+            <label for="priority">
+              PRIORITY
+            </label>
+
+
+            <select
+              id="priority"
+              name="priority"
+              [(ngModel)]="priority"
             >
 
+              <option value="LOW">
+                LOW
+              </option>
+
+              <option value="MEDIUM">
+                MEDIUM
+              </option>
+
+              <option value="HIGH">
+                HIGH
+              </option>
+
+              <option value="CRITICAL">
+                CRITICAL
+              </option>
+
+            </select>
+
+
+            <div class="priority-help">
+
+              <span class="priority-indicator"></span>
+
+              Select the urgency level of your issue.
+
+            </div>
+
           </div>
 
 
-          <div class="field-footer">
 
-            <span>
-              Provide a clear and concise title.
-            </span>
+          <!-- ACTIONS -->
 
-            <span>
-              {{ title.length }}/100
-            </span>
+          <div class="form-actions">
+
+
+            <button
+              type="button"
+              class="cancel-button"
+              (click)="cancel()"
+              [disabled]="loading"
+            >
+              CANCEL
+            </button>
+
+
+            <button
+              type="submit"
+              class="submit-button"
+              [disabled]="loading"
+            >
+
+              @if (loading) {
+
+                <span class="button-spinner"></span>
+
+                SUBMITTING...
+
+              } @else {
+
+                <span>
+                  SUBMIT TICKET
+                </span>
+
+                <span class="submit-arrow">
+                  →
+                </span>
+
+              }
+
+            </button>
 
           </div>
+
+        </form>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           REQUEST PROCESS
+           =================================================== -->
+
+      <section class="information-section">
+
+
+        <div class="section-heading">
+
+          <span>
+            REQUEST PROCESS // 003
+          </span>
+
+          <small>
+            WHAT HAPPENS NEXT
+          </small>
 
         </div>
 
 
 
-        <!-- ============================= -->
-        <!-- DESCRIPTION -->
-        <!-- ============================= -->
-
-        <div class="form-group">
-
-          <label for="description">
-            ISSUE DESCRIPTION
-            <span>*</span>
-          </label>
+        <div class="information-grid">
 
 
-          <div class="input-wrapper textarea-wrapper">
+          <div class="info-item">
 
-            <textarea
-              id="description"
-              name="description"
-              [(ngModel)]="description"
-              maxlength="2000"
-              rows="8"
-              placeholder="Describe the problem in detail. Include any error messages, affected equipment, applications, or steps that caused the issue."
-            ></textarea>
-
-          </div>
-
-
-          <div class="field-footer">
-
-            <span>
-              Include as much useful information as possible.
-            </span>
-
-            <span>
-              {{ description.length }}/2000
-            </span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================= -->
-        <!-- PRIORITY -->
-        <!-- ============================= -->
-
-        <div class="form-group priority-group">
-
-          <label for="priority">
-            PRIORITY
-            <span>*</span>
-          </label>
-
-
-          <select
-            id="priority"
-            name="priority"
-            [(ngModel)]="priority">
-
-            <option value="LOW">
-              LOW
-            </option>
-
-            <option value="MEDIUM">
-              MEDIUM
-            </option>
-
-            <option value="HIGH">
-              HIGH
-            </option>
-
-            <option value="CRITICAL">
-              CRITICAL
-            </option>
-
-          </select>
-
-
-          <div class="priority-help">
-
-            <span class="priority-indicator"></span>
-
-            <span>
-              Select the urgency level that best describes your issue.
-            </span>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================= -->
-        <!-- ERROR MESSAGE -->
-        <!-- ============================= -->
-
-        @if (errorMessage) {
-
-          <div class="message error">
-
-            <div class="message-icon">
-              !
+            <div class="info-number">
+              01
             </div>
 
             <div>
 
               <strong>
-                TICKET NOT CREATED
+                Ticket Submitted
               </strong>
 
-              <span>
-                {{ errorMessage }}
-              </span>
+              <p>
+                Your request is recorded and assigned
+                a unique ticket number.
+              </p>
 
             </div>
 
           </div>
 
-        }
 
 
+          <div class="info-item">
 
-        <!-- ============================= -->
-        <!-- SUCCESS MESSAGE -->
-        <!-- ============================= -->
-
-        @if (successMessage) {
-
-          <div class="message success">
-
-            <div class="message-icon">
-              ✓
+            <div class="info-number">
+              02
             </div>
 
             <div>
 
               <strong>
-                TICKET CREATED
+                Technician Assigned
               </strong>
 
-              <span>
-                {{ successMessage }}
-              </span>
+              <p>
+                A support technician reviews and
+                begins working on your issue.
+              </p>
 
             </div>
 
           </div>
 
-        }
 
 
+          <div class="info-item">
 
-        <!-- ============================= -->
-        <!-- FORM ACTIONS -->
-        <!-- ============================= -->
+            <div class="info-number">
+              03
+            </div>
 
-        <div class="form-actions">
+            <div>
 
+              <strong>
+                Issue Resolved
+              </strong>
 
-          <button
-            type="button"
-            class="cancel-button"
-            (click)="cancel()">
+              <p>
+                Track progress and receive updates
+                until your ticket is resolved.
+              </p>
 
-            Cancel
+            </div>
 
-          </button>
+          </div>
 
-
-          <button
-            type="submit"
-            class="submit-button"
-            [disabled]="loading">
-
-            @if (!loading) {
-
-              <span>
-                Create Ticket
-              </span>
-
-              <span class="submit-arrow">
-                →
-              </span>
-
-            } @else {
-
-              <span class="button-spinner"></span>
-
-              <span>
-                Creating Ticket...
-              </span>
-
-            }
-
-          </button>
 
         </div>
 
+      </section>
 
-      </form>
-
-    </section>
-
-
-
-    <!-- ============================= -->
-    <!-- INFORMATION -->
-    <!-- ============================= -->
-
-    <div class="information-grid">
-
-
-      <div class="info-item">
-
-        <span class="info-icon">
-          ◈
-        </span>
-
-        <div>
-
-          <strong>
-            Secure Submission
-          </strong>
-
-          <p>
-            Your request is securely transmitted
-            to the IT support system.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <span class="info-icon">
-          ◉
-        </span>
-
-        <div>
-
-          <strong>
-            Automatic Tracking
-          </strong>
-
-          <p>
-            A unique ticket number will be assigned
-            to your request automatically.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <span class="info-icon">
-          ✓
-        </span>
-
-        <div>
-
-          <strong>
-            Support Team
-          </strong>
-
-          <p>
-            Your ticket will be reviewed and handled
-            by the appropriate IT technician.
-          </p>
-
-        </div>
-
-      </div>
 
     </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="page-footer">
+
+      <span>
+        IT HELP DESK SYSTEM
+      </span>
+
+      <span>
+        EMPLOYEE PORTAL
+      </span>
+
+      <span>
+        SYSTEM STATUS: ONLINE
+      </span>
+
+    </footer>
 
 
   </main>
-
-
-  <!-- ============================= -->
-  <!-- FOOTER -->
-  <!-- ============================= -->
-
-  <footer class="page-footer">
-
-    <span>
-      IT TICKETING SYSTEM
-    </span>
-
-    <span>
-      SECURE SUPPORT OPERATIONS
-    </span>
-
-    <span>
-      © 2026
-    </span>
-
-  </footer>
 
 </div>

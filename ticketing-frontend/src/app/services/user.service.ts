@@ -53,8 +53,12 @@ export interface CreateTechnicianRequest {
 })
 export class UserService {
 
+  // =====================================================
+  // AWS ELASTIC BEANSTALK API URL
+  // =====================================================
+
   private apiUrl =
-    'http://localhost:8080/api/users';
+    'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/api/users';
 
 
   constructor(

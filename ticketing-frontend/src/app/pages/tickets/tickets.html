@@ -6,6 +6,8 @@
 
   <header class="page-header">
 
+    <!-- BRAND -->
+
     <div class="brand">
 
       <div class="brand-logo">
@@ -25,6 +27,25 @@
       </div>
 
     </div>
+
+
+    <!-- ========================================= -->
+    <!-- TOP RIGHT ACTION -->
+    <!-- ========================================= -->
+
+    <button
+      type="button"
+      class="dashboard-link"
+      (click)="backToDashboard()"
+    >
+
+      <span>
+        ←
+      </span>
+
+      Back to Dashboard
+
+    </button>
 
   </header>
 
@@ -58,6 +79,8 @@
 
       </div>
 
+
+      <!-- SYSTEM STATUS -->
 
       <div class="system-status">
 
@@ -180,10 +203,13 @@
         </div>
 
 
+        <!-- REFRESH -->
+
         <button
           type="button"
           class="refresh-button"
-          (click)="loadTickets()">
+          (click)="loadTickets()"
+        >
 
           <span>
             ↻
@@ -220,10 +246,11 @@
         </div>
 
 
-        <!-- STATUS -->
+        <!-- STATUS FILTER -->
 
         <select
-          [(ngModel)]="selectedStatus">
+          [(ngModel)]="selectedStatus"
+        >
 
           <option value="ALL">
             All Statuses
@@ -248,10 +275,11 @@
         </select>
 
 
-        <!-- PRIORITY -->
+        <!-- PRIORITY FILTER -->
 
         <select
-          [(ngModel)]="selectedPriority">
+          [(ngModel)]="selectedPriority"
+        >
 
           <option value="ALL">
             All Priorities
@@ -327,7 +355,7 @@
 
 
       <!-- ========================================= -->
-      <!-- EMPTY -->
+      <!-- EMPTY STATE -->
       <!-- ========================================= -->
 
       @if (
@@ -367,6 +395,8 @@
 
           <table class="ticket-table">
 
+            <!-- TABLE HEADER -->
+
             <thead>
 
               <tr>
@@ -400,6 +430,8 @@
             </thead>
 
 
+            <!-- TABLE BODY -->
+
             <tbody>
 
               @for (
@@ -412,7 +444,10 @@
                   (click)="openTicket(ticket.id)"
                 >
 
+
+                  <!-- ================================= -->
                   <!-- TICKET NUMBER -->
+                  <!-- ================================= -->
 
                   <td>
 
@@ -427,7 +462,9 @@
                   </td>
 
 
+                  <!-- ================================= -->
                   <!-- ISSUE -->
+                  <!-- ================================= -->
 
                   <td>
 
@@ -446,7 +483,9 @@
                   </td>
 
 
+                  <!-- ================================= -->
                   <!-- PRIORITY -->
+                  <!-- ================================= -->
 
                   <td>
 
@@ -477,7 +516,9 @@
                   </td>
 
 
+                  <!-- ================================= -->
                   <!-- STATUS -->
+                  <!-- ================================= -->
 
                   <td>
 
@@ -508,7 +549,9 @@
                   </td>
 
 
+                  <!-- ================================= -->
                   <!-- CREATED -->
+                  <!-- ================================= -->
 
                   <td>
 
@@ -521,7 +564,9 @@
                   </td>
 
 
+                  <!-- ================================= -->
                   <!-- ACTION -->
+                  <!-- ================================= -->
 
                   <td>
 

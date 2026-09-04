@@ -1,0 +1,384 @@
+<div class="support-page">
+
+  <!-- Decorative HUD Elements -->
+  <div class="hud-corner top-left"></div>
+  <div class="hud-corner top-right"></div>
+  <div class="hud-corner bottom-left"></div>
+  <div class="hud-corner bottom-right"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-logo">TS</div>
+
+      <div class="brand-text">
+        <span class="brand-title">TICKET</span>
+        <span class="brand-subtitle">SYSTEM</span>
+      </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <div class="nav-section">
+
+      <span class="nav-label">MAIN</span>
+
+      <a
+        class="nav-item nav-button"
+        routerLink="/dashboard">
+        <span class="nav-number">01</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a
+        class="nav-item nav-button"
+        routerLink="/my-tickets">
+        <span class="nav-number">02</span>
+        <span>My Tickets</span>
+      </a>
+
+      <a
+        class="nav-item nav-button"
+        routerLink="/create-ticket">
+        <span class="nav-number">03</span>
+        <span>Create Ticket</span>
+      </a>
+
+    </div>
+
+    <!-- Support Navigation -->
+    <div class="nav-section">
+
+      <span class="nav-label">SUPPORT</span>
+
+      <a
+        class="nav-item nav-button"
+        routerLink="/help">
+        <span class="nav-number">04</span>
+        <span>Need Help?</span>
+      </a>
+
+      <a
+        class="nav-item nav-button active"
+        routerLink="/it-support">
+        <span class="nav-number">05</span>
+        <span>IT Support</span>
+      </a>
+
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>SYSTEM ONLINE</span>
+      </div>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+        LOG OUT
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+        <span class="system-code">SUPPORT / 05</span>
+      </div>
+
+      <div class="user-profile">
+
+        <div class="user-info">
+          <span class="user-name">USER</span>
+          <span class="user-email">
+            {{ userEmail || 'Not logged in' }}
+          </span>
+        </div>
+
+        <div class="user-avatar">
+          {{ userInitial }}
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <!-- HERO -->
+      <section class="hero">
+
+        <div class="hero-tag">
+          DIRECT SUPPORT
+        </div>
+
+        <h1>
+          NEED TO SPEAK
+          <span>TO IT?</span>
+        </h1>
+
+        <p>
+          Get in touch with the IT support team directly for assistance
+          with technical issues, account access and system problems.
+        </p>
+
+      </section>
+
+
+      <!-- CONTACT SECTION -->
+      <section class="contact-section">
+
+        <div class="section-heading">
+          <span class="section-number">01</span>
+
+          <div>
+            <span class="section-label">CONTACT</span>
+            <h2>GET IN TOUCH</h2>
+          </div>
+        </div>
+
+
+        <div class="contact-grid">
+
+          <!-- EMAIL -->
+          <article class="contact-card">
+
+            <div class="card-number">01</div>
+
+            <div class="contact-icon">
+              @
+            </div>
+
+            <div class="contact-content">
+
+              <span class="contact-label">
+                EMAIL SUPPORT
+              </span>
+
+              <h3>
+                Send an Email
+              </h3>
+
+              <p>
+                Contact IT support by email for technical assistance,
+                account problems or general support requests.
+              </p>
+
+              <a
+                class="contact-link"
+                href="mailto:fatahabdullahi1975@gmail.com">
+                fatahabdullahi1975@gmail.com
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PHONE -->
+          <article class="contact-card">
+
+            <div class="card-number">02</div>
+
+            <div class="contact-icon">
+              ☎
+            </div>
+
+            <div class="contact-content">
+
+              <span class="contact-label">
+                PHONE SUPPORT
+              </span>
+
+              <h3>
+                Call IT Support
+              </h3>
+
+              <p>
+                If you need to speak directly with IT support,
+                you can contact the team by phone.
+              </p>
+
+              <a
+                class="contact-link"
+                href="tel:0680758969">
+                068 075 8969
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- WHEN TO CONTACT IT -->
+      <section class="guidance-section">
+
+        <div class="section-heading">
+
+          <span class="section-number">02</span>
+
+          <div>
+            <span class="section-label">GUIDANCE</span>
+            <h2>WHICH OPTION?</h2>
+          </div>
+
+        </div>
+
+
+        <div class="guidance-grid">
+
+          <!-- DIRECT SUPPORT -->
+          <article class="guidance-card dark-card">
+
+            <div class="guidance-icon">
+              !
+            </div>
+
+            <div>
+
+              <span class="guidance-label">
+                NEED DIRECT HELP?
+              </span>
+
+              <h3>
+                Contact IT Support
+              </h3>
+
+              <p>
+                Use the contact details above when you need to
+                communicate directly with IT support about a
+                technical or system issue.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- CREATE TICKET -->
+          <article class="guidance-card">
+
+            <div class="guidance-icon">
+              #
+            </div>
+
+            <div>
+
+              <span class="guidance-label">
+                NON-URGENT ISSUE?
+              </span>
+
+              <h3>
+                Create a Support Ticket
+              </h3>
+
+              <p>
+                Submit a ticket so your issue can be recorded,
+                assigned and tracked through the support process.
+              </p>
+
+              <a
+                class="small-link"
+                routerLink="/create-ticket">
+                CREATE TICKET →
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- QUICK ACTIONS -->
+      <section class="actions-section">
+
+        <div class="action-panel">
+
+          <div class="action-content">
+
+            <span class="action-label">
+              SUPPORT CENTRE
+            </span>
+
+            <h2>
+              HAVE AN ISSUE?
+            </h2>
+
+            <p>
+              You can create a ticket, review your existing tickets
+              or browse the self-service help centre.
+            </p>
+
+          </div>
+
+
+          <div class="action-buttons">
+
+            <a
+              routerLink="/create-ticket"
+              class="primary-action">
+              CREATE TICKET
+            </a>
+
+            <a
+              routerLink="/my-tickets"
+              class="secondary-action">
+              MY TICKETS
+            </a>
+
+            <a
+              routerLink="/help"
+              class="secondary-action">
+              HELP CENTRE
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+      <footer class="page-footer">
+
+        <span>
+          TICKET SYSTEM
+        </span>
+
+        <span>
+          IT SUPPORT / 05
+        </span>
+
+        <span>
+          SYSTEM ONLINE
+        </span>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+</div>

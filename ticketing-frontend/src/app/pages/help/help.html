@@ -1,0 +1,480 @@
+<div class="help-page">
+
+  <!-- BACKGROUND -->
+
+  <div class="grid-background"></div>
+
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar glass-panel">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TS
+      </div>
+
+      <div class="brand-text">
+        <span>IT</span>
+        <strong>TICKETING SYSTEM</strong>
+      </div>
+
+    </div>
+
+
+    <nav class="navigation">
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          MY SUPPORT
+        </span>
+
+        <a
+          class="nav-item"
+          routerLink="/dashboard">
+
+          <span class="nav-number">01</span>
+          <span>Dashboard</span>
+
+        </a>
+
+
+        <a
+          class="nav-item"
+          routerLink="/my-tickets">
+
+          <span class="nav-number">02</span>
+          <span>My Tickets</span>
+
+        </a>
+
+
+        <a
+          class="nav-item"
+          routerLink="/create-ticket">
+
+          <span class="nav-number">03</span>
+          <span>Create Ticket</span>
+
+        </a>
+
+      </div>
+
+
+      <div class="nav-section">
+
+        <span class="nav-label">
+          SUPPORT
+        </span>
+
+
+        <a
+          class="nav-item active"
+          routerLink="/help">
+
+          <span class="nav-number">04</span>
+          <span>Need Help?</span>
+
+        </a>
+
+
+       <a
+  class="nav-item nav-button active"
+  routerLink="/it-support">
+  <span class="nav-number">05</span>
+  <span>IT Support</span>
+</a>
+
+      </div>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+          <strong>SYSTEM ONLINE</strong>
+          <small>API CONNECTED</small>
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        <span>↪</span>
+        LOGOUT
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- MAIN CONTENT -->
+
+  <main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar glass-panel">
+
+      <div class="header-title">
+
+        <span class="system-label">
+          IT SUPPORT // EMPLOYEE PORTAL
+        </span>
+
+        <h1>
+          HELP
+          <span>CENTRE</span>
+        </h1>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <div class="system-indicator">
+
+          <span class="indicator-dot"></span>
+
+          <span>SYSTEM ONLINE</span>
+
+        </div>
+
+
+        <div class="user-profile">
+
+          <div class="avatar">
+            {{ userInitial }}
+          </div>
+
+          <div class="user-info">
+
+            <strong>
+              {{ userEmail }}
+            </strong>
+
+            <span>
+              EMPLOYEE
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+      <!-- HERO -->
+
+      <section class="help-hero glass-card">
+
+        <div>
+
+          <span class="panel-label">
+            SELF SERVICE // 001
+          </span>
+
+          <h2>
+            Find a solution
+            <span>before creating a ticket.</span>
+          </h2>
+
+          <p>
+            Try these common troubleshooting steps before
+            submitting an IT support request.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- SOLUTIONS -->
+
+      <section class="solutions-section">
+
+        <div class="section-header">
+
+          <div>
+
+            <span class="panel-label">
+              TROUBLESHOOTING
+            </span>
+
+            <h3>
+              Common IT Solutions
+            </h3>
+
+          </div>
+
+          <span class="section-code">
+            KNOWLEDGE BASE // 004
+          </span>
+
+        </div>
+
+
+        <div class="help-grid">
+
+
+          <!-- PASSWORD -->
+
+          <article class="help-card glass-card">
+
+            <div class="help-card-number">
+              01
+            </div>
+
+            <div class="help-icon">
+              🔐
+            </div>
+
+            <span class="help-category">
+              PASSWORD & ACCOUNT
+            </span>
+
+            <h4>
+              Forgot your password?
+            </h4>
+
+            <p>
+              If you cannot access your account, reset your
+              password using the available password recovery
+              option.
+            </p>
+
+            <div class="solution-box">
+
+              <span>
+                SOLUTION
+              </span>
+
+              <p>
+                Reset your password and try logging in again.
+                If you still cannot access your account, create
+                a support ticket for IT assistance.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- WIFI -->
+
+          <article class="help-card glass-card">
+
+            <div class="help-card-number">
+              02
+            </div>
+
+            <div class="help-icon">
+              📶
+            </div>
+
+            <span class="help-category">
+              WI-FI & INTERNET
+            </span>
+
+            <h4>
+              Wi-Fi isn't connecting?
+            </h4>
+
+            <p>
+              Check your Wi-Fi connection and make sure your
+              device is connected to the correct network.
+            </p>
+
+            <div class="solution-box">
+
+              <span>
+                SOLUTION
+              </span>
+
+              <p>
+                Turn Wi-Fi off and on again, reconnect to the
+                network and restart your device. If the issue
+                continues, contact IT Support.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- PRINTER -->
+
+          <article class="help-card glass-card">
+
+            <div class="help-card-number">
+              03
+            </div>
+
+            <div class="help-icon">
+              🖨️
+            </div>
+
+            <span class="help-category">
+              PRINTER PROBLEMS
+            </span>
+
+            <h4>
+              Printer isn't working?
+            </h4>
+
+            <p>
+              Check whether the printer is powered on and
+              connected to the correct network or computer.
+            </p>
+
+            <div class="solution-box">
+
+              <span>
+                SOLUTION
+              </span>
+
+              <p>
+                Check the printer connection, paper and error
+                messages. Restart the printer and try printing
+                again.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- COMPUTER -->
+
+          <article class="help-card glass-card">
+
+            <div class="help-card-number">
+              04
+            </div>
+
+            <div class="help-icon">
+              💻
+            </div>
+
+            <span class="help-category">
+              COMPUTER PROBLEMS
+            </span>
+
+            <h4>
+              Computer is slow?
+            </h4>
+
+            <p>
+              Slow performance can be caused by too many
+              applications running at the same time.
+            </p>
+
+            <div class="solution-box">
+
+              <span>
+                SOLUTION
+              </span>
+
+              <p>
+                Close unnecessary applications and restart your
+                computer. If the problem continues, submit a
+                support ticket.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- CREATE TICKET -->
+
+      <section class="help-cta glass-card">
+
+        <div>
+
+          <span class="panel-label">
+            STILL NEED ASSISTANCE?
+          </span>
+
+          <h3>
+            Can't find a solution?
+          </h3>
+
+          <p>
+            Submit a support ticket and an IT technician
+            will assist you with your problem.
+          </p>
+
+        </div>
+
+
+        <a
+          routerLink="/create-ticket"
+          class="cta-button">
+
+          CREATE SUPPORT TICKET
+
+          <span>→</span>
+
+        </a>
+
+      </section>
+
+
+
+      <!-- FOOTER -->
+
+      <footer class="footer">
+
+        <span>
+          TS // IT TICKETING SYSTEM
+        </span>
+
+        <span>
+          HELP CENTRE // SYSTEM ONLINE
+        </span>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+</div>

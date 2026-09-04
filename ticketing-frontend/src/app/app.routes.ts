@@ -1,15 +1,24 @@
 import { Routes } from '@angular/router';
 
+import { OAuth2Callback } from './pages/oauth2-callback/oauth2-callback';
+import { ItSupport } from './pages/it-support/it-support';
 import { Tickets } from './pages/tickets/tickets';
 import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
+import { MyTickets } from './pages/my-tickets/my-tickets';
 import { CreateTicket } from './pages/create-ticket/create-ticket';
 import { TicketDetails } from './pages/ticket-details/ticket-details';
 import { EmployeeTicketDetails } from './pages/employee-ticket-details/employee-ticket-details';
+
 import { Users } from './pages/users/users';
 import { CreateTechnician } from './pages/create-technician/create-technician';
+
 import { TechnicianDashboard } from './pages/technician-dashboard/technician-dashboard';
 import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
+import { Help } from './pages/help/help';
+import { Register } from './pages/register/register';
+import { SystemAnalytics } from './pages/system-analytics/system-analytics';
+import { TicketStatistics } from './pages/ticket-statistics/ticket-statistics';
 
 export const routes: Routes = [
 
@@ -25,12 +34,34 @@ export const routes: Routes = [
 
 
   // =====================================================
+  // REGISTER
+  // =====================================================
+
+  {
+    path: 'register',
+    component: Register
+  },
+
+
+  // =====================================================
   // LOGIN
   // =====================================================
 
   {
     path: 'login',
     component: Login
+  },
+
+
+  // =====================================================
+  // GOOGLE OAUTH2 CALLBACK
+  // IMPORTANT:
+  // This must be before the wildcard route
+  // =====================================================
+
+  {
+    path: 'oauth2/callback',
+    component: OAuth2Callback
   },
 
 
@@ -61,6 +92,16 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: Dashboard
+  },
+
+
+  // =====================================================
+  // EMPLOYEE MY TICKETS
+  // =====================================================
+
+  {
+    path: 'my-tickets',
+    component: MyTickets
   },
 
 
@@ -122,12 +163,33 @@ export const routes: Routes = [
     path: 'create-technician',
     component: CreateTechnician
   },
+  
+// =====================================================
+// HELP CENTRE
+// =====================================================
 
+{
+  path: 'help',
+  component: Help
+},
 
   // =====================================================
   // UNKNOWN ROUTE
+  // IMPORTANT:
+  // THIS MUST ALWAYS BE LAST
   // =====================================================
 
+  //IT support
+{ path: 'it-support', component: ItSupport },
+
+
+//Ticket Statistics
+
+{ path: 'ticket-statistics', component: TicketStatistics },
+
+// Analytics page
+
+{ path: 'system-analytics', component: SystemAnalytics },
   {
     path: '**',
     redirectTo: 'login'

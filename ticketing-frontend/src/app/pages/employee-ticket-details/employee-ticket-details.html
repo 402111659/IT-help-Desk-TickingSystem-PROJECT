@@ -1,8 +1,12 @@
 <div class="employee-ticket-page">
 
-  <!-- SIDEBAR -->
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
   <aside class="sidebar">
 
+    <!-- BRAND -->
     <div class="brand">
 
       <div class="brand-logo">
@@ -41,7 +45,7 @@
 
         <a
           class="nav-item active"
-          routerLink="/dashboard">
+          routerLink="/my-tickets">
 
           <span class="nav-icon">▣</span>
 
@@ -75,7 +79,7 @@
 
         <a
           class="nav-item"
-          routerLink="/help">
+          routerLink="/dashboard">
 
           <span class="nav-icon">?</span>
 
@@ -88,7 +92,7 @@
 
         <a
           class="nav-item"
-          routerLink="/it-support">
+          routerLink="/dashboard">
 
           <span class="nav-icon">◉</span>
 
@@ -141,8 +145,12 @@
   </aside>
 
 
-  <!-- MAIN CONTENT -->
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+
   <main class="main-content">
+
 
     <!-- TOPBAR -->
     <header class="topbar">
@@ -175,7 +183,7 @@
             </strong>
 
             <span>
-              Employee
+              EMPLOYEE
             </span>
 
           </div>
@@ -187,7 +195,10 @@
     </header>
 
 
-    <!-- PAGE CONTENT -->
+    <!-- =====================================================
+         PAGE CONTENT
+         ===================================================== -->
+
     <section class="content">
 
 
@@ -198,12 +209,16 @@
         class="back-button"
         (click)="backToDashboard()">
 
-        ← Back to My Tickets
+        <span>←</span>
+
+        Back to My Tickets
 
       </button>
 
 
-      <!-- ERROR -->
+      <!-- =====================================================
+           ERROR
+           ===================================================== -->
 
       @if (ticketError) {
 
@@ -230,7 +245,9 @@
       }
 
 
-      <!-- LOADING -->
+      <!-- =====================================================
+           LOADING
+           ===================================================== -->
 
       @if (loadingTicket) {
 
@@ -247,17 +264,22 @@
       }
 
 
-      <!-- TICKET DETAILS -->
+      <!-- =====================================================
+           TICKET DETAILS
+           ===================================================== -->
 
       @if (!loadingTicket && ticket) {
 
-        <!-- TICKET HEADER -->
+
+        <!-- =================================================
+             TICKET HEADER
+             ================================================= -->
 
         <section class="ticket-header-card">
 
           <div class="ticket-heading">
 
-            <div>
+            <div class="ticket-heading-main">
 
               <span class="ticket-label">
                 SUPPORT TICKET
@@ -267,42 +289,60 @@
                 {{ ticket.title }}
               </h2>
 
-              <span class="ticket-number">
-                {{ ticket.ticketNumber }}
-              </span>
+              <div class="ticket-reference">
+
+                <span class="reference-label">
+                  TICKET NUMBER
+                </span>
+
+                <span class="ticket-number">
+                  {{ ticket.ticketNumber }}
+                </span>
+
+              </div>
 
             </div>
 
 
             <!-- STATUS -->
 
-            <span
-              class="ticket-status"
+            <div class="status-area">
 
-              [class.open]="ticket.status === 'OPEN'"
+              <span class="status-label">
+                CURRENT STATUS
+              </span>
 
-              [class.progress]="
-                ticket.status === 'IN_PROGRESS'
-              "
+              <span
+                class="ticket-status"
 
-              [class.resolved]="
-                ticket.status === 'RESOLVED'
-              "
+                [class.open]="ticket.status === 'OPEN'"
 
-              [class.closed]="
-                ticket.status === 'CLOSED'
-              ">
+                [class.progress]="
+                  ticket.status === 'IN_PROGRESS'
+                "
 
-              {{ ticket.status }}
+                [class.resolved]="
+                  ticket.status === 'RESOLVED'
+                "
 
-            </span>
+                [class.closed]="
+                  ticket.status === 'CLOSED'
+                ">
+
+                {{ ticket.status }}
+
+              </span>
+
+            </div>
 
           </div>
 
         </section>
 
 
-        <!-- TICKET INFORMATION -->
+        <!-- =================================================
+             TICKET INFORMATION
+             ================================================= -->
 
         <section class="details-grid">
 
@@ -377,7 +417,7 @@
           </div>
 
 
-          <!-- UPDATED -->
+          <!-- LAST UPDATED -->
 
           <div class="details-card">
 
@@ -424,7 +464,7 @@
                 </div>
 
 
-                <div>
+                <div class="technician-details">
 
                   <strong>
 
@@ -435,7 +475,9 @@
                     }}
 
                     @if (ticket.assignedTechnician.lastName) {
+
                       {{ ticket.assignedTechnician.lastName }}
+
                     }
 
                   </strong>
@@ -458,9 +500,15 @@
 
             @if (!ticket.assignedTechnician) {
 
-              <p class="not-assigned">
-                Waiting for technician assignment.
-              </p>
+              <div class="not-assigned">
+
+                <span class="assignment-indicator"></span>
+
+                <span>
+                  Waiting for technician assignment.
+                </span>
+
+              </div>
 
             }
 
@@ -469,9 +517,14 @@
         </section>
 
 
-        <!-- COMMENTS / UPDATES -->
+        <!-- =================================================
+             COMMENTS / SUPPORT ACTIVITY
+             ================================================= -->
 
         <section class="comments-panel">
+
+
+          <!-- COMMENTS HEADER -->
 
           <div class="panel-header">
 
@@ -490,7 +543,9 @@
 
             <div class="comment-count">
 
-              {{ comments.length }}
+              <strong>
+                {{ comments.length }}
+              </strong>
 
               <span>
                 UPDATES
@@ -506,7 +561,15 @@
           @if (commentError) {
 
             <div class="comment-error">
-              {{ commentError }}
+
+              <span class="comment-error-icon">
+                !
+              </span>
+
+              <span>
+                {{ commentError }}
+              </span>
+
             </div>
 
           }
@@ -570,11 +633,15 @@
                 track comment.id
               ) {
 
-                <div class="comment">
+                <article class="comment">
 
                   <div class="comment-avatar">
 
-                    {{ comment.userEmail.charAt(0).toUpperCase() }}
+                    {{
+                      comment.userEmail
+                        .charAt(0)
+                        .toUpperCase()
+                    }}
 
                   </div>
 
@@ -600,7 +667,7 @@
 
                   </div>
 
-                </div>
+                </article>
 
               }
 
@@ -609,6 +676,27 @@
           }
 
         </section>
+
+
+        <!-- =================================================
+             INFORMATION FOOTER
+             ================================================= -->
+
+        <div class="ticket-footer">
+
+          <span>
+            TICKET {{ ticket.ticketNumber }}
+          </span>
+
+          <span>
+            IT SUPPORT OPERATIONS
+          </span>
+
+          <span>
+            STATUS: {{ ticket.status }}
+          </span>
+
+        </div>
 
       }
 

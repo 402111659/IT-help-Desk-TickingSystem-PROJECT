@@ -103,8 +103,12 @@ export interface AddCommentRequest {
 })
 export class TicketService {
 
+  // ===================================================
+  // AWS ELASTIC BEANSTALK BACKEND
+  // ===================================================
+
   private apiUrl =
-    'http://localhost:8080/api/tickets';
+    'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/api/tickets';
 
 
   constructor(
@@ -414,24 +418,26 @@ export class TicketService {
     );
 
   }
+
+
   // =====================================================
-// GET MY TICKETS
-// EMPLOYEE ONLY
-// =====================================================
+  // GET MY TICKETS
+  // EMPLOYEE ONLY
+  // =====================================================
 
-getMyTickets(): Observable<Ticket[]> {
+  getMyTickets(): Observable<Ticket[]> {
 
-  return this.http.get<Ticket[]>(
+    return this.http.get<Ticket[]>(
 
-    `${this.apiUrl}/my-tickets`,
+      `${this.apiUrl}/my-tickets`,
 
-    {
-      headers:
-        this.getHeaders()
-    }
+      {
+        headers:
+          this.getHeaders()
+      }
 
-  );
+    );
 
-}
+  }
 
 }

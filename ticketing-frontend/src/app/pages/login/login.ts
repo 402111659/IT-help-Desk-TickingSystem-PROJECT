@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
+import { RouterLink } from '@angular/router';
+
 import { Auth } from '../../auth/auth';
 
 
@@ -13,7 +15,8 @@ import { Auth } from '../../auth/auth';
   standalone: true,
 
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
 
   templateUrl: './login.html',
@@ -36,6 +39,13 @@ export class Login {
 
 
   // =====================================================
+  // PASSWORD VISIBILITY
+  // =====================================================
+
+  showPassword = false;
+
+
+  // =====================================================
   // CONSTRUCTOR
   // =====================================================
 
@@ -43,6 +53,39 @@ export class Login {
     private auth: Auth,
     private router: Router
   ) {}
+
+
+  // =====================================================
+  // TOGGLE PASSWORD VISIBILITY
+  // =====================================================
+
+  togglePassword(): void {
+
+    this.showPassword =
+      !this.showPassword;
+
+  }
+
+
+  // =====================================================
+  // GOOGLE LOGIN
+  // =====================================================
+
+  continueWithGoogle(): void {
+
+    console.log(
+      'Starting Google authentication...'
+    );
+
+
+    // ===================================================
+    // REDIRECT TO AWS SPRING BOOT GOOGLE OAUTH2
+    // ===================================================
+
+    window.location.href =
+      'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/oauth2/authorization/google';
+
+  }
 
 
   // =====================================================

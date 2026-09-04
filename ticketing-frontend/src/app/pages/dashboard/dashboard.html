@@ -1,12 +1,28 @@
 <div class="dashboard">
 
   <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
+
+  <div class="grid-background"></div>
+
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- =====================================================
        SIDEBAR
        ===================================================== -->
 
-  <aside class="sidebar">
+  <aside class="sidebar glass-panel">
 
     <!-- BRAND -->
+
     <div class="brand">
 
       <div class="brand-logo">
@@ -15,22 +31,15 @@
 
       <div class="brand-text">
         <span>IT</span>
-
-        <strong>
-          TICKETING SYSTEM
-        </strong>
+        <strong>TICKETING SYSTEM</strong>
       </div>
 
     </div>
 
 
-    <!-- ===================================================
-         EMPLOYEE NAVIGATION
-         =================================================== -->
+    <!-- NAVIGATION -->
 
     <nav class="navigation">
-
-      <!-- MY SUPPORT -->
 
       <div class="nav-section">
 
@@ -38,63 +47,40 @@
           MY SUPPORT
         </span>
 
-
-        <!-- DASHBOARD -->
-
         <a
           class="nav-item active"
           routerLink="/dashboard">
 
-          <span class="nav-icon">
-            ⌂
-          </span>
+          <span class="nav-number">01</span>
 
-          <span>
-            Dashboard
-          </span>
+          <span>Dashboard</span>
 
         </a>
 
-
-        <!-- MY TICKETS -->
 
         <a
           class="nav-item"
-          routerLink="/dashboard">
+          routerLink="/my-tickets">
 
-          <span class="nav-icon">
-            ▣
-          </span>
+          <span class="nav-number">02</span>
 
-          <span>
-            My Tickets
-          </span>
+          <span>My Tickets</span>
 
         </a>
 
-
-        <!-- CREATE TICKET -->
 
         <a
           class="nav-item"
           routerLink="/create-ticket">
 
-          <span class="nav-icon">
-            ＋
-          </span>
+          <span class="nav-number">03</span>
 
-          <span>
-            Create Ticket
-          </span>
+          <span>Create Ticket</span>
 
         </a>
 
       </div>
 
-
-      <!-- =================================================
-           SUPPORT
-           ================================================= -->
 
       <div class="nav-section">
 
@@ -105,87 +91,62 @@
 
         <!-- NEED HELP -->
 
-        <button
-          type="button"
-          class="nav-button">
+        <a
+          class="nav-item nav-button"
+          routerLink="/help">
 
-          <span class="nav-icon">
-            ?
-          </span>
+          <span class="nav-number">04</span>
 
-          <span>
-            Need Help?
-          </span>
+          <span>Need Help?</span>
 
-        </button>
+        </a>
 
 
         <!-- IT SUPPORT -->
 
-        <button
-          type="button"
-          class="nav-button">
-
-          <span class="nav-icon">
-            ◉
-          </span>
-
-          <span>
-            IT Support
-          </span>
-
-        </button>
+       <a
+  class="nav-item nav-button"
+  routerLink="/it-support">
+  <span class="nav-number">05</span>
+  <span>IT Support</span>
+</a>
 
       </div>
 
     </nav>
 
 
-    <!-- ===================================================
-         SIDEBAR BOTTOM
-         =================================================== -->
+    <!-- SIDEBAR FOOTER -->
 
     <div class="sidebar-bottom">
-
-      <!-- SYSTEM STATUS -->
 
       <div class="system-status">
 
         <span class="status-dot"></span>
 
         <div>
-
-          <strong>
-            SYSTEM ONLINE
-          </strong>
-
-          <small>
-            API CONNECTED
-          </small>
-
+          <strong>SYSTEM ONLINE</strong>
+          <small>API CONNECTED</small>
         </div>
 
       </div>
 
-
-      <!-- LOGOUT -->
 
       <button
         type="button"
         class="logout-button"
         (click)="logout()">
 
-        <span>
-          ↪
-        </span>
+        <span>↪</span>
 
-        Logout
+        LOGOUT
 
       </button>
 
     </div>
 
   </aside>
+
 
 
   <!-- =====================================================
@@ -196,27 +157,35 @@
 
 
     <!-- ===================================================
-         TOPBAR
+         TOP BAR
          =================================================== -->
 
-    <header class="topbar">
+    <header class="topbar glass-panel">
 
-      <div>
+      <div class="header-title">
 
-        <span class="page-label">
-          MY IT SUPPORT
+        <span class="system-label">
+          IT SUPPORT // EMPLOYEE PORTAL
         </span>
 
         <h1>
-          Employee Dashboard
+          EMPLOYEE
+          <span>DASHBOARD</span>
         </h1>
 
       </div>
 
 
-      <!-- USER -->
-
       <div class="topbar-right">
+
+        <div class="system-indicator">
+
+          <span class="indicator-dot"></span>
+
+          <span>SYSTEM ONLINE</span>
+
+        </div>
+
 
         <div class="user-profile">
 
@@ -231,7 +200,7 @@
             </strong>
 
             <span>
-              Employee
+              EMPLOYEE
             </span>
 
           </div>
@@ -243,8 +212,9 @@
     </header>
 
 
+
     <!-- ===================================================
-         CONTENT
+         PAGE CONTENT
          =================================================== -->
 
     <section class="content">
@@ -254,30 +224,41 @@
            WELCOME
            ================================================= -->
 
-      <div class="welcome">
+      <section class="welcome-panel glass-card">
 
-        <div>
+        <div class="welcome-content">
 
-          <span class="welcome-label">
-            SUPPORT OVERVIEW
+          <span class="panel-label">
+            SUPPORT OVERVIEW // 001
           </span>
 
           <h2>
-            Welcome back.
+            Welcome back,
+            <span>{{ userName }}</span>
           </h2>
 
           <p>
-            View your support requests and track their progress.
+            Manage your IT support requests, monitor ticket
+            progress and stay updated on your submitted issues.
           </p>
 
         </div>
 
 
-        <div class="date">
-          {{ currentDate }}
+        <div class="date-panel">
+
+          <span>
+            CURRENT DATE
+          </span>
+
+          <strong>
+            {{ currentDate }}
+          </strong>
+
         </div>
 
-      </div>
+      </section>
+
 
 
       <!-- =================================================
@@ -286,21 +267,21 @@
 
       @if (ticketError) {
 
-        <div class="error-message">
+        <div class="error-message glass-card">
 
-          <span class="error-icon">
+          <div class="error-code">
             !
-          </span>
+          </div>
 
           <div class="error-content">
 
-            <strong>
-              SYSTEM ERROR
-            </strong>
-
             <span>
-              {{ ticketError }}
+              SYSTEM ERROR
             </span>
+
+            <strong>
+              {{ ticketError }}
+            </strong>
 
           </div>
 
@@ -309,226 +290,257 @@
       }
 
 
+
       <!-- =================================================
            STATISTICS
            ================================================= -->
 
-      <div class="stats-grid">
+      <section class="statistics">
 
+        <div class="section-header">
 
-        <!-- OPEN -->
+          <div>
 
-        <div class="stat-card">
-
-          <div class="stat-header">
-
-            <span>
-              OPEN TICKETS
+            <span class="panel-label">
+              TICKET ANALYTICS
             </span>
 
-            <span class="stat-icon">
-              ◈
-            </span>
+            <h3>
+              Support Activity
+            </h3>
 
           </div>
 
-          <strong class="stat-number">
-            {{ openTickets }}
-          </strong>
-
-          <span class="stat-description">
-            Awaiting assistance
+          <span class="section-code">
+            STATUS // LIVE
           </span>
 
         </div>
 
 
-        <!-- IN PROGRESS -->
-
-        <div class="stat-card">
-
-          <div class="stat-header">
-
-            <span>
-              IN PROGRESS
-            </span>
-
-            <span class="stat-icon">
-              ◉
-            </span>
-
-          </div>
-
-          <strong class="stat-number">
-            {{ inProgressTickets }}
-          </strong>
-
-          <span class="stat-description">
-            Currently being handled
-          </span>
-
-        </div>
+        <div class="stats-grid">
 
 
-        <!-- RESOLVED -->
+          <!-- OPEN -->
 
-        <div class="stat-card">
+          <div class="stat-card glass-card">
 
-          <div class="stat-header">
+            <div class="stat-top">
 
-            <span>
-              RESOLVED
-            </span>
+              <span>OPEN</span>
 
-            <span class="stat-icon">
-              ✓
+              <span class="stat-symbol">◈</span>
+
+            </div>
+
+            <strong class="stat-number">
+              {{ openTickets }}
+            </strong>
+
+            <span class="stat-description">
+              Awaiting assistance
             </span>
 
           </div>
 
-          <strong class="stat-number">
-            {{ resolvedTickets }}
-          </strong>
 
-          <span class="stat-description">
-            Successfully resolved
-          </span>
+          <!-- IN PROGRESS -->
 
-        </div>
+          <div class="stat-card glass-card">
 
+            <div class="stat-top">
 
-        <!-- CLOSED -->
+              <span>IN PROGRESS</span>
 
-        <div class="stat-card">
+              <span class="stat-symbol">◉</span>
 
-          <div class="stat-header">
+            </div>
 
-            <span>
-              CLOSED
-            </span>
+            <strong class="stat-number">
+              {{ inProgressTickets }}
+            </strong>
 
-            <span class="stat-icon">
-              ✓
+            <span class="stat-description">
+              Currently being handled
             </span>
 
           </div>
 
-          <strong class="stat-number">
-            {{ closedTickets }}
-          </strong>
 
-          <span class="stat-description">
-            Completed tickets
-          </span>
+          <!-- RESOLVED -->
 
-        </div>
+          <div class="stat-card glass-card">
 
+            <div class="stat-top">
 
-        <!-- TOTAL -->
+              <span>RESOLVED</span>
 
-        <div class="stat-card">
+              <span class="stat-symbol">✓</span>
 
-          <div class="stat-header">
+            </div>
 
-            <span>
-              TOTAL TICKETS
-            </span>
+            <strong class="stat-number">
+              {{ resolvedTickets }}
+            </strong>
 
-            <span class="stat-icon">
-              ▤
+            <span class="stat-description">
+              Successfully resolved
             </span>
 
           </div>
 
-          <strong class="stat-number">
-            {{ totalTickets }}
-          </strong>
 
-          <span class="stat-description">
-            Your support requests
-          </span>
+          <!-- CLOSED -->
+
+          <div class="stat-card glass-card">
+
+            <div class="stat-top">
+
+              <span>CLOSED</span>
+
+              <span class="stat-symbol">✓</span>
+
+            </div>
+
+            <strong class="stat-number">
+              {{ closedTickets }}
+            </strong>
+
+            <span class="stat-description">
+              Completed tickets
+            </span>
+
+          </div>
+
+
+          <!-- TOTAL -->
+
+          <div class="stat-card total-card glass-card">
+
+            <div class="stat-top">
+
+              <span>TOTAL</span>
+
+              <span class="stat-symbol">▤</span>
+
+            </div>
+
+            <strong class="stat-number">
+              {{ totalTickets }}
+            </strong>
+
+            <span class="stat-description">
+              Your support requests
+            </span>
+
+          </div>
 
         </div>
 
-      </div>
+      </section>
+
 
 
       <!-- =================================================
            QUICK ACTIONS
            ================================================= -->
 
-      <section class="quick-actions">
+      <section class="actions-section">
 
-        <div class="section-heading">
+        <div class="section-header">
 
-          <span class="panel-label">
-            SUPPORT ACTIONS
+          <div>
+
+            <span class="panel-label">
+              COMMAND CENTER
+            </span>
+
+            <h3>
+              Quick Actions
+            </h3>
+
+          </div>
+
+          <span class="section-code">
+            SELECT ACTION
           </span>
-
-          <h3>
-            What would you like to do?
-          </h3>
 
         </div>
 
 
-        <div class="quick-action-grid">
+        <div class="action-grid">
 
 
           <!-- CREATE TICKET -->
 
           <a
-            class="quick-action"
+            class="action-card glass-card"
             routerLink="/create-ticket">
 
-            <div class="quick-action-icon">
+            <div class="action-number">
+              01
+            </div>
+
+            <div class="action-icon">
               ＋
             </div>
 
-            <div>
+            <div class="action-content">
+
+              <span>
+                NEW REQUEST
+              </span>
 
               <strong>
                 Create a Ticket
               </strong>
 
-              <span>
-                Report a new IT problem or request.
-              </span>
+              <p>
+                Report a new IT problem or service request.
+              </p>
 
             </div>
 
-            <span class="quick-action-arrow">
+            <div class="action-arrow">
               →
-            </span>
+            </div>
 
           </a>
 
 
-          <!-- VIEW MY TICKETS -->
+          <!-- MY TICKETS -->
 
           <a
-            class="quick-action"
-            routerLink="/dashboard">
+            class="action-card glass-card"
+            routerLink="/my-tickets">
 
-            <div class="quick-action-icon">
+            <div class="action-number">
+              02
+            </div>
+
+            <div class="action-icon">
               ▣
             </div>
 
-            <div>
+            <div class="action-content">
+
+              <span>
+                REQUEST HISTORY
+              </span>
 
               <strong>
                 View My Tickets
               </strong>
 
-              <span>
-                Track the status of your support requests.
-              </span>
+              <p>
+                Track and review your submitted requests.
+              </p>
 
             </div>
 
-            <span class="quick-action-arrow">
+            <div class="action-arrow">
               →
-            </span>
+            </div>
 
           </a>
 
@@ -537,21 +549,20 @@
       </section>
 
 
+
       <!-- =================================================
-           MY TICKETS
+           RECENT TICKETS
            ================================================= -->
 
-      <section class="tickets-panel">
+      <section class="tickets-panel glass-card">
 
-
-        <!-- PANEL HEADER -->
 
         <div class="panel-header">
 
           <div>
 
             <span class="panel-label">
-              MY SUPPORT REQUESTS
+              SUPPORT REQUESTS // LIVE
             </span>
 
             <h3>
@@ -561,24 +572,23 @@
           </div>
 
 
-          <div class="ticket-count">
-
-            <strong>
-              {{ totalTickets }}
-            </strong>
+          <div class="ticket-total">
 
             <span>
               TOTAL
             </span>
+
+            <strong>
+              {{ totalTickets }}
+            </strong>
 
           </div>
 
         </div>
 
 
-        <!-- =================================================
-             LOADING
-             ================================================= -->
+
+        <!-- LOADING -->
 
         @if (loadingTickets) {
 
@@ -587,7 +597,7 @@
             <div class="spinner"></div>
 
             <span>
-              Loading your tickets...
+              LOADING SUPPORT DATA...
             </span>
 
           </div>
@@ -595,20 +605,20 @@
         }
 
 
-        <!-- =================================================
-             EMPTY STATE
-             ================================================= -->
 
-        @if (
-          !loadingTickets &&
-          tickets.length === 0
-        ) {
+        <!-- EMPTY -->
+
+        @if (!loadingTickets && tickets.length === 0) {
 
           <div class="empty-state">
 
-            <div class="empty-icon">
-              ▤
+            <div class="empty-symbol">
+              ∅
             </div>
+
+            <span>
+              NO ACTIVE REQUESTS
+            </span>
 
             <h4>
               No tickets yet
@@ -619,10 +629,12 @@
             </p>
 
             <a
-              class="create-ticket-button"
+              class="create-button"
               routerLink="/create-ticket">
 
-              Create Your First Ticket →
+              CREATE YOUR FIRST TICKET
+
+              <span>→</span>
 
             </a>
 
@@ -631,14 +643,10 @@
         }
 
 
-        <!-- =================================================
-             TICKET LIST
-             ================================================= -->
 
-        @if (
-          !loadingTickets &&
-          tickets.length > 0
-        ) {
+        <!-- TICKETS -->
+
+        @if (!loadingTickets && tickets.length > 0) {
 
           <div class="ticket-list">
 
@@ -647,35 +655,23 @@
 
             <div class="ticket-header">
 
-              <span>
-                TICKET
-              </span>
+              <span>TICKET</span>
 
-              <span>
-                ISSUE
-              </span>
+              <span>ISSUE</span>
 
-              <span>
-                PRIORITY
-              </span>
+              <span>PRIORITY</span>
 
-              <span>
-                STATUS
-              </span>
+              <span>STATUS</span>
 
-              <span>
-                ACTION
-              </span>
+              <span>ACTION</span>
 
             </div>
 
 
-            <!-- =================================================
-                 TICKET ROWS
-                 ================================================= -->
+            <!-- TICKET ROWS -->
 
             @for (
-              ticket of tickets.slice(0, 7);
+              ticket of tickets.slice(0, 5);
               track ticket.id
             ) {
 
@@ -687,7 +683,7 @@
                 <div class="ticket-number">
 
                   <span>
-                    TICKET
+                    REF
                   </span>
 
                   <strong>
@@ -697,7 +693,7 @@
                 </div>
 
 
-                <!-- TICKET INFORMATION -->
+                <!-- ISSUE -->
 
                 <div class="ticket-info">
 
@@ -772,9 +768,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     EMPLOYEE VIEW TICKET
-                     ================================================= -->
+                <!-- ACTION -->
 
                 <div class="ticket-action">
 
@@ -783,13 +777,9 @@
                     class="view-ticket-button"
                     (click)="viewTicket(ticket.id)">
 
-                    <span>
-                      View Ticket
-                    </span>
+                    VIEW
 
-                    <span class="arrow">
-                      →
-                    </span>
+                    <span>→</span>
 
                   </button>
 
@@ -806,7 +796,56 @@
       </section>
 
 
+
+      <!-- =================================================
+           BOTTOM ACTIONS
+           ================================================= -->
+
+      <div class="bottom-actions">
+
+        <a
+          routerLink="/my-tickets"
+          class="bottom-link">
+
+          VIEW ALL TICKETS
+
+          <span>→</span>
+
+        </a>
+
+
+        <button
+          type="button"
+          class="bottom-logout"
+          (click)="logout()">
+
+          LOGOUT
+
+          <span>↪</span>
+
+        </button>
+
+      </div>
+
     </section>
+
+
+
+    <!-- ===================================================
+         FOOTER
+         =================================================== -->
+
+    <footer class="footer">
+
+      <span>
+        TS // IT TICKETING SYSTEM
+      </span>
+
+      <span>
+        EMPLOYEE PORTAL // SYSTEM ONLINE
+      </span>
+
+    </footer>
 
   </main>
 

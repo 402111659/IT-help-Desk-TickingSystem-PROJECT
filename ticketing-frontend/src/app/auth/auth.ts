@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
+// =====================================================
+// LOGIN
+// =====================================================
+
 export interface LoginRequest {
   email: string;
   password: string;
 }
+
 
 export interface LoginResponse {
   message: string;
@@ -14,20 +20,77 @@ export interface LoginResponse {
   token: string;
 }
 
+
+// =====================================================
+// REGISTER
+// =====================================================
+
+export interface RegisterRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+
+export interface RegisterResponse {
+  message: string;
+  id?: number;
+  email?: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
 
-  private apiUrl = 'http://localhost:8080/api/users';
+  // =====================================================
+  // AWS ELASTIC BEANSTALK API URL
+  // =====================================================
 
-  constructor(private http: HttpClient) {}
+  private apiUrl =
+    'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/api/users';
 
-  login(credentials: LoginRequest): Observable<LoginResponse> {
+
+  // =====================================================
+  // CONSTRUCTOR
+  // =====================================================
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+
+  // =====================================================
+  // LOGIN
+  // =====================================================
+
+  login(
+    credentials: LoginRequest
+  ): Observable<LoginResponse> {
 
     return this.http.post<LoginResponse>(
       `${this.apiUrl}/login`,
       credentials
     );
+
   }
+
+
+  // =====================================================
+  // REGISTER
+  // =====================================================
+
+  register(
+    user: RegisterRequest
+  ): Observable<RegisterResponse> {
+
+    return this.http.post<RegisterResponse>(
+      `${this.apiUrl}/register`,
+      user
+    );
+
+  }
+
 }

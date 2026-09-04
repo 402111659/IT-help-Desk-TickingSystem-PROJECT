@@ -1,0 +1,472 @@
+
+<div class="command-center">
+
+  <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
+
+  <div class="grid-background"></div>
+
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- =====================================================
+       MAIN REGISTER AREA
+       ===================================================== -->
+
+  <main class="register-area">
+
+    <section class="register-panel">
+
+
+      <!-- =================================================
+           BRAND
+           ================================================= -->
+
+      <div class="brand">
+
+        <div class="brand-logo">
+          <span>TS</span>
+        </div>
+
+        <div class="brand-name">
+
+          <span>
+            IT
+          </span>
+
+          <strong>
+            TICKETING SYSTEM
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           SYSTEM STATUS
+           ================================================= -->
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <span>
+          SYSTEM ONLINE
+        </span>
+
+        <span class="status-line"></span>
+
+        <span>
+          NEW USER REGISTRATION
+        </span>
+
+      </div>
+
+
+      <!-- =================================================
+           REGISTER HEADING
+           ================================================= -->
+
+      <div class="register-heading">
+
+        <span class="eyebrow">
+          IT OPERATIONS
+        </span>
+
+        <h1>
+          CREATE<br>
+          <span>ACCOUNT</span>
+        </h1>
+
+        <p>
+          Register your employee account to access
+          the IT Ticketing System Command Centre.
+        </p>
+
+
+        <!-- ACCOUNT TYPE -->
+
+        <div class="account-type">
+
+          <span class="account-type-dot"></span>
+
+          <span>
+            ACCOUNT TYPE
+          </span>
+
+          <strong>
+            EMPLOYEE
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           REGISTER FORM
+           ================================================= -->
+
+      <form
+        class="register-form"
+        (ngSubmit)="register()">
+
+
+        <!-- ===============================================
+             NAME ROW
+             =============================================== -->
+
+        <div class="name-row">
+
+
+          <!-- FIRST NAME -->
+
+          <div class="form-group">
+
+            <label for="firstName">
+              FIRST NAME
+            </label>
+
+            <div class="input-container">
+
+              <span class="input-icon">
+                ID
+              </span>
+
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="firstName"
+                placeholder="First name"
+                autocomplete="given-name"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- LAST NAME -->
+
+          <div class="form-group">
+
+            <label for="lastName">
+              LAST NAME
+            </label>
+
+            <div class="input-container">
+
+              <span class="input-icon">
+                ID
+              </span>
+
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="lastName"
+                placeholder="Last name"
+                autocomplete="family-name"
+                required
+              >
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             EMAIL
+             =============================================== -->
+
+        <div class="form-group">
+
+          <label for="email">
+            USER IDENTIFICATION
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              @
+            </span>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             PASSWORD
+             =============================================== -->
+
+        <div class="form-group">
+
+          <label for="password">
+            SECURITY CREDENTIAL
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              •
+            </span>
+
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              required
+            >
+
+            <!-- SHOW / HIDE -->
+
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="
+                showPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              ">
+
+              {{ showPassword ? 'HIDE' : 'SHOW' }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             CONFIRM PASSWORD
+             =============================================== -->
+
+        <div class="form-group">
+
+          <label for="confirmPassword">
+            CONFIRM CREDENTIAL
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              •
+            </span>
+
+            <input
+              [type]="
+                showConfirmPassword
+                  ? 'text'
+                  : 'password'
+              "
+              id="confirmPassword"
+              name="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+              required
+            >
+
+            <!-- SHOW / HIDE -->
+
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="toggleConfirmPassword()"
+              [attr.aria-label]="
+                showConfirmPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              ">
+
+              {{
+                showConfirmPassword
+                  ? 'HIDE'
+                  : 'SHOW'
+              }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             ERROR
+             =============================================== -->
+
+        @if (errorMessage) {
+
+          <div class="error-message">
+
+            <span>
+              !
+            </span>
+
+            <span>
+              {{ errorMessage }}
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- ===============================================
+             SUCCESS
+             =============================================== -->
+
+        @if (successMessage) {
+
+          <div class="success-message">
+
+            <span>
+              ✓
+            </span>
+
+            <span>
+              {{ successMessage }}
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- ===============================================
+             CREATE ACCOUNT BUTTON
+             =============================================== -->
+
+        <button
+          type="submit"
+          class="create-account-button"
+          [disabled]="loading">
+
+          @if (!loading) {
+
+            <span>
+              CREATE ACCOUNT
+            </span>
+
+            <span class="button-arrow">
+              →
+            </span>
+
+          } @else {
+
+            <span>
+              CREATING ACCOUNT...
+            </span>
+
+          }
+
+        </button>
+
+
+        <!-- ===============================================
+             LOGIN LINK
+             =============================================== -->
+
+        <div class="login-prompt">
+
+          <span>
+            ALREADY HAVE AN ACCOUNT?
+          </span>
+
+          <button
+            type="button"
+            class="login-link"
+            (click)="goToLogin()">
+
+            SIGN IN
+
+            <span class="login-arrow">
+              →
+            </span>
+
+          </button>
+
+        </div>
+
+
+      </form>
+
+
+      <!-- =================================================
+           PANEL FOOTER
+           ================================================= -->
+
+      <div class="panel-footer">
+
+        <div>
+          IT TICKETING SYSTEM
+        </div>
+
+        <div>
+          EMPLOYEE REGISTRATION
+        </div>
+
+        <div class="connection">
+
+          <span class="status-dot"></span>
+
+          API READY
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       BOTTOM INFORMATION
+       ===================================================== -->
+
+  <footer class="command-footer">
+
+    <span>
+      IT OPERATIONS COMMAND CENTRE
+    </span>
+
+    <span>
+      SECURE REGISTRATION PROTOCOL
+    </span>
+
+    <span>
+      © 2026 IT TICKETING SYSTEM
+    </span>
+
+  </footer>
+
+
+</div>

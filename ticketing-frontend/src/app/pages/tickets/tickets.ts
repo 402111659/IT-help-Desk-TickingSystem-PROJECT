@@ -3,14 +3,18 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule
+} from '@angular/common';
 
 import {
   Router,
   RouterLink
 } from '@angular/router';
 
-import { FormsModule } from '@angular/forms';
+import {
+  FormsModule
+} from '@angular/forms';
 
 import {
   TicketService,
@@ -122,6 +126,10 @@ export class Tickets {
 
       if (!payload) {
 
+        console.warn(
+          'JWT payload not found.'
+        );
+
         return '';
 
       }
@@ -153,7 +161,7 @@ export class Tickets {
 
 
       // -----------------------------------------------------
-      // SAVE ROLE FOR OTHER PAGES
+      // SAVE ROLE
       // -----------------------------------------------------
 
       localStorage.setItem(
@@ -255,12 +263,21 @@ export class Tickets {
             false;
 
 
+          // ------------------------------------------------
+          // UNAUTHORIZED
+          // ------------------------------------------------
+
           if (error.status === 401) {
 
             this.errorMessage =
               'Your session has expired. Please log in again.';
 
           }
+
+
+          // ------------------------------------------------
+          // FORBIDDEN
+          // ------------------------------------------------
 
           else if (error.status === 403) {
 
@@ -269,12 +286,34 @@ export class Tickets {
 
           }
 
+
+          // ------------------------------------------------
+          // NOT FOUND
+          // ------------------------------------------------
+
           else if (error.status === 404) {
 
             this.errorMessage =
               'The tickets endpoint could not be found.';
 
           }
+
+
+          // ------------------------------------------------
+          // SERVER / CONNECTION ERROR
+          // ------------------------------------------------
+
+          else if (error.status === 0) {
+
+            this.errorMessage =
+              'Unable to connect to the server. Make sure Spring Boot is running.';
+
+          }
+
+
+          // ------------------------------------------------
+          // OTHER ERROR
+          // ------------------------------------------------
 
           else {
 
@@ -303,15 +342,19 @@ export class Tickets {
     return this.tickets.filter(
       (ticket: Ticket) => {
 
+        // -------------------------------------------------
+        // SEARCH VALUE
+        // -------------------------------------------------
+
         const search =
           this.searchTerm
             .trim()
             .toLowerCase();
 
 
-        // =================================================
-        // SEARCH
-        // =================================================
+        // -------------------------------------------------
+        // SEARCH MATCH
+        // -------------------------------------------------
 
         const matchesSearch =
 
@@ -336,9 +379,9 @@ export class Tickets {
             .includes(search);
 
 
-        // =================================================
-        // STATUS
-        // =================================================
+        // -------------------------------------------------
+        // STATUS MATCH
+        // -------------------------------------------------
 
         const matchesStatus =
 
@@ -348,9 +391,9 @@ export class Tickets {
             this.selectedStatus;
 
 
-        // =================================================
-        // PRIORITY
-        // =================================================
+        // -------------------------------------------------
+        // PRIORITY MATCH
+        // -------------------------------------------------
 
         const matchesPriority =
 
@@ -359,6 +402,10 @@ export class Tickets {
           ticket.priority ===
             this.selectedPriority;
 
+
+        // -------------------------------------------------
+        // FINAL RESULT
+        // -------------------------------------------------
 
         return (
           matchesSearch &&
@@ -518,6 +565,10 @@ export class Tickets {
     );
 
 
+    // -----------------------------------------------------
+    // CLEAR SESSION
+    // -----------------------------------------------------
+
     localStorage.removeItem(
       'token'
     );
@@ -537,6 +588,10 @@ export class Tickets {
       'role'
     );
 
+
+    // -----------------------------------------------------
+    // RETURN TO LOGIN
+    // -----------------------------------------------------
 
     this.router.navigateByUrl(
       '/login'

@@ -123,7 +123,11 @@
         </span>
 
 
-        <div class="nav-item">
+        <!-- SYSTEM ANALYTICS -->
+
+        <a
+          class="nav-item"
+          routerLink="/system-analytics">
 
           <span class="nav-icon">
             ◫
@@ -133,10 +137,14 @@
             System Analytics
           </span>
 
-        </div>
+        </a>
 
 
-        <div class="nav-item">
+        <!-- TICKET STATISTICS -->
+
+        <a
+          class="nav-item"
+          routerLink="/ticket-statistics">
 
           <span class="nav-icon">
             ◌
@@ -146,7 +154,7 @@
             Ticket Statistics
           </span>
 
-        </div>
+        </a>
 
       </div>
 
@@ -574,11 +582,11 @@
           </a>
 
 
-          <!-- REPORTS -->
+          <!-- SYSTEM ANALYTICS -->
 
           <a
             class="quick-action"
-            href="javascript:void(0)">
+            routerLink="/system-analytics">
 
             <div class="quick-action-icon">
               ◫
@@ -587,11 +595,40 @@
             <div>
 
               <strong>
-                Reports & Analytics
+                System Analytics
               </strong>
 
               <span>
-                View system performance and statistics.
+                View system performance and visual analytics.
+              </span>
+
+            </div>
+
+            <span class="quick-action-arrow">
+              →
+            </span>
+
+          </a>
+
+
+          <!-- TICKET STATISTICS -->
+
+          <a
+            class="quick-action"
+            routerLink="/ticket-statistics">
+
+            <div class="quick-action-icon">
+              ◌
+            </div>
+
+            <div>
+
+              <strong>
+                Ticket Statistics
+              </strong>
+
+              <span>
+                Analyse ticket volume, status and priority.
               </span>
 
             </div>

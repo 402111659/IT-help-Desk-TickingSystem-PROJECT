@@ -1,7 +1,9 @@
 import {
   Component,
   ChangeDetectorRef,
-  AfterViewInit
+  AfterViewInit,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 
 import {
@@ -34,6 +36,14 @@ import {
   styleUrl: './technician-dashboard.css'
 })
 export class TechnicianDashboard implements AfterViewInit {
+
+  // =====================================================
+  // ASSIGNED TICKETS SECTION
+  // =====================================================
+
+  @ViewChild('assignedTicketsSection')
+  assignedTicketsSection!: ElementRef<HTMLElement>;
+
 
   // =====================================================
   // TICKETS
@@ -131,7 +141,9 @@ export class TechnicianDashboard implements AfterViewInit {
       localStorage.getItem('token');
 
 
-    // Make sure technician still has a JWT
+    // -----------------------------------------------------
+    // CHECK JWT
+    // -----------------------------------------------------
 
     if (!token) {
 
@@ -152,6 +164,10 @@ export class TechnicianDashboard implements AfterViewInit {
 
     }
 
+
+    // -----------------------------------------------------
+    // GET ASSIGNED TICKETS
+    // -----------------------------------------------------
 
     this.ticketService
       .getAssignedTickets()
@@ -187,13 +203,15 @@ export class TechnicianDashboard implements AfterViewInit {
           this.loading = false;
 
 
+          // -------------------------------------------------
+          // UNAUTHORIZED
+          // -------------------------------------------------
+
           if (error.status === 401) {
 
             this.errorMessage =
               'Your session has expired. Please log in again.';
 
-
-            // Remove invalid session
 
             localStorage.removeItem('token');
 
@@ -208,6 +226,11 @@ export class TechnicianDashboard implements AfterViewInit {
 
           }
 
+
+          // -------------------------------------------------
+          // FORBIDDEN
+          // -------------------------------------------------
+
           else if (error.status === 403) {
 
             this.errorMessage =
@@ -215,12 +238,22 @@ export class TechnicianDashboard implements AfterViewInit {
 
           }
 
+
+          // -------------------------------------------------
+          // SERVER OFFLINE
+          // -------------------------------------------------
+
           else if (error.status === 0) {
 
             this.errorMessage =
               'Unable to connect to the server. Make sure Spring Boot is running.';
 
           }
+
+
+          // -------------------------------------------------
+          // OTHER ERROR
+          // -------------------------------------------------
 
           else {
 
@@ -251,24 +284,14 @@ export class TechnicianDashboard implements AfterViewInit {
     );
 
 
-    // Find the assigned ticket section
+    // -----------------------------------------------------
+    // Make sure the section exists
+    // -----------------------------------------------------
 
-    const element =
-      document.getElementById(
-        'assigned-tickets'
-      );
-
-
-    console.log(
-      'Assigned tickets element:',
-      element
-    );
-
-
-    if (!element) {
+    if (!this.assignedTicketsSection) {
 
       console.error(
-        'Could not find #assigned-tickets'
+        'Assigned tickets section not found.'
       );
 
       return;
@@ -276,15 +299,19 @@ export class TechnicianDashboard implements AfterViewInit {
     }
 
 
-    // Scroll to the ticket section
+    // -----------------------------------------------------
+    // Smooth scroll to assigned tickets
+    // -----------------------------------------------------
 
-    element.scrollIntoView({
+    this.assignedTicketsSection
+      .nativeElement
+      .scrollIntoView({
 
-      behavior: 'smooth',
+        behavior: 'smooth',
 
-      block: 'start'
+        block: 'start'
 
-    });
+      });
 
   }
 
@@ -370,7 +397,9 @@ export class TechnicianDashboard implements AfterViewInit {
     );
 
 
-    // Make sure the user is still logged in
+    // -----------------------------------------------------
+    // Check JWT
+    // -----------------------------------------------------
 
     const token =
       localStorage.getItem('token');
@@ -390,6 +419,10 @@ export class TechnicianDashboard implements AfterViewInit {
 
     }
 
+
+    // -----------------------------------------------------
+    // Navigate to ticket
+    // -----------------------------------------------------
 
     this.router.navigate([
       '/tickets',

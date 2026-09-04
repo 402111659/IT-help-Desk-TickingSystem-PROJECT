@@ -1,21 +1,30 @@
 <div class="command-center">
 
-  <!-- Background -->
+  <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
+
   <div class="grid-background"></div>
 
-  <!-- Decorative HUD elements -->
   <div class="hud hud-top-left"></div>
   <div class="hud hud-top-right"></div>
   <div class="hud hud-bottom-left"></div>
   <div class="hud hud-bottom-right"></div>
 
 
-  <!-- Main Login Area -->
+  <!-- =====================================================
+       MAIN LOGIN AREA
+       ===================================================== -->
+
   <main class="login-area">
 
     <section class="login-panel">
 
-      <!-- Logo -->
+
+      <!-- =================================================
+           BRAND
+           ================================================= -->
+
       <div class="brand">
 
         <div class="brand-logo">
@@ -23,28 +32,45 @@
         </div>
 
         <div class="brand-name">
-          <span>IT</span>
-          <strong>TICKETING SYSTEM</strong>
+
+          <span>
+            IT
+          </span>
+
+          <strong>
+            TICKETING SYSTEM
+          </strong>
+
         </div>
 
       </div>
 
 
-      <!-- System Status -->
+      <!-- =================================================
+           SYSTEM STATUS
+           ================================================= -->
+
       <div class="system-status">
 
         <span class="status-dot"></span>
 
-        <span>SYSTEM ONLINE</span>
+        <span>
+          SYSTEM ONLINE
+        </span>
 
         <span class="status-line"></span>
 
-        <span>SECURE ACCESS</span>
+        <span>
+          SECURE ACCESS
+        </span>
 
       </div>
 
 
-      <!-- Heading -->
+      <!-- =================================================
+           LOGIN HEADING
+           ================================================= -->
+
       <div class="login-heading">
 
         <span class="eyebrow">
@@ -64,12 +90,19 @@
       </div>
 
 
-      <!-- Login Form -->
+      <!-- =================================================
+           LOGIN FORM
+           ================================================= -->
+
       <form
         class="login-form"
         (ngSubmit)="login()">
 
-        <!-- Email -->
+
+        <!-- ===============================================
+             EMAIL
+             =============================================== -->
+
         <div class="form-group">
 
           <label for="email">
@@ -97,7 +130,10 @@
         </div>
 
 
-        <!-- Password -->
+        <!-- ===============================================
+             PASSWORD
+             =============================================== -->
+
         <div class="form-group">
 
           <label for="password">
@@ -110,8 +146,11 @@
               •
             </span>
 
+
+            <!-- PASSWORD INPUT -->
+
             <input
-              type="password"
+              [type]="showPassword ? 'text' : 'password'"
               id="password"
               name="password"
               [(ngModel)]="password"
@@ -120,31 +159,61 @@
               required
             >
 
+
+            <!-- ===========================================
+                 SHOW / HIDE PASSWORD
+                 =========================================== -->
+
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="
+                showPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              "
+              [attr.aria-pressed]="showPassword">
+
+              {{ showPassword ? 'HIDE' : 'SHOW' }}
+
+            </button>
+
           </div>
 
         </div>
 
 
-        <!-- Error -->
+        <!-- ===============================================
+             ERROR MESSAGE
+             =============================================== -->
+
         @if (errorMessage) {
 
           <div class="error-message">
 
-            <span>!</span>
+            <span>
+              !
+            </span>
 
-            {{ errorMessage }}
+            <span>
+              {{ errorMessage }}
+            </span>
 
           </div>
 
         }
 
 
-          <button
-  type="button"
-  class="authenticate-button"
-  [disabled]="loading"
-  (click)="login()">
-  
+        <!-- ===============================================
+             AUTHENTICATE BUTTON
+             =============================================== -->
+
+        <button
+          type="submit"
+          class="authenticate-button"
+          [disabled]="loading">
+
           @if (!loading) {
 
             <span>
@@ -165,10 +234,92 @@
 
         </button>
 
+
+        <!-- ===============================================
+             SIGN UP SECTION
+             =============================================== -->
+
+        <div class="signup-section">
+
+
+          <!-- =============================================
+               CREATE ACCOUNT
+               ============================================= -->
+
+          <div class="signup-prompt">
+
+            <span>
+              NEW TO THE SYSTEM?
+            </span>
+
+            <a
+              routerLink="/register"
+              class="signup-link">
+
+              <span>
+                CREATE ACCOUNT
+              </span>
+
+              <span class="signup-arrow">
+                →
+              </span>
+
+            </a>
+
+          </div>
+
+
+          <!-- =============================================
+               DIVIDER
+               ============================================= -->
+
+          <div class="signup-divider">
+
+            <span></span>
+
+            <small>
+              OR
+            </small>
+
+            <span></span>
+
+          </div>
+
+
+          <!-- =============================================
+               GOOGLE SIGN UP
+               ============================================= -->
+
+          <button
+            type="button"
+            class="google-signup-button"
+            (click)="continueWithGoogle()">
+             
+            <span class="google-logo">
+
+              <span class="google-blue">
+                G
+              </span>
+
+            </span>
+
+            <span>
+              Continue with Google
+            </span>
+
+          </button>
+
+
+        </div>
+
+
       </form>
 
 
-      <!-- Footer -->
+      <!-- =================================================
+           PANEL FOOTER
+           ================================================= -->
+
       <div class="panel-footer">
 
         <div>
@@ -183,18 +334,24 @@
 
           <span class="status-dot"></span>
 
-          API READY
+          <span>
+            API READY
+          </span>
 
         </div>
 
       </div>
+
 
     </section>
 
   </main>
 
 
-  <!-- Bottom Information -->
+  <!-- =====================================================
+       BOTTOM INFORMATION
+       ===================================================== -->
+
   <footer class="command-footer">
 
     <span>
@@ -210,5 +367,6 @@
     </span>
 
   </footer>
+
 
 </div>

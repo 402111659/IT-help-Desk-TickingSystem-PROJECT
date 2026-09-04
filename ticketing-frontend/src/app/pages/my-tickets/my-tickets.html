@@ -1,0 +1,567 @@
+<div class="command-center">
+
+  <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
+
+  <div class="grid-background"></div>
+
+  <div class="hud hud-top-left"></div>
+  <div class="hud hud-top-right"></div>
+  <div class="hud hud-bottom-left"></div>
+  <div class="hud hud-bottom-right"></div>
+
+
+  <!-- =====================================================
+       MAIN PAGE
+       ===================================================== -->
+
+  <main class="tickets-page">
+
+
+    <!-- ===================================================
+         TOP HEADER
+         =================================================== -->
+
+    <header class="page-header">
+
+
+      <!-- BRAND -->
+
+      <div class="brand">
+
+        <div class="brand-logo">
+
+          <span>
+            TS
+          </span>
+
+        </div>
+
+
+        <div class="brand-name">
+
+          <span>
+            IT
+          </span>
+
+          <strong>
+            TICKETING SYSTEM
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- SYSTEM STATUS -->
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <span>
+          SYSTEM ONLINE
+        </span>
+
+        <span class="status-line"></span>
+
+        <span>
+          API CONNECTED
+        </span>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         CONTENT
+         =================================================== -->
+
+    <section class="content">
+
+
+      <!-- =================================================
+           PAGE INTRO
+           ================================================= -->
+
+      <div class="page-intro">
+
+        <div>
+
+          <span class="eyebrow">
+            EMPLOYEE SUPPORT
+          </span>
+
+          <h1>
+            MY
+            <span>TICKETS</span>
+          </h1>
+
+          <p>
+            View and track all of your IT support requests
+            from one place.
+          </p>
+
+        </div>
+
+
+        <div class="intro-right">
+
+          <span>
+            {{ currentDate }}
+          </span>
+
+          <strong>
+            {{ userEmail }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           ACTION BAR
+           ================================================= -->
+
+      <div class="action-bar">
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+          <button
+            type="button"
+            [class.active]="activeFilter === 'ALL'"
+            (click)="filterTickets('ALL')">
+
+            ALL
+
+          </button>
+
+
+          <button
+            type="button"
+            [class.active]="activeFilter === 'OPEN'"
+            (click)="filterTickets('OPEN')">
+
+            OPEN
+
+          </button>
+
+
+          <button
+            type="button"
+            [class.active]="activeFilter === 'IN_PROGRESS'"
+            (click)="filterTickets('IN_PROGRESS')">
+
+            IN PROGRESS
+
+          </button>
+
+
+          <button
+            type="button"
+            [class.active]="activeFilter === 'RESOLVED'"
+            (click)="filterTickets('RESOLVED')">
+
+            RESOLVED
+
+          </button>
+
+
+          <button
+            type="button"
+            [class.active]="activeFilter === 'CLOSED'"
+            (click)="filterTickets('CLOSED')">
+
+            CLOSED
+
+          </button>
+
+        </div>
+
+
+        <!-- CREATE -->
+
+        <a
+          routerLink="/create-ticket"
+          class="create-button">
+
+          <span>
+            +
+          </span>
+
+          CREATE TICKET
+
+          <strong>
+            →
+          </strong>
+
+        </a>
+
+      </div>
+
+
+      <!-- =================================================
+           ERROR
+           ================================================= -->
+
+      @if (ticketError) {
+
+        <div class="error-message">
+
+          <span class="error-icon">
+            !
+          </span>
+
+          <div>
+
+            <strong>
+              SYSTEM ERROR
+            </strong>
+
+            <span>
+              {{ ticketError }}
+            </span>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- =================================================
+           TICKET PANEL
+           ================================================= -->
+
+      <section class="ticket-panel">
+
+
+        <!-- PANEL HEADER -->
+
+        <div class="panel-header">
+
+          <div>
+
+            <span class="panel-label">
+              SUPPORT REQUESTS
+            </span>
+
+            <h2>
+              Ticket History
+            </h2>
+
+          </div>
+
+
+          <div class="ticket-total">
+
+            <strong>
+              {{ filteredTickets.length }}
+            </strong>
+
+            <span>
+              SHOWING
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LOADING
+             ================================================= -->
+
+        @if (loadingTickets) {
+
+          <div class="loading-state">
+
+            <div class="spinner"></div>
+
+            <span>
+              Loading your tickets...
+            </span>
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             EMPTY
+             ================================================= -->
+
+        @if (
+          !loadingTickets &&
+          filteredTickets.length === 0
+        ) {
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ▤
+            </div>
+
+            <h3>
+              No tickets found
+            </h3>
+
+            <p>
+
+              @if (activeFilter === 'ALL') {
+
+                You haven't submitted any support
+                requests yet.
+
+              } @else {
+
+                You don't have any
+                {{ activeFilter.replace('_', ' ').toLowerCase() }}
+                tickets.
+
+              }
+
+            </p>
+
+
+            @if (activeFilter === 'ALL') {
+
+              <a
+                routerLink="/create-ticket"
+                class="empty-button">
+
+                CREATE YOUR FIRST TICKET →
+
+              </a>
+
+            }
+
+          </div>
+
+        }
+
+
+        <!-- =================================================
+             TICKET LIST
+             ================================================= -->
+
+        @if (
+          !loadingTickets &&
+          filteredTickets.length > 0
+        ) {
+
+          <div class="ticket-list">
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="ticket-header">
+
+              <span>
+                TICKET
+              </span>
+
+              <span>
+                ISSUE
+              </span>
+
+              <span>
+                PRIORITY
+              </span>
+
+              <span>
+                STATUS
+              </span>
+
+              <span>
+                ACTION
+              </span>
+
+            </div>
+
+
+            <!-- TICKETS -->
+
+            @for (
+              ticket of filteredTickets;
+              track ticket.id
+            ) {
+
+              <div class="ticket-row">
+
+
+                <!-- TICKET -->
+
+                <div class="ticket-number">
+
+                  <span>
+                    ID
+                  </span>
+
+                  <strong>
+                    {{ ticket.ticketNumber }}
+                  </strong>
+
+                </div>
+
+
+                <!-- ISSUE -->
+
+                <div class="ticket-info">
+
+                  <strong>
+                    {{ ticket.title }}
+                  </strong>
+
+                  <span>
+                    {{ ticket.description }}
+                  </span>
+
+                </div>
+
+
+                <!-- PRIORITY -->
+
+                <div class="priority-container">
+
+                  <span
+                    class="priority-badge"
+
+                    [class.low]="
+                      ticket.priority === 'LOW'
+                    "
+
+                    [class.medium]="
+                      ticket.priority === 'MEDIUM'
+                    "
+
+                    [class.high]="
+                      ticket.priority === 'HIGH'
+                    "
+
+                    [class.critical]="
+                      ticket.priority === 'CRITICAL'
+                    ">
+
+                    {{ ticket.priority }}
+
+                  </span>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="status-container">
+
+                  <span
+                    class="status-badge"
+
+                    [class.open]="
+                      ticket.status === 'OPEN'
+                    "
+
+                    [class.in-progress]="
+                      ticket.status === 'IN_PROGRESS'
+                    "
+
+                    [class.resolved]="
+                      ticket.status === 'RESOLVED'
+                    "
+
+                    [class.closed]="
+                      ticket.status === 'CLOSED'
+                    ">
+
+                    {{ ticket.status.replace('_', ' ') }}
+
+                  </span>
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <div class="ticket-action">
+
+                  <button
+                    type="button"
+                    (click)="viewTicket(ticket.id)">
+
+                    VIEW
+
+                    <span>
+                      →
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+        }
+
+      </section>
+
+
+      <!-- =================================================
+           FOOTER ACTIONS
+           ================================================= -->
+
+      <div class="bottom-actions">
+
+
+        <a
+          routerLink="/dashboard"
+          class="back-button">
+
+          ← BACK TO DASHBOARD
+
+        </a>
+
+
+        <button
+          type="button"
+          class="logout-button"
+          (click)="logout()">
+
+          LOGOUT
+
+        </button>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="command-footer">
+
+    <span>
+      IT HELP DESK SYSTEM
+    </span>
+
+    <span>
+      SUPPORT OPERATIONS // EMPLOYEE PORTAL
+    </span>
+
+  </footer>
+
+</div>
