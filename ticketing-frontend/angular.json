@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/ticketing-frontend",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -33,15 +34,15 @@
             "production": {
               "budgets": [
                 {
-    "type": "initial",
-    "maximumWarning": "1.5mb",
-    "maximumError": "2mb"
-  },
-  {
-    "type": "anyComponentStyle",
-    "maximumWarning": "20kb",
-    "maximumError": "30kb"
-  }
+                  "type": "initial",
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "20kb",
+                  "maximumError": "30kb"
+                }
               ],
               "outputHashing": "all"
             },
