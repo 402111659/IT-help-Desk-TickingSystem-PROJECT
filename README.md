@@ -111,68 +111,94 @@ Spring Security is used to protect backend endpoints and enforce authorization r
 
 ---
 
+# 🧩 Development Technologies & Frameworks
 
-💡 Skills Demonstrated
+## 🎨 Frontend
 
-This project demonstrates practical experience in:
+The frontend was developed using:
 
-Software Development
-Full-stack development
-Object-oriented programming
-Component-based architecture
-REST API development
-CRUD operations
-MVC architecture
-Service-layer architecture
-Backend Development
-Java
-Spring Boot
-Spring MVC
-Spring Security
-Spring Data JPA
-Hibernate
-Maven
-REST APIs
-Frontend Development
-Angular
-TypeScript
-HTML
-CSS
-Angular Router
-Component-based development
-API integration
-Chart.js
-Security
-JWT authentication
-OAuth 2.0
-Google OAuth
-BCrypt
-Role-Based Access Control
-Protected REST endpoints
-CORS configuration
-Database
-MySQL
-SQL
-JPA
-Hibernate
-Database relationships
-Amazon RDS
-Cloud Computing
-AWS Amplify
-AWS Elastic Beanstalk
-Amazon RDS
-Application Load Balancer
-AWS Certificate Manager
-HTTPS
-DNS
-Cloud deployment
-Development Tools
-Git
-GitHub
-IntelliJ IDEA
-Visual Studio Code
-MySQL Workbench
-HTTP Client
+- **Angular** – Frontend framework
+- **TypeScript** – Primary programming language
+- **HTML5** – Application structure
+- **CSS3** – Styling and layout
+- **Angular Router** – Client-side navigation
+- **Chart.js** – Data visualization and system analytics
+
+---
+
+## ☕ Backend
+
+The backend was developed using:
+
+- **Java** – Backend programming language
+- **Spring Boot** – Backend application framework
+- **Spring MVC / Spring Web** – REST API development
+- **Spring Data JPA** – Database access and repository layer
+- **Hibernate ORM** – Object-relational mapping
+- **Maven** – Dependency management and application build
+
+---
+
+## 🔐 Security Frameworks & Technologies
+
+Security was implemented using:
+
+- **Spring Security** – Authentication and authorization
+- **JWT (JSON Web Tokens)** – Stateless API authentication
+- **OAuth 2.0** – Authentication framework
+- **Google OAuth 2.0** – Google sign-in
+- **BCrypt** – Password hashing
+- **Role-Based Access Control (RBAC)** – Role-based permissions
+- **CORS** – Cross-origin communication between frontend and backend
+
+---
+
+## 🗄️ Database
+
+The application uses:
+
+- **MySQL** – Relational database
+- **Spring Data JPA** – Data access
+- **Hibernate** – ORM
+- **JDBC** – Database connectivity
+- **Amazon RDS** – Production database hosting
+
+---
+
+## ☁️ Cloud & Deployment
+
+The application is deployed using AWS cloud infrastructure.
+
+### Frontend Hosting
+
+- **AWS Amplify** – Angular frontend hosting and deployment
+
+### Backend Hosting
+
+- **AWS Elastic Beanstalk** – Spring Boot application deployment and management
+
+### Load Balancing
+
+- **AWS Application Load Balancer** – Distributes incoming HTTPS traffic to the backend
+
+### Database Hosting
+
+- **Amazon RDS** – Production MySQL database
+
+### HTTPS / SSL
+
+- **AWS Certificate Manager (ACM)** – SSL/TLS certificate management
+
+### DNS
+
+- **GoDaddy DNS** – Domain and DNS management
+
+### Production API Domain
+
+```text
+https://api.fatahhelpdesk.host
+
+
 
 # 🏗️ System Architecture
 
