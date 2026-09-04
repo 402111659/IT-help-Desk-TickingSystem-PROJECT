@@ -1,0 +1,556 @@
+### Create ticket
+POST http://localhost:8080/api/tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4Njk4NTk0MSwiZXhwIjoxNzg2OTg5NTQxfQ.liNkpCZA6ZyLIqyWlQSSBDW3Tr1CWVKUP-EJIyAT_-g
+Content-Type: application/json
+
+{
+  "title": "my ec2 instance is not working",
+  "description": "AWS ec2 instance error",
+  "status": "OPEN",
+  "priority": "HIGH"
+}
+
+
+
+
+### Get all tickets
+GET http://localhost:8080/api/tickets/my-tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huNUBleGFtcGxlLmNvbSIsImlhdCI6MTc4Njk5MTYzOCwiZXhwIjoxNzg2OTk1MjM4fQ.kNYXUQxLYOdN_SNUJCLkTovUvyBDfU485WtN4W9T3rw
+
+
+####updates  a ticket
+PUT http://localhost:8080/api/tickets/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4Njg5ODAxNywiZXhwIjoxNzg2OTAxNjE3fQ.Q7-UiKL539Uiy9wUYoD5QyUkGiyR5NPcQ-uXqOM6XEM
+Content-Type: application/json
+
+{
+  "title": "Printer is not working",
+  "description": "Technician is currently investigating the printer.",
+  "status": "IN_PROGRESS",
+  "priority": "HIGH"
+}
+
+
+### Delete ticket
+DELETE http://localhost:8080/api/tickets/1
+
+
+
+
+### Register User
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "max",
+  "lastName": "Abdullahi",
+  "email": "max@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+
+### TEST USER REGISTRATION
+
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john5@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+### Login User
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john5@example.com",
+  "password": "MyPassword123"
+}
+
+
+### Login User
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john5@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+### Login User
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john5@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+### Login
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john5@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+### Login
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "MyPassword123"
+}
+
+### Login
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "london@example.com",
+  "password": "MyPassword123"
+}
+
+
+### Get all tickets with JWT
+
+GET http://localhost:8080/api/tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg2ODk3MTk0LCJleHAiOjE3ODY5MDA3OTR9.xYpzeWNHPV7j_hD-sj-p1BMQ0I_HujQ0TjSXZNCMHOE
+
+
+### Register Employee
+
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "Sarah",
+  "lastName": "Johnson",
+  "email": "sarah@example.com",
+  "password": "Password123",
+  "role": "EMPLOYEE"
+}
+
+
+
+
+
+
+
+### Register Employee
+
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john@example.com",
+  "password": "Password123"
+}
+
+
+### Login
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "sarah@example.com",
+  "password": "Password123"
+}
+
+
+### Get all tickets with JWT
+
+GET http://localhost:8080/api/tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4Njg5Njk5OSwiZXhwIjoxNzg2OTAwNTk5fQ.pVqUsm5ujGhIh30GD_9KMAStU_7qwrVCW5CiEXl8kBs
+
+
+### Test JWT Role
+
+GET http://localhost:8080/api/test-security
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQzMTY0LCJleHAiOjE3ODcyNDY3NjR9.SXEmSjCWF8D0Ha26ZyIGbKKvoJCba81h3dy_zr_Aatg
+
+
+### Test Admin Access
+
+GET http://localhost:8080/api/test-admin
+Authorization: Bearer yJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzg2ODg3NTI5LCJleHAiOjE3ODY4OTExMjl9.svPHS5h1xCQHknFKZW9ssS6PtgHVzE8asRlhUga8kGY
+
+
+### Login as Admin
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "fatah@example.com",
+  "password": "Password123"
+}
+
+
+
+### ADMIN UPDATE TEST
+
+PUT http://localhost:8080/api/tickets/8
+Authorization: Bearer PASTE_YOUR_ADMIN_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "title": "Printer is not working",
+  "description": "Admin is updating this ticket.",
+  "priority": "HIGH",
+  "status": "IN_PROGRESS"
+}
+
+
+
+
+
+
+### Login as Admin
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "Password123"
+}
+
+### Test Admin Access
+
+GET http://localhost:8080/api/test-admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg2ODk2MjQzLCJleHAiOjE3ODY4OTk4NDN9.oq-HRNHFybM4Ng_yXXoXhY3fSJxefekfWSzUwG-8e_4
+
+
+### Test Admin Access with Employee
+
+GET http://localhost:8080/api/test-admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4Njg5NjU0MiwiZXhwIjoxNzg2OTAwMTQyfQ.XcTw0xfPV87GYj5GEBsaX89jeruv_gFFz2TcfrkxDg4
+
+
+
+### Login as Admin
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "Password123"
+}
+
+### Admin updates ticket
+PUT http://localhost:8080/api/tickets/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg2ODk5NTg4LCJleHAiOjE3ODY5MDMxODh9.uKszmE52MyqlCkD5lkDetBF3tE6_9Ej1DShZ8eRJC-U
+Content-Type: application/json
+
+{
+  "title": "Printer is not working",
+  "description": "Admin updated this ticket.",
+  "priority": "HIGH",
+  "status": "IN_PROGRESS"
+}
+
+
+
+
+### Register Technician
+
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "firstName": "latief",
+  "lastName": "abdullah",
+  "email": "latief@example.com",
+  "password": "MyPassword123"
+}
+
+
+
+### Login Technician
+
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+  "email": "london@example.com",
+  "password": "password123"
+}
+
+
+
+### Technician updates ticket
+
+PUT http://localhost:8080/api/tickets/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODY5MDIwMDAsImV4cCI6MTc4NjkwNTYwMH0.9_pajA3Tx6pfQwSbelk_DuV4C2TykKpXyKU0K_RQbjY
+Content-Type: application/json
+
+{
+  "title": "Printer is not working",
+  "description": "Technician is investigating the printer.",
+  "priority": "HIGH",
+  "status": "IN_PROGRESS"
+}
+
+
+### Assign ticket to technician
+
+PUT http://localhost:8080/api/tickets/2/assign/18
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MTUyODk0LCJleHAiOjE3ODcxNTY0OTR9.izrNqTL1r6xflcNJ0wCWQYYNdqT1ReREui827ebAcyY
+Content-Type: application/json
+
+
+
+### Technician tries to assign a ticket
+
+PUT http://localhost:8080/api/tickets/2/assign/18
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MTUyODk0LCJleHAiOjE3ODcxNTY0OTR9.izrNqTL1r6xflcNJ0wCWQYYNdqT1ReREui827ebAcyY
+
+Content-Type: application/json
+
+
+
+### update ticket only admin and technician allowed
+
+PUT http://localhost:8080/api/tickets/3/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODcwNjUxNjQsImV4cCI6MTc4NzA2ODc2NH0.5uHUAwtw56CnG9wGpBOV3e60wa9PwrTSnVz72qPByq0
+Content-Type: application/json
+
+"RESOLVED"
+
+
+###
+PUT http://localhost:8080/api/tickets/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODcwNjY2MTIsImV4cCI6MTc4NzA3MDIxMn0.P1amlJigTcqcyd7lUIh6qbRQsSx5jrhJnmpNSrxfLbM
+Content-Type: application/json
+
+{
+"title": "Printer is not working",
+"description": "Updated description",
+"priority": "HIGH",
+"status": "CLOSED"
+}
+
+
+###
+PUT http://localhost:8080/api/tickets/8/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODcwNjY2MTIsImV4cCI6MTc4NzA3MDIxMn0.P1amlJigTcqcyd7lUIh6qbRQsSx5jrhJnmpNSrxfLbM
+Content-Type: application/json
+
+"RESOLVED"
+
+
+###
+PUT http://localhost:8080/api/tickets/6/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODcwNzk4OTgsImV4cCI6MTc4NzA4MzQ5OH0.OJ9Y-OBtc-lCU43jD93nL2YCpkmH4FEOcvUPdl1YQDg
+Content-Type: application/json
+
+"RESOLVED"
+
+
+###
+POST http://localhost:8080/api/tickets/2/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWNobmljaWFuQGV4YW1wbGUuY29tIiwicm9sZSI6IlRFQ0hOSUNJQU4iLCJpYXQiOjE3ODcwODE1NTAsImV4cCI6MTc4NzA4NTE1MH0.avY6W5lUGHJQGPZdlAy5FoEEs1i0fEETDiHW3-bDR_c
+Content-Type: text/plain
+
+Technician is investigating the lan cable.
+
+
+### getting all comments that belongs to ticket 2
+GET http://localhost:8080/api/tickets/2/comments
+Authorization:  Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGxlbkBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4NzA4NDEyNSwiZXhwIjoxNzg3MDg3NzI1fQ.0SPLqwVpzRb-rHkcR-PLzoHq1SzEAPBqZT1EmLQ_CRg
+
+
+
+
+### Assign ticket to technician
+
+PUT http://localhost:8080/api/tickets/3/assign/23
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MTU2MDU0LCJleHAiOjE3ODcxNTk2NTR9.fRS-6qiaGjTJstrIDTG480C-J_GXWzdVDz1a2tyif0Q
+
+Content-Type: application/json
+
+
+###
+POST http://localhost:8080/api/tickets/2/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGxlbkBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4NzE1MjQ4OCwiZXhwIjoxNzg3MTU2MDg4fQ.11AP461NLVBgaJCA2A8TAsMif2dJ7PesJKrCn_WhC6c
+Content-Type: text/plain
+
+I am trying to comment on this ticket.
+
+
+###
+GET http://localhost:8080/api/tickets/8/comments
+Authorization: Bearer TECHNICIAN_TOKEN
+
+
+###  register a new technician
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+    "firstName": "noah",
+    "lastName": "Abdullahi",
+    "email": "noah@example.com",
+    "password": "password123"
+}
+
+
+### admin registering a technicain
+POST http://localhost:8080/api/users/technicians
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MTU2MDU0LCJleHAiOjE3ODcxNTk2NTR9.fRS-6qiaGjTJstrIDTG480C-J_GXWzdVDz1a2tyif0Q
+Content-Type: application/json
+
+{
+"firstName": "london",
+"lastName": "Technician",
+"email": "london@example.com",
+"password": "password123"
+}
+
+
+
+### getting ticket comments from ticket number 3 that asigned to technicain 23
+GET http://localhost:8080/api/tickets/3/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzE1NjQzNSwiZXhwIjoxNzg3MTYwMDM1fQ.iTYeUf1792RPpresLT2VjS9txXz9Gg5CmE-bW5Dxi1A
+
+
+
+### creating a  comments for ticket 3
+POST http://localhost:8080/api/tickets/3/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzE1OTQyMSwiZXhwIjoxNzg3MTYzMDIxfQ.FCGrwvFdHuJ4jqIPFlYneY8z5LqC6eF2atLvq2EoqjE
+Content-Type: text/plain
+
+The printer driver is being investigated.
+
+
+###
+GET http://localhost:8080/api/tickets/3/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzE1OTQyMSwiZXhwIjoxNzg3MTYzMDIxfQ.FCGrwvFdHuJ4jqIPFlYneY8z5LqC6eF2atLvq2EoqjE
+
+
+###changing ticket priority
+PUT http://localhost:8080/api/tickets/3/priority
+Authorization:  Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4NzIzMTIzNywiZXhwIjoxNzg3MjM0ODM3fQ.hIBSh6efimmq9Zu3u0-5HFhDw-Z9lvQG7RjQUybOPNs
+Content-Type: application/json
+
+"CRITICAL"
+
+
+###
+DELETE http://localhost:8080/api/tickets/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXJhaEBleGFtcGxlLmNvbSIsInJvbGUiOiJFTVBMT1lFRSIsImlhdCI6MTc4NzIzNTMyMCwiZXhwIjoxNzg3MjM4OTIwfQ.hcz-yYjCC_LGfIn32eopNI_8ak2iPSPqB8tW-8YghhI
+
+
+
+#### gettimng tofication for tech ud 23
+GET http://localhost:8080/api/notifications
+Authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzIzOTQzMSwiZXhwIjoxNzg3MjQzMDMxfQ.JsFoYWtaJ4XH4NOSK67jGusPcJqZNmXQ5XryQuLS750
+
+
+###
+PUT http://localhost:8080/api/notifications/1/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzIzNzY5OCwiZXhwIjoxNzg3MjQxMjk4fQ.S2KW70QPGMXYLJpZVGR88xyMtRrqwaf1U5IxMqr_tCc
+
+###
+GET http://localhost:8080/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzI0MDc4NiwiZXhwIjoxNzg3MjQ0Mzg2fQ.RNnatzQ2IU1o5k0q1Fa2aIIDLBidQKcYy9A_o9Uu-lI
+
+
+
+###
+
+
+
+
+
+###
+PUT http://localhost:8080/api/notifications/4/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzI0MTI0NSwiZXhwIjoxNzg3MjQ0ODQ1fQ.vcrFYE90MSwowmwYAYbrSBzKdqCBtwR8hGmTTgsia2I
+###
+GET http://localhost:8080/api/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQzMTY0LCJleHAiOjE3ODcyNDY3NjR9.SXEmSjCWF8D0Ha26ZyIGbKKvoJCba81h3dy_zr_Aatg
+
+
+###
+GET http://localhost:8080/api/dashboard/technicians
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQ0MzU3LCJleHAiOjE3ODcyNDc5NTd9.9MS-79A-lyic-SZYpTAgmXy5j8PRLG76t0i2MgJZBw8
+
+
+###
+GET http://localhost:8080/api/dashboard/technicians
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQ0NzM3LCJleHAiOjE3ODcyNDgzMzd9.ehMPVWEgUYACkGyOzdA-UqVpGTnQSmIQiF7agLBh91Q
+
+
+###
+GET http://localhost:8080/api/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQ1MzAwLCJleHAiOjE3ODcyNDg5MDB9.xMUHfmDQqqI78yJT01rTyZGcYzUys0W9xSNhw5cojnw
+
+
+###
+GET http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjQ1NzY2LCJleHAiOjE3ODcyNDkzNjZ9.67zzxP9ZKlIlAs1K2sWKdVjwEebfNbcDxtZYb7VNdGA
+
+
+###
+GET http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjUyMjkwLCJleHAiOjE3ODcyNTU4OTB9.uU8kzkwHw0__a3pLo-74uTWKJ8SOlvUPZbzbY8ac4BI
+
+###
+
+PUT http://localhost:8080/api/users/20/role
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjUyMjkwLCJleHAiOjE3ODcyNTU4OTB9.uU8kzkwHw0__a3pLo-74uTWKJ8SOlvUPZbzbY8ac4BI
+Content-Type: application/json
+
+"TECHNICIAN"
+
+
+###
+GET http://localhost:8080/api/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjUzODMwLCJleHAiOjE3ODcyNTc0MzB9.HKPcbcqJtvN8LHzBayB14bVy4phvuQU7LLCECZ9_VK8
+
+###
+GET http://localhost:8080/api/tickets/search?status=OPEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjU0NjIxLCJleHAiOjE3ODcyNTgyMjF9.GlhcQSsvYbmlj3GKj7pqkji8nZ2tfyJ2JPfTcTlucHo
+
+
+###
+GET http://localhost:8080/api/tickets/search?page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg3MjU1MzM5LCJleHAiOjE3ODcyNTg5Mzl9.txYxHWFqGmxuf4PILKSb9dqN6JlXYAuYKWsb-0Ry_Hc
+
+
+###
+GET http://localhost:8080/api/tickets/assigned
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzUwNDk5MywiZXhwIjoxNzg3NTA4NTkzfQ.08LmOHshcPMrhWm6KoqIajdqs6Phz3oyJw2oFC0bVqY
+
+
+### ADD COMMENT AS TECHNICIAN
+
+POST http://localhost:8080/api/tickets/3/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25kb25AZXhhbXBsZS5jb20iLCJyb2xlIjoiVEVDSE5JQ0lBTiIsImlhdCI6MTc4NzUxODIyMywiZXhwIjoxNzg3NTIxODIzfQ.4G3aoVz-OHccN2ENYz_7xNxET4Z8l7lYrw6482Fgw4s
+Content-Type: application/json
+
+
+{
+  "message": "Testing technician comment on assigned ticket."
+}
