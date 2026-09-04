@@ -148,6 +148,7 @@ public class GoogleOAuth2SuccessHandler
             // ---------------------------------------------
             // PLACEHOLDER PASSWORD
             // ---------------------------------------------
+
             /*
              * Google users authenticate through Google.
              *
@@ -238,7 +239,7 @@ public class GoogleOAuth2SuccessHandler
         // =================================================
 
         String redirectUrl =
-                "http://localhost:4200/oauth2/callback"
+                "https://master.d4qa3cwvbpi9o.amplifyapp.com/oauth2/callback"
                         + "?token="
                         + URLEncoder.encode(
                         token,
@@ -286,7 +287,7 @@ public class GoogleOAuth2SuccessHandler
 
         // Don't print the complete JWT to the console.
         System.out.println(
-                "http://localhost:4200/oauth2/callback"
+                "https://master.d4qa3cwvbpi9o.amplifyapp.com/oauth2/callback"
                         + "?token=[JWT]"
                         + "&email="
                         + user.getEmail()

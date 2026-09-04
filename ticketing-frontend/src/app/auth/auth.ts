@@ -46,11 +46,11 @@ export interface RegisterResponse {
 export class Auth {
 
   // =====================================================
-  // AWS ELASTIC BEANSTALK API URL
+  // AWS HTTPS API URL
   // =====================================================
 
   private apiUrl =
-    'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/api/users';
+    'https://api.fatahhelpdesk.host/api/users';
 
 
   // =====================================================

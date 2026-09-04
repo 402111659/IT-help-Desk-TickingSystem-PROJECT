@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { Auth } from '../../auth/auth';
 
 
+
 @Component({
   selector: 'app-login',
 
@@ -38,11 +39,13 @@ export class Login {
   loading = false;
 
 
+
   // =====================================================
   // PASSWORD VISIBILITY
   // =====================================================
 
   showPassword = false;
+
 
 
   // =====================================================
@@ -53,6 +56,7 @@ export class Login {
     private auth: Auth,
     private router: Router
   ) {}
+
 
 
   // =====================================================
@@ -67,6 +71,7 @@ export class Login {
   }
 
 
+
   // =====================================================
   // GOOGLE LOGIN
   // =====================================================
@@ -78,14 +83,16 @@ export class Login {
     );
 
 
+
     // ===================================================
     // REDIRECT TO AWS SPRING BOOT GOOGLE OAUTH2
     // ===================================================
 
     window.location.href =
-      'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/oauth2/authorization/google';
+      'https://api.fatahhelpdesk.host/oauth2/authorization/google';
 
   }
+
 
 
   // =====================================================
@@ -99,9 +106,11 @@ export class Login {
     );
 
 
+
     // Clear previous error
 
     this.errorMessage = '';
+
 
 
     // ===================================================
@@ -121,11 +130,13 @@ export class Login {
     }
 
 
+
     // ===================================================
     // START LOADING
     // ===================================================
 
     this.loading = true;
+
 
 
     // ===================================================
@@ -150,10 +161,12 @@ export class Login {
           );
 
 
+
           console.log(
             'JWT:',
             response.token
           );
+
 
 
           // =================================================
@@ -166,10 +179,12 @@ export class Login {
             );
 
 
+
           console.log(
             'Logged in user role:',
             role
           );
+
 
 
           // =================================================
@@ -183,7 +198,9 @@ export class Login {
             );
 
 
+
             this.loading = false;
+
 
 
             this.errorMessage =
@@ -192,6 +209,7 @@ export class Login {
             return;
 
           }
+
 
 
           // =================================================
@@ -215,6 +233,7 @@ export class Login {
           );
 
 
+
           // =================================================
           // SAVE NEW JWT
           // =================================================
@@ -225,6 +244,7 @@ export class Login {
           );
 
 
+
           // =================================================
           // SAVE EMAIL
           // =================================================
@@ -233,6 +253,7 @@ export class Login {
             'userEmail',
             response.email
           );
+
 
 
           // =================================================
@@ -252,6 +273,7 @@ export class Login {
           }
 
 
+
           // =================================================
           // SAVE USER ROLE
           // =================================================
@@ -260,6 +282,7 @@ export class Login {
             'role',
             role
           );
+
 
 
           console.log(
@@ -272,11 +295,13 @@ export class Login {
           );
 
 
+
           // =================================================
           // STOP LOADING
           // =================================================
 
           this.loading = false;
+
 
 
           // =================================================
@@ -296,11 +321,13 @@ export class Login {
               );
 
 
+
               this.router.navigate([
                 '/admin-dashboard'
               ]);
 
               break;
+
 
 
             // ===============================================
@@ -314,11 +341,13 @@ export class Login {
               );
 
 
+
               this.router.navigate([
                 '/technician-dashboard'
               ]);
 
               break;
+
 
 
             // ===============================================
@@ -332,11 +361,13 @@ export class Login {
               );
 
 
+
               this.router.navigate([
                 '/dashboard'
               ]);
 
               break;
+
 
 
             // ===============================================
@@ -349,6 +380,7 @@ export class Login {
                 'Unknown user role:',
                 role
               );
+
 
 
               // Clear invalid session
@@ -370,6 +402,7 @@ export class Login {
               );
 
 
+
               this.errorMessage =
                 'Your account has an invalid role.';
 
@@ -378,6 +411,7 @@ export class Login {
           }
 
         },
+
 
 
         // =================================================
@@ -392,7 +426,9 @@ export class Login {
           );
 
 
+
           this.loading = false;
+
 
 
           // ===============================================
@@ -407,6 +443,7 @@ export class Login {
           }
 
 
+
           // ===============================================
           // FORBIDDEN
           // ===============================================
@@ -419,6 +456,7 @@ export class Login {
           }
 
 
+
           // ===============================================
           // SERVER NOT AVAILABLE
           // ===============================================
@@ -429,6 +467,7 @@ export class Login {
               'Cannot connect to the server. Make sure Spring Boot is running.';
 
           }
+
 
 
           // ===============================================
@@ -447,6 +486,7 @@ export class Login {
       });
 
   }
+
 
 
   // =====================================================
@@ -469,6 +509,7 @@ export class Login {
         token.split('.');
 
 
+
       if (parts.length !== 3) {
 
         console.error(
@@ -480,12 +521,14 @@ export class Login {
       }
 
 
+
       // =================================================
       // GET PAYLOAD
       // =================================================
 
       const payload =
         parts[1];
+
 
 
       // =================================================
@@ -498,10 +541,12 @@ export class Login {
         );
 
 
+
       console.log(
         'JWT payload:',
         decodedPayload
       );
+
 
 
       // =================================================
@@ -512,11 +557,13 @@ export class Login {
         decodedPayload.role;
 
 
+
       if (!role) {
 
         return null;
 
       }
+
 
 
       // =================================================
@@ -535,6 +582,7 @@ export class Login {
         'Unable to read JWT:',
         error
       );
+
 
 
       return null;

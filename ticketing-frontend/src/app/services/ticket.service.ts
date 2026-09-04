@@ -104,11 +104,11 @@ export interface AddCommentRequest {
 export class TicketService {
 
   // ===================================================
-  // AWS ELASTIC BEANSTALK BACKEND
+  // AWS HTTPS BACKEND
   // ===================================================
 
   private apiUrl =
-    'http://ticketingsystem-prod.eba-89fs2nnj.us-east-1.elasticbeanstalk.com/api/tickets';
+    'https://api.fatahhelpdesk.host/api/tickets';
 
 
   constructor(
